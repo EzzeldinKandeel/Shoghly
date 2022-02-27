@@ -1,1 +1,57 @@
 /* Write styles here. */
+
+.navbar, .navbar--items{
+    display: flex;
+}
+
+.navbar{
+    background-color: #00003e;
+    color: #fff8dc;
+    margin-bottom: 20px;
+}
+
+.logo{
+    display: flex;
+}
+
+.logo-image{
+    height: 100px;
+    width: 100px;
+    margin-left: 15px;
+}
+
+.navbar--items > li{
+    list-style: none;
+    align-self: center;
+}
+
+.navbar--items{
+    gap: 1em;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: inherit;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.main-section{
+    margin: 20px;
+    height: 300px;
+    width: auto;
+    border: 2px solid #00003e;
+    border-radius: 5px;
+}
+
+.footer{
+    display: flex;
+    background-color: #00003e;
+    height: 200px;
+}
