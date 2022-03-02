@@ -1,56 +1,94 @@
-/* Write styles here. */
-
-.navbar, .navbar--items{
+/* ***** Navbar ***** */
+.navbar, .navbar--items, .account-management {
     display: flex;
 }
-
-.navbar{
+.navbar {
     background-color: #00003e;
     color: #fff8dc;
     margin-bottom: 20px;
+    gap: 1rem;
 }
-
-.logo{
+.logo {
     display: flex;
 }
-
-.logo-image{
+.logo-image {
     height: 100px;
     width: 100px;
-    margin-left: 15px;
 }
-
-.navbar--items > li{
+.app-name > a:hover {
+    color: inherit;
+}
+.navbar--items > li {
     list-style: none;
     align-self: center;
 }
-
-.navbar--items{
+.navbar--items {
+    padding: 0px;
     gap: 1em;
 }
-
 a{
     text-decoration: none;
 }
-
-a:visited{
+a:visited {
     color: inherit;
 }
+a:hover {
+    color: #d2691e;
+}
+.global-search {
+    background-color: #00003e;
+    border: 2px solid #fff8dc;
+    border-radius: 5px;
+    color: #fff8dc;
+    height: 40px;
+    width: 250px;
+    align-self: center;
+    font-family: inherit;
+    text-indent: 5px;
+}
+.account-management {
+    align-self: center;
+    gap: 1rem;
+    margin-right: auto;
+    margin-left: 20px;
+}
 
-.main-content{
+/* ***** Main Content ***** */
+.main-content {
     display: flex;
     flex-direction: column;
 }
-
-.main-section{
+.main-section {
+    display: flex;
+    overflow: auto;
+    gap: 1rem;
     margin: 20px;
     height: 300px;
     width: auto;
     border: 2px solid #00003e;
     border-radius: 5px;
 }
+#most-popular {
+    border: none;
+}
 
-.footer{
+/* ***** Card ***** */
+.card {
+    border: 2px solid #00003e;
+    border-radius: 5px;
+    margin: 1rem 0rem;
+    color: #00003e;
+}
+#worker-name, #profession {
+    padding-right: 5px;
+    margin: 0px;
+}
+#profession {
+    font-size: 0.8em;
+}
+
+/* ***** Footer ***** */
+.footer {
     display: flex;
     background-color: #00003e;
     height: 200px;
