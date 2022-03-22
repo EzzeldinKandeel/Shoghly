@@ -1,10 +1,12 @@
 import React from "react";
-import logo_placeholder from '../images/logo-placeholder.png';
+import logo_placeholder from '../images/placeholder_50px_50px.png';
 
 function Navbar() {
     return (
         <div className="navbar">
-            <a href="../../public/index.html" className="logo"><img src={logo_placeholder} alt="logo" className="logo-image"/></a>
+            <a href="../../public/index.html" className="logo">
+                <img src={logo_placeholder} alt="logo" className="logo-image"/>
+            </a>
             <h1 className="app-name"><a href="../../public/index.html">اسم الموقع</a></h1>
 
             <ul className="navbar--items">

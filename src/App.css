@@ -1,19 +1,34 @@
+:root {
+    --orange: #d2691e;
+    --navy: #00003e;
+    --white: #fff8dc;
+}
+
 /* ***** Navbar ***** */
-.navbar, .navbar--items, .account-management {
+.App .navbar, .navbar--items, .account-management {
     display: flex;
 }
 .navbar {
-    background-color: #00003e;
+    padding: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--orange);
     color: #fff8dc;
     margin-bottom: 20px;
     gap: 1rem;
+    box-shadow: 1px 1px 5px black;
 }
 .logo {
     display: flex;
+    height: min-content;
 }
 .logo-image {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
+}
+.app-name {
+    margin: 0px;
+    font-size: 1.2rem;
 }
 .app-name > a:hover {
     color: inherit;
@@ -23,6 +38,7 @@
     align-self: center;
 }
 .navbar--items {
+    margin: 0px;
     padding: 0px;
     gap: 1em;
 }
@@ -33,24 +49,22 @@ a:visited {
     color: inherit;
 }
 a:hover {
-    color: #d2691e;
+    color: var(--navy);
 }
 .global-search {
-    background-color: #00003e;
-    border: 2px solid #fff8dc;
-    border-radius: 5px;
+    background-color: #9f4f16;
+    border: none;
     color: #fff8dc;
     height: 40px;
     width: 250px;
     align-self: center;
     font-family: inherit;
-    text-indent: 5px;
+    text-indent: 10px;
+    margin-left: auto;
 }
 .account-management {
     align-self: center;
     gap: 1rem;
-    margin-right: auto;
-    margin-left: 20px;
 }
 
 /* ***** Main Content ***** */
@@ -65,18 +79,12 @@ a:hover {
     margin: 20px;
     height: 300px;
     width: auto;
-    border: 2px solid #00003e;
-    border-radius: 5px;
-}
-#most-popular {
-    border: none;
+    padding: 1rem;
 }
 
 /* ***** Card ***** */
 .card {
-    border: 2px solid #00003e;
-    border-radius: 5px;
-    margin: 1rem 0rem;
+    box-shadow: 1px 1px 5px black;
     color: #00003e;
 }
 #worker-name, #profession {
@@ -85,6 +93,38 @@ a:hover {
 }
 #profession {
     font-size: 0.8em;
+}
+
+/* ***** Login ***** */
+.form {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: space-evenly;
+}
+.form > form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: center;
+    padding: 50px;
+    box-shadow: 1px 1px 5px black;
+}
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.login-box {
+    border: 1px solid gray;
+}
+.login-button {
+    width: 100%;
+    height: 2.5rem;
+    border: none;
+    background-color: var(--orange);
+    font-family: 'Readex Pro', sans-serif;
+    color: var(--white);
 }
 
 /* ***** Footer ***** */
