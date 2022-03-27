@@ -6,14 +6,14 @@ function Login() {
             <form>
                 <div className="input-container">
                     <label>البريد الإلكتروني: </label>
-                    <input type="email" name="email" className="login-box" required />
+                    <input type="email" name="email" className="input-box" required />
                 </div>
                 <div className="input-container">
                     <label>الرقم السري: </label>
-                    <input type="password" name="pass" className="login-box" required />
+                    <input type="password" name="password" className="input-box" required />
                 </div>
                 <div className="button-container">
-                    <input type="submit" value="دخول" className="login-button"/>
+                    <input type="submit" value="دخول" className="main-button"/>
                 </div>
             </form>
         </div>

@@ -13,7 +13,7 @@
     align-items: center;
     flex-wrap: wrap;
     background-color: var(--orange);
-    color: #fff8dc;
+    color: var(--white);
     margin-bottom: 20px;
     gap: 1rem;
     box-shadow: 1px 1px 5px black;
@@ -54,9 +54,9 @@ a:hover {
 .global-search {
     background-color: #9f4f16;
     border: none;
-    color: #fff8dc;
-    height: 40px;
+    color: var(--white);
     width: 250px;
+    height: 30px;
     align-self: center;
     font-family: inherit;
     text-indent: 10px;
@@ -85,7 +85,7 @@ a:hover {
 /* ***** Card ***** */
 .card {
     box-shadow: 1px 1px 5px black;
-    color: #00003e;
+    color: var(--navy);
 }
 #worker-name, #profession {
     padding-right: 5px;
@@ -96,7 +96,7 @@ a:hover {
 }
 
 /* ***** Login ***** */
-.form {
+.form, .account-type-choice-container {
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -115,10 +115,16 @@ a:hover {
     justify-content: space-between;
     gap: 1rem;
 }
-.login-box {
+.input-container > label {
+    height: fit-content;
+    align-self: center;
+}
+.input-box {
+    height: 25px;
+    width: 175px;
     border: 1px solid gray;
 }
-.login-button {
+.main-button {
     width: 100%;
     height: 2.5rem;
     border: none;
@@ -126,10 +132,63 @@ a:hover {
     font-family: 'Readex Pro', sans-serif;
     color: var(--white);
 }
+.main-button:hover {
+    border: 2px solid black;
+}
+
+/* ***** AccountType ***** */
+.account-type-choice-content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px black;
+    width: 500px;
+    height: 400px;
+    align-self: center;
+}
+.account-type-choice-content > .prompt {
+    box-shadow: 1px 1px 5px black;
+    background-color: var(--orange);
+    color: var(--white);
+    text-align: center;
+    font-size: 1.5rem;
+}
+.account-type-choice-content > .choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+}
+.account-type-card {
+    /* border: 1px solid black; */
+    box-shadow: 1px 1px 5px black;
+    height: 200px;
+    width: 200px;
+    align-self: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.account-type-card:hover {
+    box-shadow: none;
+    border: 2px solid black;
+}
+
+/* ***** Signup ***** */
+.multiple-horizontal-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.signup-cancel {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
 
 /* ***** Footer ***** */
 .footer {
     display: flex;
-    background-color: #00003e;
+    background-color: var(--navy);
     height: 200px;
 }
