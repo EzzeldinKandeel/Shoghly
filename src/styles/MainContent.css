@@ -1,0 +1,13 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+.main-section {
+    display: flex;
+    overflow: auto;
+    gap: 1rem;
+    margin: 20px;
+    height: 300px;
+    width: auto;
+    padding: 1rem;
+}

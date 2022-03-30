@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import "../styles/account-type.css"
 
-function AccountType() {
+function AccountTypeBox() {
     return (
         <div className='account-type-choice-container'>
             <div className='account-type-choice-content'>
@@ -8,12 +10,12 @@ function AccountType() {
                     <p>اختر نوع الحساب</p>
                 </div>
                 <div className='choices'>
-                    <a href="" className='account-type-card'>حرفي</a>
-                    <a href="" className='account-type-card'>عميل</a>
+                    <Link to="/signup-as-a-worker" className='account-type-card'>حرفي</Link>
+                    <Link to="/signup-as-a-client" className='account-type-card'>عميل</Link>
                 </div>
             </div>
         </div>
     );
 }
 
-export default AccountType;
+export default AccountTypeBox;

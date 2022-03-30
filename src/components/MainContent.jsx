@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/MainContent.css"
 import Card from "./card"
 
 function MainContent(){

@@ -1,0 +1,42 @@
+.account-type-choice-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: space-evenly;
+}
+.account-type-choice-content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px black;
+    width: 500px;
+    height: 400px;
+    align-self: center;
+}
+.account-type-choice-content > .prompt {
+    box-shadow: 1px 1px 5px black;
+    background-color: var(--orange);
+    color: var(--white);
+    text-align: center;
+    font-size: 1.5rem;
+}
+.account-type-choice-content > .choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+}
+.account-type-card {
+    /* border: 1px solid black; */
+    box-shadow: 1px 1px 5px black;
+    height: 200px;
+    width: 200px;
+    align-self: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.account-type-card:hover {
+    box-shadow: none;
+    border: 2px solid black;
+}

@@ -1,0 +1,53 @@
+.navbar, .navbar--items, .account-management {
+    display: flex;
+}
+.navbar {
+    justify-self: flex-start;
+    padding: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--orange);
+    color: var(--white);
+    margin-bottom: 20px;
+    gap: 1rem;
+    box-shadow: 1px 1px 5px black;
+}
+.logo {
+    display: flex;
+    height: min-content;
+}
+.logo-image {
+    height: 50px;
+    width: 50px;
+}
+.app-name {
+    margin: 0px;
+    font-size: 1.2rem;
+}
+.app-name > a:hover {
+    color: inherit;
+}
+.navbar--items > li {
+    list-style: none;
+    align-self: center;
+}
+.navbar--items {
+    margin: 0px;
+    padding: 0px;
+    gap: 1em;
+}
+.global-search {
+    background-color: #9f4f16;
+    border: none;
+    color: var(--white);
+    width: 250px;
+    height: 30px;
+    align-self: center;
+    font-family: inherit;
+    text-indent: 10px;
+    margin-left: auto;
+}
+.account-management {
+    align-self: center;
+    gap: 1rem;
+}

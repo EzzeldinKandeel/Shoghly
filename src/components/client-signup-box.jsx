@@ -1,6 +1,9 @@
 import React from "react";
+import "../styles/signup.css"
+import "../styles/login.css"
+import {Link} from 'react-router-dom'
 
-function WorkerSignup() {
+function ClientSignupBox() {
     return (
         <div className="form">
             <form>
@@ -21,10 +24,6 @@ function WorkerSignup() {
                     <input type="text" name="city" className="input-box" required />
                 </div>
                 <div className="input-container">
-                    <label>الحرفة: </label>
-                    <input type="text" name="profession" className="input-box" required />
-                </div>
-                <div className="input-container">
                     <label>الرقم السري: </label>
                     <input type="password" name="password" className="input-box" required />
                 </div>
@@ -34,11 +33,11 @@ function WorkerSignup() {
                 </div>
                 <div className="button-container multiple-horizontal-buttons">
                     <input type="submit" value="تسجيل" className="main-button signup-submit"/>
-                    <input type="submit" value="إلغاء" className="main-button signup-cancel"/>
+                    <Link to='/' className="main-button signup-cancel">إلغاء</Link>
                 </div>
             </form>
         </div>
     );
 }
 
-export default WorkerSignup;
+export default ClientSignupBox;

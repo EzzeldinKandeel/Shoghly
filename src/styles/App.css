@@ -1,0 +1,21 @@
+:root {
+    --orange: #d2691e;
+    --navy: #00003e;
+    --white: #fff8dc;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+a, Link {
+    text-decoration: none;
+    color: inherit;
+}
+a:visited, Link:visited {
+    color: inherit;
+}
+a:hover, Link:hover {
+    color: var(--navy);
+}

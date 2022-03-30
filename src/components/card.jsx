@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/card.css"
 import worker_picture from "../images/placeholder_150px_150px.png"
 
 function Card () {

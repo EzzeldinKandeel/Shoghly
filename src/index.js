@@ -3,10 +3,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from './routes/login'
+import HomeScreen from './routes/HomeScreen'
+import ChooseAccountType from './routes/ChooseAccountType'
+import WorkerSignUp from './routes/WorkerSignUp';
+import ClientSignUp from './routes/ClientSignUp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path='' element={<HomeScreen />} />
+        <Route path="login" element={<Login />} />
+        <Route path='choose-account-type' element={<ChooseAccountType />} />
+        <Route path='signup-as-a-worker' element={<WorkerSignUp />} />
+        <Route path='signup-as-a-client' element={<ClientSignUp />} />
+      </Route>
+    </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

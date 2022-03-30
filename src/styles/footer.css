@@ -1,0 +1,5 @@
+.footer {
+    display: flex;
+    background-color: var(--navy);
+    height: 200px;
+}
