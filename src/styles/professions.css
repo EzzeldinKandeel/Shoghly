@@ -1,0 +1,20 @@
+.profession-card > div {
+    display: flex;
+    box-shadow: 1px 1px 5px black;
+    height: 200px;
+    width: 300px;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+.profession-card > div:hover {
+    box-shadow: none;
+    border: 2px solid black;
+}
+.profession-cards {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-inline: 2rem;
+}

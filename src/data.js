@@ -1,3 +1,4 @@
+export default 
 {
     "clients": [
         {
@@ -236,22 +237,67 @@
             "worker_id": 1
         }
     ],
-    "categories": [
-        "نجارة",
-        "نقاشة",
-        "ميكانيكا سيارات",
-        "سباكة",
-        "كهرباء",
-        "تكييف وتبريد",
-        "ألوميتال",
-        "تركيب أرضيات",
-        "أنظمة دش",
-        "تصليح أدوات منزلية",
-        "نقل ورفع الموبيليا",
-        "قطر السيارات",
-        "سمكرة سيارات",
-        "أنظمة صوت",
-        "صناعات يدوية"
+    "professions": [
+        {
+            "arabic_name": "نجارة",
+            "engish_name": "carpentry"
+        },
+        {
+            "arabic_name": "نقاشة",
+            "engish_name": "house-painting"
+        },
+        {
+            "arabic_name": "ميكانيكا سيارات",
+            "engish_name": "car-mechanics"
+        },
+        {
+            "arabic_name": "سباكة",
+            "engish_name": "plumbing"
+        },
+        {
+            "arabic_name": "كهرباء",
+            "engish_name": "electricity"
+        },
+        {
+            "arabic_name": "تكييف وتبريد",
+            "engish_name": "hvac"
+        },
+        {
+            "arabic_name": "ألوميتال",
+            "engish_name": "aluminum-frames"
+        },
+        {
+            "arabic_name": "تركيب أرضيات",
+            "engish_name": "flooring-installation"
+        },
+        {
+            "arabic_name": "أنظمة دش",
+            "engish_name": "satellite-dish"
+        },
+        {
+            "arabic_name": "تصليح أدوات منزلية",
+            "engish_name": "home-appliance-maintenance"
+        },
+        {
+            "arabic_name": "نقل ورفع الموبيليا",
+            "engish_name": "transport-and-lifting"
+        },
+        {
+            "arabic_name": "قطر السيارات",
+            "engish_name": "car-towing"
+        },
+        {
+            "arabic_name": "سمكرة سيارات",
+            "engish_name": "car-body-work"
+        },
+        {
+            "arabic_name": "أنظمة صوت",
+            "engish_name": "sound-systems"
+        },
+        {
+            "arabic_name": "صناعات يدوية",
+            "engish_name": "crafts"
+        }
     ]
 
 }

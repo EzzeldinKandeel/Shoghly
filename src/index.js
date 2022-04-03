@@ -13,6 +13,7 @@ import HomeScreen from './routes/HomeScreen'
 import ChooseAccountType from './routes/ChooseAccountType'
 import WorkerSignUp from './routes/WorkerSignUp';
 import ClientSignUp from './routes/ClientSignUp';
+import Profession from './routes/professions';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='choose-account-type' element={<ChooseAccountType />} />
         <Route path='signup-as-a-worker' element={<WorkerSignUp />} />
         <Route path='signup-as-a-client' element={<ClientSignUp />} />
+        <Route path='professions' element={<Profession />} />
       </Route>
     </Routes>
     </BrowserRouter>

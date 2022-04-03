@@ -14,7 +14,7 @@ function Navbar() {
             <ul className="navbar--items">
                 <li><Link to="/">الصفحة الرئيسية</Link></li>
                 <li><Link to="">الأشهر</Link></li>
-                <li><Link to="">الأقسام</Link></li>
+                <li><Link to="/professions">الحرف</Link></li>
                 <li><Link to="">عن الموقع</Link></li>
             </ul>
 

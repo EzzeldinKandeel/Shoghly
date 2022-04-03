@@ -3,12 +3,12 @@
 }
 .navbar {
     justify-self: flex-start;
-    padding: 10px;
+    padding: 1rem;
     align-items: center;
     flex-wrap: wrap;
     background-color: var(--orange);
     color: var(--white);
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     gap: 1rem;
     box-shadow: 1px 1px 5px black;
 }
