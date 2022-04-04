@@ -24,6 +24,14 @@ function ClientSignupBox() {
                     <input type="text" name="city" className="input-box" required />
                 </div>
                 <div className="input-container">
+                    <label>رقم المحمول: </label>
+                    <input type="tel" name="mobile-number" className="input-box" required />
+                </div>
+                <div className="input-container">
+                    <label>تاريخ الميلاد: </label>
+                    <input type="date" name="profession" className="input-box" required />
+                </div>
+                <div className="input-container">
                     <label>الرقم السري: </label>
                     <input type="password" name="password" className="input-box" required />
                 </div>

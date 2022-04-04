@@ -1,12 +1,12 @@
 import React from 'react';
 import Navbar from '../components/navbar';
 import ProfessionCards from '../components/ProfessionCards';
-import database from '../data'
+import {getData} from '../data'
 import '../styles/professions.css'
 
 function Profession() {
 
-    const [data, setData] = React.useState(database)
+    const [data, setData] = React.useState(getData())
 
     return (
         <div className='container'>
@@ -14,7 +14,7 @@ function Profession() {
             <div className='profession-cards'>
                 {data["professions"].map(profession => {
                     return <ProfessionCards 
-                        professionEnglish={profession.engish_name}
+                        professionEnglish={profession.english_name}
                         professionArabic={profession.arabic_name}
                     />
                 })}

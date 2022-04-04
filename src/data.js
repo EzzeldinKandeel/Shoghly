@@ -1,5 +1,4 @@
-export default 
-{
+var database = {
     "clients": [
         {
             "id": 0,
@@ -84,7 +83,7 @@ export default
             "profession": "نقاشة",
             "age": 27,
             "city": "المنوفية",
-            "profile_picture_url": "",
+            "profile_picture_url": "https://via.placeholder.com/100",
             "bio": "",
             "reviews": [
                 {
@@ -240,64 +239,74 @@ export default
     "professions": [
         {
             "arabic_name": "نجارة",
-            "engish_name": "carpentry"
+            "english_name": "carpentry"
         },
         {
             "arabic_name": "نقاشة",
-            "engish_name": "house-painting"
+            "english_name": "house-painting"
         },
         {
             "arabic_name": "ميكانيكا سيارات",
-            "engish_name": "car-mechanics"
+            "english_name": "car-mechanics"
         },
         {
             "arabic_name": "سباكة",
-            "engish_name": "plumbing"
+            "english_name": "plumbing"
         },
         {
             "arabic_name": "كهرباء",
-            "engish_name": "electricity"
+            "english_name": "electricity"
         },
         {
             "arabic_name": "تكييف وتبريد",
-            "engish_name": "hvac"
+            "english_name": "hvac"
         },
         {
             "arabic_name": "ألوميتال",
-            "engish_name": "aluminum-frames"
+            "english_name": "aluminum-frames"
         },
         {
             "arabic_name": "تركيب أرضيات",
-            "engish_name": "flooring-installation"
+            "english_name": "flooring-installation"
         },
         {
             "arabic_name": "أنظمة دش",
-            "engish_name": "satellite-dish"
+            "english_name": "satellite-dish"
         },
         {
             "arabic_name": "تصليح أدوات منزلية",
-            "engish_name": "home-appliance-maintenance"
+            "english_name": "home-appliance-maintenance"
         },
         {
             "arabic_name": "نقل ورفع الموبيليا",
-            "engish_name": "transport-and-lifting"
+            "english_name": "transport-and-lifting"
         },
         {
             "arabic_name": "قطر السيارات",
-            "engish_name": "car-towing"
+            "english_name": "car-towing"
         },
         {
             "arabic_name": "سمكرة سيارات",
-            "engish_name": "car-body-work"
+            "english_name": "car-body-work"
         },
         {
             "arabic_name": "أنظمة صوت",
-            "engish_name": "sound-systems"
+            "english_name": "sound-systems"
         },
         {
             "arabic_name": "صناعات يدوية",
-            "engish_name": "crafts"
+            "english_name": "crafts"
         }
     ]
 
+}
+
+export function getData() {
+    return database;
+  }
+  
+export function getProfession(name) {
+    return database.professions.find(
+        (profession) => profession.english_name === name
+    );
 }

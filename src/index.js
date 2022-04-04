@@ -14,6 +14,7 @@ import ChooseAccountType from './routes/ChooseAccountType'
 import WorkerSignUp from './routes/WorkerSignUp';
 import ClientSignUp from './routes/ClientSignUp';
 import Profession from './routes/professions';
+import SingleProfession from './routes/SingleProfession';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +26,10 @@ ReactDOM.render(
         <Route path='choose-account-type' element={<ChooseAccountType />} />
         <Route path='signup-as-a-worker' element={<WorkerSignUp />} />
         <Route path='signup-as-a-client' element={<ClientSignUp />} />
-        <Route path='professions' element={<Profession />} />
+        <Route path='professions' element={<App />}>
+          <Route path='' element={<Profession />} />
+          <Route path=':professionEnglish' element={<SingleProfession />} />
+        </Route>
       </Route>
     </Routes>
     </BrowserRouter>

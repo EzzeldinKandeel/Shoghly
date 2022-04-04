@@ -24,8 +24,16 @@ function WorkerSignupBox() {
                     <input type="text" name="city" className="input-box" required />
                 </div>
                 <div className="input-container">
-                    <label>الحرفة: </label>
-                    <input type="text" name="profession" className="input-box" required />
+                    <label>المحافظة: </label>
+                    <input type="text" name="city" className="input-box" required />
+                </div>
+                <div className="input-container">
+                    <label>رقم المحمول: </label>
+                    <input type="tel" name="mobile-number" className="input-box" required />
+                </div>
+                <div className="input-container">
+                    <label>تاريخ الميلاد: </label>
+                    <input type="date" name="profession" className="input-box" required />
                 </div>
                 <div className="input-container">
                     <label>الرقم السري: </label>
