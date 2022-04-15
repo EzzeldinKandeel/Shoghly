@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/footer';
 import MainContent from '../components/MainContent';
 import Navbar from '../components/navbar';
 
@@ -7,6 +8,7 @@ function HomeScreen() {
         <div className='container'>
             <Navbar />
             <MainContent />
+            <Footer />
         </div>
     )
 }

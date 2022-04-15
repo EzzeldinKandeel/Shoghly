@@ -1,0 +1,23 @@
+.large-worker-card {
+    box-shadow: 1px 1px 5px black;
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+}
+.right-section {
+    display: flex;
+    height: min-content;
+}
+.left-section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+h2 {
+    margin-block: 10px;
+}
+h4 {
+    margin: 0px;
+    font-size: 0.8rem;
+    color: #323232;
+}

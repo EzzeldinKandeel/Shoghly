@@ -1,5 +1,6 @@
 import React from 'react';
 import AccountTypeBox from '../components/account-type-box';
+import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 
 function ChooseAccountType() {
@@ -7,6 +8,7 @@ function ChooseAccountType() {
         <div className='container'>
             <Navbar />
             <AccountTypeBox />
+            <Footer />
         </div>
     )
 }

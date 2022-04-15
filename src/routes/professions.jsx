@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import ProfessionCards from '../components/ProfessionCards';
 import {getData} from '../data'
@@ -14,11 +15,13 @@ function Profession() {
             <div className='profession-cards'>
                 {data["professions"].map(profession => {
                     return <ProfessionCards 
+                        key={profession.english_name}
                         professionEnglish={profession.english_name}
                         professionArabic={profession.arabic_name}
                     />
                 })}
             </div>
+            <Footer />
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/footer';
 import LargeWorkerCard from '../components/LargeWorkerCard';
 import Navbar from '../components/navbar';
 import {getData, getProfession} from '../data'
+import '../styles/SingleProfession.css'
 
 function SingleProfession() {
 
@@ -14,9 +16,12 @@ function SingleProfession() {
     return (
         <div className='container'>
             <Navbar />
-            {data.workers.map(worker => {
-                return worker.profession === profession.arabic_name && <LargeWorkerCard key={worker.id} worker={worker} />
-            })}
+            <div className='workers'>
+                {data.workers.map(worker => {
+                    return worker.profession === profession.arabic_name && <LargeWorkerCard key={worker.id} worker={worker} />
+                })}
+            </div>
+            <Footer />
         </div>
     )
 }

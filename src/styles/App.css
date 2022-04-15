@@ -1,12 +1,12 @@
 :root {
-    --orange: #d2691e;
+    --red: #f44236;
     --navy: #00003e;
     --white: #fff8dc;
 }
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 a, Link {

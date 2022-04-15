@@ -6,7 +6,7 @@
     padding: 1rem;
     align-items: center;
     flex-wrap: wrap;
-    background-color: var(--orange);
+    background-color: var(--red);
     color: var(--white);
     margin-bottom: 2rem;
     gap: 1rem;
@@ -37,7 +37,8 @@
     gap: 1em;
 }
 .global-search {
-    background-color: #9f4f16;
+    display: none;
+    background-color: #a72d25;
     border: none;
     color: var(--white);
     width: 250px;
@@ -48,6 +49,7 @@
     margin-left: auto;
 }
 .account-management {
+    margin-right: auto;
     align-self: center;
     gap: 1rem;
 }

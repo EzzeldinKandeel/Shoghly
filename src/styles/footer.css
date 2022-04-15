@@ -1,5 +1,15 @@
+.gap {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    margin-top: auto;
+    margin-bottom: 0px;
+    padding-top: 2rem;
+}
 .footer {
     display: flex;
-    background-color: var(--navy);
+    background-color: var(--red);
     height: 200px;
+    justify-content: center;
+    align-items: center;
 }

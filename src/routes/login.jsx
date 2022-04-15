@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/footer';
 import LoginBox from '../components/login-box';
 import Navbar from '../components/navbar';
 
@@ -7,6 +8,7 @@ function Login() {
         <div className='container'>
             <Navbar />
             <LoginBox />
+            <Footer />
         </div>
     )
 }
