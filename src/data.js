@@ -1,77 +1,76 @@
 var database = {
-    "clients": [
+    clients: [
         {
-            "id": 0,
-            "name": {
-                "first": "أحمد",
-                "last": "نبيل"
+            id: 0,
+            name: {
+                first: "أحمد",
+                last: "نبيل",
             },
-            "email": "ahmadnabil@gmail.com",
-            "password": "nabil1",
-            "age": 34,
-            "city": "بور سعيد",
-            "profile_picture_url": "",
-            "favorites_id": [4,2],
-            "blocked_id": [1]
+            email: "ahmadnabil@gmail.com",
+            password: "nabil1",
+            age: 34,
+            city: "بور سعيد",
+            profile_picture_url: "",
+            favorites_id: [4, 2],
+            blocked_id: [1],
         },
         {
-            "id": 1,
-            "name": {
-                "first": "إبراهيم",
-                "last": "عرابي"
+            id: 1,
+            name: {
+                first: "إبراهيم",
+                last: "عرابي",
             },
-            "email": "ibrahimoraby@gmail.com",
-            "password": "oraby1",
-            "age": 28,
-            "city": "مرسى مطروح",
-            "profile_picture_url": "",
-            "favorites_id": [3],
-            "blocked_id": []
+            email: "ibrahimoraby@gmail.com",
+            password: "oraby1",
+            age: 28,
+            city: "مرسى مطروح",
+            profile_picture_url: "",
+            favorites_id: [3],
+            blocked_id: [],
         },
         {
-            "id": 2,
-            "name": {
-                "first": "عز الدين",
-                "last": "قنديل"
+            id: 2,
+            name: {
+                first: "عز الدين",
+                last: "قنديل",
             },
-            "email": "ezzeldinkandeel@gmail.com",
-            "password": "kandeel1",
-            "age": 64,
-            "city": "الغردقة",
-            "profile_picture_url": "",
-            "favorites_id": [],
-            "blocked_id": [1,2,3,4]
+            email: "ezzeldinkandeel@gmail.com",
+            password: "kandeel1",
+            age: 64,
+            city: "الغردقة",
+            profile_picture_url: "",
+            favorites_id: [],
+            blocked_id: [1, 2, 3, 4],
         },
         {
-            "id": 3,
-            "name": {
-                "first": "محمد",
-                "last": "الشامي"
+            id: 3,
+            name: {
+                first: "محمد",
+                last: "الشامي",
             },
-            "email": "mohammadalshamy@gmail.com",
-            "password": "alshamy1",
-            "age": 40,
-            "city": "مدينة نصر",
-            "profile_picture_url": "",
-            "favorites_id": [1,2],
-            "blocked_id": [4]
+            email: "mohammadalshamy@gmail.com",
+            password: "alshamy1",
+            age: 40,
+            city: "مدينة نصر",
+            profile_picture_url: "",
+            favorites_id: [1, 2],
+            blocked_id: [4],
         },
         {
-            "id": 4,
-            "name": {
-                "first": "ميرنا",
-                "last": "كتانة"
+            id: 4,
+            name: {
+                first: "ميرنا",
+                last: "كتانة",
             },
-            "email": "meranketana@gmail.com",
-            "password": "ketana1",
-            "age": 29,
-            "city": "شلاتين",
-            "profile_picture_url": "",
-            "favorites_id": [0,1,2,3],
-            "blocked_id": [4]
-        }
-    ],
-    "workers": [
+            email: "meranketana@gmail.com",
+            password: "ketana1",
+            age: 29,
+            city: "شلاتين",
+            profile_picture_url: "",
+            favorites_id: [0, 1, 2, 3],
+            blocked_id: [4],
+        },
+    ], "workers": [
         {
             "id": 0,
             "name": {
@@ -305,8 +304,8 @@ var database = {
 
 export function getData() {
     return database
-  }
-  
+}
+
 export function getProfession(name) {
     return database.professions.find(
         (profession) => profession.english_name === name
