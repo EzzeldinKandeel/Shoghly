@@ -2,6 +2,7 @@
     --red: #f44236;
     --navy: #00003e;
     --white: #fff8dc;
+    --gray: #323232;
 }
 .container {
     display: flex;

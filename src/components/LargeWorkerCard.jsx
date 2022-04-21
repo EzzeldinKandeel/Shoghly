@@ -11,7 +11,7 @@ function LargeWorkerCard(props) {
     })
 
     return (
-        <Link to={`/${props.worker.id}`}>
+        <Link to={`/worker-${props.worker.id}`}>
             <div className='large-worker-card'>
                 <div className='right-section'>
                     <img src={workerPic} alt="picture of the worker" />

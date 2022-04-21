@@ -83,18 +83,19 @@ var database = {
             "profession": "نقاشة",
             "age": 27,
             "city": "المنوفية",
-            "profile_picture_url": "https://via.placeholder.com/100",
+            "profile_picture_url": "",
             "bio": "",
             "reviews": [
                 {
+                    "review_id": 1,
                     "client_id": 4,
                     "rating": 5,
                     "date": {
                         "year": 2018,
                         "month": 5,
-                        "day": 5,
-                        "hour": 5,
-                        "minute": 5
+                        "day": 24,
+                        "hour": 13,
+                        "minute": 34
                     },
                     "review_head": "إنه حقا نقاش رائع",
                     "review_body": "لقد أنجز الوظيفة على أكمل وجه، وفي وقت قياسي"
@@ -124,6 +125,7 @@ var database = {
             "bio": "",
             "reviews": [
                 {
+                    "review_id": 1,
                     "client_id": 1,
                     "rating": 3,
                     "date": {
@@ -302,11 +304,23 @@ var database = {
 }
 
 export function getData() {
-    return database;
+    return database
   }
   
 export function getProfession(name) {
     return database.professions.find(
         (profession) => profession.english_name === name
-    );
+    )
+}
+
+export function getWorker(id) {
+    return database.workers.find(
+        (worker) => worker.id === parseInt(id)
+    )
+}
+
+export function getClient(id) {
+    return database.clients.find(
+        (client) => client.id === parseInt(id)
+    )
 }

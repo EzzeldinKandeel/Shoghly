@@ -15,6 +15,7 @@ import WorkerSignUp from './routes/WorkerSignUp';
 import ClientSignUp from './routes/ClientSignUp';
 import Profession from './routes/professions';
 import SingleProfession from './routes/SingleProfession';
+import WorkerPage from './routes/WorkerPage';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
           <Route path='' element={<Profession />} />
           <Route path=':professionEnglish' element={<SingleProfession />} />
         </Route>
+        <Route path='worker-:workerId' element={<WorkerPage />} />
       </Route>
     </Routes>
     </BrowserRouter>
