@@ -13,11 +13,11 @@
     flex-direction: column;
     margin-left: 1rem;
 }
-h2 {
+.left-section > h2 {
     margin-block: 10px;
 }
-h4 {
+.left-section > h4 {
     margin: 0px;
     font-size: 0.8rem;
-    color: #323232;
+    color: var(--gray);
 }

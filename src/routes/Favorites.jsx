@@ -2,16 +2,20 @@ import React from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import LargeWorkerCard from "../components/LargeWorkerCard";
-import { getData } from "../data";
+import { getClient, getData } from "../data";
 import "../styles/SingleProfession.css";
+import { getWorker } from './../data';
 
 function Favorites() {
-  let data = getData();
+  let current_user = getClient(0)
+  let favorites = current_user.favorites_id.map(workerId => getWorker(workerId))
+  console.log(favorites)
+
   return (
     <div className="container">
       <Navbar />
       <div className="workers">
-        {data.favorites.map((worker) => {
+        {favorites.map((worker) => {
           return <LargeWorkerCard key={worker.id} worker={worker} />;
         })}
       </div>

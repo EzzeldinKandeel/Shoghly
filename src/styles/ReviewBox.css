@@ -1,0 +1,34 @@
+.review-box {
+    box-shadow: 1px 1px 5px black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.client-info {
+    display: flex;
+    gap: 1rem;
+}
+.client-info > h5 {
+    margin: 0px;
+    align-self: center;
+    font-size: 1rem;
+}
+.review-date {
+    margin-block: 0.5rem;
+    margin-right: 1rem;
+    font-size: 0.8rem;
+    color: gray;
+}
+.rating-and-title {
+    display: flex;
+    gap: 1rem;
+    margin-right: 1rem;
+    align-items: center;
+}
+.rating-and-title > h6 {
+    margin: 0px;
+}
+.rating-and-title > h5 {
+    margin: 0px;
+    font-size: 1.3rem;
+}
