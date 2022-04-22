@@ -11,8 +11,8 @@ import WorkerSignUp from "./routes/WorkerSignUp";
 import ClientSignUp from "./routes/ClientSignUp";
 import Profession from "./routes/professions";
 import SingleProfession from "./routes/SingleProfession";
-import favorites from "./routes/Favorites";
 import Favorites from "./routes/Favorites";
+import Conversations from "./routes/Conversations";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +29,7 @@ ReactDOM.render(
             <Route path=":professionEnglish" element={<SingleProfession />} />
           </Route>
           <Route path="favorites" element={<Favorites />} />
+          <Route path="conversations" element={<Conversations />} />
         </Route>
       </Routes>
     </BrowserRouter>

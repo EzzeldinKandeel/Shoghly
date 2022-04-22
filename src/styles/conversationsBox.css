@@ -1,0 +1,23 @@
+* {
+  margin: 0%;
+  padding: 0;
+}
+
+.container_ {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.workerImage {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 4px;
+}

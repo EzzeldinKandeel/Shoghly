@@ -27,6 +27,9 @@ function Navbar() {
           <Link to="/favorites">المفضلات</Link>
         </li>
         <li>
+          <Link to="/conversations">المحادثات</Link>
+        </li>
+        <li>
           <Link to="">عن الموقع</Link>
         </li>
       </ul>
