@@ -8,7 +8,7 @@ function Conversations() {
   let data = getData();
 
   return (
-    <div>
+    <div className="container">
       <Navbar />
       <div>
         {data.conversations

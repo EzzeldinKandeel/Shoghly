@@ -11,10 +11,7 @@ import WorkerSignUp from "./routes/WorkerSignUp";
 import ClientSignUp from "./routes/ClientSignUp";
 import Profession from "./routes/professions";
 import SingleProfession from "./routes/SingleProfession";
-<<<<<<< HEAD
-=======
 import WorkerPage from './routes/WorkerPage';
->>>>>>> a8fb28cbc3358cad26002aba3bb6bc9284eecb1e
 import Favorites from "./routes/Favorites";
 import Conversations from "./routes/Conversations";
 
@@ -33,11 +30,8 @@ ReactDOM.render(
             <Route path=":professionEnglish" element={<SingleProfession />} />
           </Route>
           <Route path="favorites" element={<Favorites />} />
-<<<<<<< HEAD
           <Route path="conversations" element={<Conversations />} />
-=======
           <Route path='worker-:workerId' element={<WorkerPage />} />
->>>>>>> a8fb28cbc3358cad26002aba3bb6bc9284eecb1e
         </Route>
       </Routes>
     </BrowserRouter>
