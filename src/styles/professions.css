@@ -15,6 +15,5 @@
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
     margin-inline: 2rem;
 }

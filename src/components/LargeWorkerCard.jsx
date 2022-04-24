@@ -11,17 +11,19 @@ function LargeWorkerCard(props) {
     })
 
     return (
-        <Link to={`/worker-${props.worker.id}`}>
-            <div className='large-worker-card'>
-                <div className='right-section'>
-                    <img src={workerPic} alt="picture of the worker" />
+        <div>
+            <Link to={`/worker-${props.worker.id}`}>
+                <div className='large-worker-card'>
+                    <div className='right-section'>
+                        <img src={workerPic} alt="picture of the worker" />
+                    </div>
+                    <div className='left-section'>
+                        <h2>{`${props.worker.name.first} ${props.worker.name.last}`}</h2>
+                        <h4>{rating ? `${rating}/5` : "لا يوجد تقييم"}</h4>
+                    </div>
                 </div>
-                <div className='left-section'>
-                    <h2>{`${props.worker.name.first} ${props.worker.name.last}`}</h2>
-                    <h4>{rating ? `${rating}/5` : "لا يوجد تقييم"}</h4>
-                </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
 

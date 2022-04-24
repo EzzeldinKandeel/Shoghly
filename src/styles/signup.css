@@ -11,3 +11,11 @@
     background-color: white;
     color: black;
 }
+.input-error {
+    margin: 0px;
+    font-size: 0.6rem;;
+}
+.input-box-container {
+    display: flex;
+    flex-direction: column;
+}

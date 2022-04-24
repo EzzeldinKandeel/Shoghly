@@ -1,8 +1,13 @@
 .large-worker-card {
+    border: 2px solid transparent;
     box-shadow: 1px 1px 5px black;
     display: flex;
     gap: 1rem;
     width: fit-content;
+}
+.large-worker-card:hover {
+    box-shadow: none;
+    border: 2px solid black;
 }
 .right-section {
     display: flex;

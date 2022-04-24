@@ -72,14 +72,18 @@ function WorkerSignupBox() {
                 </div>
                 <div className="input-container">
                     <label>المحافظة: </label>
-                    <input 
-                        type="text" 
+                    <select 
                         name="city"
                         value={signupData.city}
                         onChange={handleChange} 
                         className="input-box" 
                         required 
-                    />
+                    >
+                        <option value="">-- إختر --</option>
+                        {data.cities.map(city => (
+                            <option value={city}>{city}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className="input-container">
                     <label>الحرفة: </label>
@@ -88,6 +92,7 @@ function WorkerSignupBox() {
                         value={signupData.profession}
                         onChange={handleChange} 
                         className="input-box"
+                        required
                     >
                         <option value="">-- إختر --</option>
                         {data.professions.map(profession => (
