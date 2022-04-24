@@ -1,12 +1,12 @@
-.container_ {
+.convContainer {
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .workerImage {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 

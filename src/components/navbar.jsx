@@ -42,8 +42,12 @@ function Navbar() {
       />
 
       <div className="account-management">
-        <Link to="/login">تسجيل الدخول</Link>
-        <Link to="/choose-account-type">إنشاء حساب جديد</Link>
+        <Link className="account-management-link" to="/login">
+          تسجيل الدخول
+        </Link>
+        <Link className="account-management-link" to="/choose-account-type">
+          إنشاء حساب جديد
+        </Link>
       </div>
     </div>
   );

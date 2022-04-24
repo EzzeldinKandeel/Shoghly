@@ -13,11 +13,12 @@ function ConversationsBox(props) {
       workerName = `${x.name.first} ${x.name.last}`;
     });
   return (
-    <div className="container_">
+    <div className="convContainer">
       <div className="leftSection">
         <img className="workerImage" src={workerPic}></img>
         <div>{workerName}</div>
       </div>
+      <div className="rightSection"></div>
     </div>
   );
 }

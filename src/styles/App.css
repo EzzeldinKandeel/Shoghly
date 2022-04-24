@@ -1,22 +1,25 @@
 :root {
-    --red: #f44236;
-    --navy: #00003e;
-    --white: #fff8dc;
-    --gray: #323232;
+  --red: #f44236;
+  --navy: #00003e;
+  --white: #fff8dc;
+  --gray: #323232;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 }
-a, Link {
-    text-decoration: none;
-    color: inherit;
+a,
+Link {
+  text-decoration: none;
+  color: inherit;
 }
-a:visited, Link:visited {
-    color: inherit;
+a:visited,
+Link:visited {
+  color: inherit;
 }
-a:hover, Link:hover {
-    color: var(--navy);
+a:hover,
+Link:hover {
+  color: var(--navy);
 }
