@@ -1,21 +1,21 @@
 .multiple-horizontal-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
 }
 .signup-cancel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    background-color: white;
-    color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid black;
+	background-color: white;
+	color: black;
 }
 .input-error {
-    margin: 0px;
-    font-size: 0.6rem;;
+	margin: 0px;
+	font-size: 0.6rem;
 }
 .input-box-container {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }

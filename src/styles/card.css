@@ -1,11 +1,12 @@
 .card {
-    box-shadow: 1px 1px 5px black;
-    color: var(--navy);
+	box-shadow: 1px 1px 5px black;
+	color: var(--navy);
 }
-#worker-name, #profession {
-    padding-right: 5px;
-    margin: 0px;
+#worker-name,
+#profession {
+	padding-right: 5px;
+	margin: 0px;
 }
 #profession {
-    font-size: 0.8em;
+	font-size: 0.8em;
 }

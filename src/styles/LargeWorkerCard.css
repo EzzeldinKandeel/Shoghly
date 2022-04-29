@@ -1,28 +1,28 @@
 .large-worker-card {
-    border: 2px solid transparent;
-    box-shadow: 1px 1px 5px black;
-    display: flex;
-    gap: 1rem;
-    width: fit-content;
+	border: 2px solid transparent;
+	box-shadow: 1px 1px 5px black;
+	display: flex;
+	gap: 1rem;
+	width: fit-content;
 }
 .large-worker-card:hover {
-    box-shadow: none;
-    border: 2px solid black;
+	box-shadow: none;
+	border: 2px solid black;
 }
 .right-section {
-    display: flex;
-    height: min-content;
+	display: flex;
+	height: min-content;
 }
 .left-section {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
+	display: flex;
+	flex-direction: column;
+	margin-left: 1rem;
 }
 .left-section > h2 {
-    margin-block: 10px;
+	margin-block: 10px;
 }
 .left-section > h4 {
-    margin: 0px;
-    font-size: 0.8rem;
-    color: var(--gray);
+	margin: 0px;
+	font-size: 0.8rem;
+	color: var(--gray);
 }

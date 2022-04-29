@@ -1,18 +1,18 @@
 .convContainer {
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
 }
 
 .workerImage {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
 }
 
 .leftSection {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 4px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 4px;
 }
