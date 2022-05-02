@@ -1,15 +1,16 @@
-import React from 'react'
-import '../styles/login.css'
+import React from "react"
+import "../styles/login.css"
+import { Link } from "react-router-dom"
 
 function LoginBox() {
-	const [loginData, setLoginData] = React.useState({ email: '', password: '' })
+	const [loginData, setLoginData] = React.useState({ email: "", password: "" })
 
 	function handleChange(event) {
 		const { name, value } = event.target
 		setLoginData((prevLoginData) => {
 			return {
 				...prevLoginData,
-				[name]: value,
+				[name]: value
 			}
 		})
 	}
@@ -19,34 +20,40 @@ function LoginBox() {
 	}
 
 	return (
-		<div className='form'>
+		<div className="form">
 			<form onSubmit={handleSubmit}>
-				<div className='input-container'>
+				<div className="input-container">
 					<label>البريد الإلكتروني: </label>
 					<input
-						type='email'
-						name='email'
+						type="email"
+						name="email"
 						onChange={handleChange}
 						value={loginData.email}
-						className='input-box'
+						className="input-box"
 						required
 					/>
 				</div>
-				<div className='input-container'>
+				<div className="input-container">
 					<label>الرقم السري: </label>
 					<input
-						type='password'
-						name='password'
+						type="password"
+						name="password"
 						onChange={handleChange}
 						value={loginData.password}
-						className='input-box'
+						className="input-box"
 						required
 					/>
 				</div>
-				<div className='button-container'>
-					<input type='submit' value='دخول' className='main-button' />
+				<div className="button-container">
+					<input type="submit" value="دخول" className="main-button" />
 				</div>
 			</form>
+			<p style={{ textAlign: "center" }}>
+				ليس لديك حساب؟{" "}
+				<Link to="/choose-account-type" style={{ color: "var(--red)" }}>
+					إنشاء حساب جديد
+				</Link>
+			</p>
 		</div>
 	)
 }

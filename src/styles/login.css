@@ -1,5 +1,6 @@
 .form {
 	display: flex;
+	flex-direction: column;
 	align-self: center;
 	margin-top: auto;
 	margin-bottom: auto;
