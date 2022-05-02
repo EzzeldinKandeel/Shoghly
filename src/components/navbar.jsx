@@ -1,54 +1,47 @@
-import React from 'react'
-import '../styles/navbar.css'
-import { Link } from 'react-router-dom'
-import logo_placeholder from '../images/placeholder_50px_50px.png'
+import React from "react"
+import "../styles/navbar.css"
+import { Link } from "react-router-dom"
+import logo_placeholder from "../images/placeholder_50px_50px.png"
 
 function Navbar() {
 	return (
-		<div className='navbar'>
-			<Link to='/' className='logo'>
-				<img src={logo_placeholder} alt='logo' className='logo-image' />
+		<div className="navbar">
+			<Link to="/" className="logo">
+				<img src={logo_placeholder} alt="logo" className="logo-image" />
 			</Link>
-			<h1 className='app-name'>
-				<Link to='/'>شغلي</Link>
+			<h1 className="app-name">
+				<Link to="/">شغلي</Link>
 			</h1>
 
-			<ul className='navbar--items'>
+			<ul className="navbar--items">
 				<li>
-					<Link to='/'>الصفحة الرئيسية</Link>
+					<Link to="/">الصفحة الرئيسية</Link>
 				</li>
 				<li>
-					<Link to=''>الأشهر</Link>
+					<Link to="/professions">الحرف</Link>
 				</li>
 				<li>
-					<Link to='/professions'>الحرف</Link>
+					<Link to="/favorites">المفضلات</Link>
 				</li>
 				<li>
-					<Link to='/favorites'>المفضلات</Link>
+					<Link to="/conversations">المحادثات</Link>
 				</li>
 				<li>
-					<Link to='/conversations'>المحادثات</Link>
-				</li>
-				<li>
-					<Link to=''>عن الموقع</Link>
+					<Link to="">عن الموقع</Link>
 				</li>
 			</ul>
-
-			<input
-				type='search'
-				name='global-search'
-				placeholder='بحث'
-				className='global-search'
-			/>
-
-			<div className='account-management'>
-				<Link className='account-management-link' to='/login'>
-					تسجيل الدخول
-				</Link>
-				<Link className='account-management-link' to='/choose-account-type'>
-					إنشاء حساب جديد
-				</Link>
-			</div>
+			<ul className="account-management">
+				<li>
+					<Link to="/login">
+						تسجيل الدخول
+					</Link>
+				</li>
+				<li>
+					<Link to="/choose-account-type">
+						إنشاء حساب جديد
+					</Link>
+				</li>
+			</ul>
 		</div>
 	)
 }

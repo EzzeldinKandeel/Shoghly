@@ -4,7 +4,7 @@
 	display: flex;
 }
 .navbar {
-	justify-self: flex-start;
+	width: 100%;
 	padding: 1rem;
 	align-items: center;
 	flex-wrap: wrap;
@@ -30,31 +30,17 @@
 .app-name > a:hover {
 	color: inherit;
 }
-.navbar--items > li {
+.navbar li {
 	list-style: none;
 	align-self: center;
 }
-.navbar--items {
+.navbar--items, .account-management {
 	margin: 0px;
 	padding: 0px;
 	gap: 1em;
 }
-.global-search {
-	display: none;
-	background-color: #a72d25;
-	border: none;
-	color: var(--white);
-	width: 250px;
-	height: 30px;
-	align-self: center;
-	font-family: inherit;
-	text-indent: 10px;
-	margin-left: auto;
-}
 .account-management {
-	margin-right: auto;
-	align-self: center;
-	gap: 1rem;
+	margin-inline-start: auto;
 }
 
 @media (max-width: 992px) {
