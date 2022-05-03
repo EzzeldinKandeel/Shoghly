@@ -19,8 +19,11 @@ function WorkerSignupBox() {
 		mobileNumber: "",
 		birthDate: "",
 		password: "",
-		passwordConfirm: ""
+		gender: "",
+		role: "worker"
 	})
+
+	const [passwordConfirm, setPasswordConfirm] = React.useState("")
 
 	const [validSignupData, setValidSignupData] = React.useState({
 		mobileNumber: true,
@@ -49,12 +52,16 @@ function WorkerSignupBox() {
 		})
 	}
 
+	function handleChangePasswordConfirm(event) {
+		setPasswordConfirm(event.target.value)
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault()
 		setValidSignupData({
 			mobileNumber: MOB_REGEX.test(signupData.mobileNumber),
 			password: PWD_REGEX.test(signupData.password),
-			passwordConfirm: signupData.password === signupData.passwordConfirm,
+			passwordConfirm: signupData.password === passwordConfirm,
 			age: checkAge(signupData.birthDate)
 		})
 	}
@@ -124,8 +131,8 @@ function WorkerSignupBox() {
 						<option value="">-- إختر --</option>
 						{data.professions.map((profession) => (
 							<option
-								key={profession.english_name}
-								value={profession.english_name}
+								key={profession.arabic_name}
+								value={profession.arabic_name}
 							>
 								{profession.arabic_name}
 							</option>
@@ -189,8 +196,8 @@ function WorkerSignupBox() {
 					<input
 						type="password"
 						name="passwordConfirm"
-						value={signupData.passwordConfirm}
-						onChange={handleChange}
+						value={passwordConfirm}
+						onChange={handleChangePasswordConfirm}
 						className="input-box"
 						required
 					/>
