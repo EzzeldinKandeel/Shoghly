@@ -37,7 +37,7 @@ function Navbar() {
 					</Link>
 				</li>
 				<li>
-					<Link to="/choose-account-type">
+					<Link to="/sign-up">
 						إنشاء حساب جديد
 					</Link>
 				</li>

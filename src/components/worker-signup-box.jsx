@@ -128,7 +128,9 @@ function WorkerSignupBox() {
 						className="input-box"
 						required
 					>
-						<option value="">-- إختر --</option>
+						<option disabled value="">
+							-- إختر --
+						</option>
 						{data.professions.map((profession) => (
 							<option
 								key={profession.arabic_name}

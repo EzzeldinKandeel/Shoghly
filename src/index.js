@@ -14,18 +14,19 @@ import SingleProfession from "./routes/SingleProfession"
 import WorkerPage from "./routes/WorkerPage"
 import Favorites from "./routes/Favorites"
 import Conversations from "./routes/Conversations"
-import { AuthProvider } from "./context/AuthProvider"
+import { UserProvider } from "./context/UserProvider"
+import SignUp from "./routes/SignUp"
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AuthProvider>
+		<UserProvider>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<App />}>
 						<Route path="" element={<HomeScreen />} />
 						<Route path="login" element={<Login />} />
 						<Route path="choose-account-type" element={<ChooseAccountType />} />
-						<Route path="signup-as-a-worker" element={<WorkerSignUp />} />
+						<Route path="sign-up" element={<SignUp />} />
 						<Route path="signup-as-a-client" element={<ClientSignUp />} />
 						<Route path="professions" element={<App />}>
 							<Route path="" element={<Profession />} />
@@ -37,7 +38,7 @@ ReactDOM.render(
 					</Route>
 				</Routes>
 			</BrowserRouter>
-		</AuthProvider>
+		</UserProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
 )

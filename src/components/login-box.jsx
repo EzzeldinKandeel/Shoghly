@@ -50,7 +50,7 @@ function LoginBox() {
 			</form>
 			<p style={{ textAlign: "center" }}>
 				ليس لديك حساب؟{" "}
-				<Link to="/choose-account-type" style={{ color: "var(--red)" }}>
+				<Link to="/sign-up" style={{ color: "var(--red)" }}>
 					إنشاء حساب جديد
 				</Link>
 			</p>

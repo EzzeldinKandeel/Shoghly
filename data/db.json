@@ -1,0 +1,79 @@
+{
+	"users": [
+		{
+			"firstName": "سامح",
+			"lastName": "حمدى",
+			"email": "sameh_hamdi@yahoo.com",
+			"password": "yellowyelloW1!",
+			"gender": "male",
+			"role": "client",
+			"profession": "",
+			"phone": "01006388264",
+			"country": "مصر",
+			"city": "بني سويف",
+			"line": "",
+			"birthDate": "1980-02-03",
+			"id": 1
+		},
+		{
+			"firstName": "شكري",
+			"lastName": "نجيب",
+			"email": "shokri_n@gmail.com",
+			"password": "redblueA@2",
+			"gender": "male",
+			"role": "worker",
+			"profession": "تركيب أرضيات",
+			"phone": "01113760002",
+			"country": "مصر",
+			"city": "سوهاج",
+			"line": "",
+			"birthDate": "1985-03-26",
+			"id": 2
+		},
+		{
+			"firstName": "علي",
+			"lastName": "محمد",
+			"email": "ali_m@outlook.com",
+			"password": "germany33G@",
+			"gender": "male",
+			"role": "client",
+			"profession": "",
+			"phone": "01226211963",
+			"country": "مصر",
+			"city": "الأقصر",
+			"line": "",
+			"birthDate": "1974-01-24",
+			"id": 3
+		},
+		{
+			"firstName": "أشرف",
+			"lastName": "علاء",
+			"email": "ashraf23@gmail.com",
+			"password": "Green888@",
+			"gender": "male",
+			"role": "worker",
+			"profession": "تركيب أرضيات",
+			"phone": "01147259033",
+			"country": "مصر",
+			"city": "الجيزة",
+			"line": "",
+			"birthDate": "1979-07-14",
+			"id": 4
+		},
+		{
+			"firstName": "شريف",
+			"lastName": "أشرف",
+			"email": "ashraf.shereef@gmail.com",
+			"password": "ItalyItaly4$",
+			"gender": "male",
+			"role": "client",
+			"profession": "",
+			"phone": "01115552418",
+			"country": "مصر",
+			"city": "الشرقية",
+			"line": "",
+			"birthDate": "1997-02-28",
+			"id": 5
+		}
+	]
+}
