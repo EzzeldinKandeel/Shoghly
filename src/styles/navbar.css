@@ -34,7 +34,12 @@
 	list-style: none;
 	align-self: center;
 }
-.navbar--items, .account-management {
+.navbar li:hover {
+	color: var(--navy);
+	cursor: pointer;
+}
+.navbar--items,
+.account-management {
 	margin: 0px;
 	padding: 0px;
 	gap: 1em;

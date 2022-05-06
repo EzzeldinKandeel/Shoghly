@@ -1,16 +1,19 @@
 import React from "react"
 import { getData } from "../data"
 import "../styles/signup.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import UserContext from "../context/UserProvider"
 
 function SignUpForm() {
+	let navigate = useNavigate()
 	const data = getData()
 	const MOB_REGEX = /^[0-9]{11}$/
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
-	const { user, setUser } = React.useContext(UserContext)
+	const { setUser } = React.useContext(UserContext)
+
+	const [professions, setProfessions] = React.useState([])
 
 	const [signUpData, setSignUpData] = React.useState({
 		firstName: "",
@@ -36,9 +39,10 @@ function SignUpForm() {
 		age: true
 	})
 
-	const stylesForSpecificFields = {
-		display: signUpData.role === "worker" ? "" : "none"
-	}
+	React.useEffect(async () => {
+		const professionsResponse = await api.get("/professions")
+		setProfessions(professionsResponse.data)
+	}, [])
 
 	function checkAge(birthDate) {
 		let currentDate = new Date()
@@ -84,8 +88,8 @@ function SignUpForm() {
 			}
 			try {
 				const response = await api.post("/users", finalSignUpData)
-				const response2 = await api.get(`/users/${response.data.id}`)
-				setUser(response2.data)
+				setUser(response.data)
+				navigate("/")
 			} catch (err) {
 				console.log(`Error: ${err.message}`)
 			}
@@ -250,39 +254,42 @@ function SignUpForm() {
 						<option value="worker">حرفي</option>
 					</select>
 				</div>
-				<div className="input-container" style={stylesForSpecificFields}>
-					<label>الحرفة: </label>
-					<select
-						name="profession"
-						value={signUpData.profession}
-						onChange={handleChange}
-						className="input-box"
-						required
-						disabled={signUpData.role === "worker" ? false : true}
-					>
-						<option disabled value="">
-							-- إختر --
-						</option>
-						{data.professions.map((profession) => (
-							<option
-								key={profession.arabic_name}
-								value={profession.arabic_name}
-							>
-								{profession.arabic_name}
+				{signUpData.role === "worker" && (
+					<div className="input-container">
+						<label>الحرفة: </label>
+						<select
+							name="profession"
+							value={signUpData.profession}
+							onChange={handleChange}
+							className="input-box"
+							required
+						>
+							<option disabled value="">
+								-- إختر --
 							</option>
-						))}
-					</select>
-				</div>
-				<div className="input-container" style={stylesForSpecificFields}>
-					<label>العنوان: </label>
-					<input
-						type="text"
-						name="line"
-						value={signUpData.line}
-						onChange={handleChange}
-						className="input-box"
-					/>
-				</div>
+							{professions.map((profession) => (
+								<option
+									key={profession}
+									value={profession}
+								>
+									{profession}
+								</option>
+							))}
+						</select>
+					</div>
+				)}
+				{signUpData.role === "worker" && (
+					<div className="input-container">
+						<label>العنوان: </label>
+						<input
+							type="text"
+							name="line"
+							value={signUpData.line}
+							onChange={handleChange}
+							className="input-box"
+						/>
+					</div>
+				)}
 				<div className="button-container multiple-horizontal-buttons">
 					<input
 						type="submit"

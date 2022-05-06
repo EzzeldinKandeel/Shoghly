@@ -19,7 +19,7 @@ a:visited,
 Link:visited {
 	color: inherit;
 }
-a:hover,
+/* a:hover,
 Link:hover {
 	color: var(--navy);
-}
+} */

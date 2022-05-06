@@ -1,8 +1,13 @@
 import React from "react"
 import "../styles/login.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import api from "../api/axios"
+import UserContext from "../context/UserProvider"
 
 function LoginBox() {
+	let navigate = useNavigate()
+	
+	const { setUser } = React.useContext(UserContext)
 	const [loginData, setLoginData] = React.useState({ email: "", password: "" })
 
 	function handleChange(event) {
@@ -15,8 +20,15 @@ function LoginBox() {
 		})
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
+		try {
+			const response = await api.get("/users", { params:  loginData  })
+			setUser(response.data[0])
+			navigate("/")
+		} catch (error) {
+			console.log(`Error: ${error.message}`)
+		}
 	}
 
 	return (
