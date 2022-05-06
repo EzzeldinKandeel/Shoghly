@@ -30,11 +30,11 @@ ReactDOM.render(
 						<Route path="signup-as-a-client" element={<ClientSignUp />} />
 						<Route path="professions" element={<App />}>
 							<Route path="" element={<Profession />} />
-							<Route path=":professionEnglish" element={<SingleProfession />} />
+							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
 						<Route path="favorites" element={<Favorites />} />
 						<Route path="conversations" element={<Conversations />} />
-						<Route path="worker-:workerId" element={<WorkerPage />} />
+						<Route path="worker:workerId" element={<WorkerPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

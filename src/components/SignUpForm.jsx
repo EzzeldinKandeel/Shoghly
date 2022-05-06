@@ -86,6 +86,15 @@ function SignUpForm() {
 					line: ""
 				}
 			}
+			finalSignUpData = {
+				...finalSignUpData,
+				projects: [],
+				reviews: [],
+				profilePictureUrl: "",
+				favoritesId: [],
+				blockedId: [],
+				registrationDate: new Date()
+			}
 			try {
 				const response = await api.post("/users", finalSignUpData)
 				setUser(response.data)

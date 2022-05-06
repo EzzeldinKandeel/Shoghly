@@ -6,9 +6,9 @@ function ProfessionCards(props) {
 		<div>
 			<Link
 				className='profession-card'
-				to={`/professions/${props.professionEnglish}`}
+				to={`/professions/${props.profession}`}
 			>
-				<div>{props.professionArabic}</div>
+				<div>{props.profession}</div>
 			</Link>
 		</div>
 	)

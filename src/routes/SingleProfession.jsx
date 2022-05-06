@@ -1,26 +1,34 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import Footer from '../components/footer'
-import LargeWorkerCard from '../components/LargeWorkerCard'
-import Navbar from '../components/navbar'
-import { getData, getProfession } from '../data'
-import '../styles/SingleProfession.css'
+import React from "react"
+import { useParams } from "react-router-dom"
+import Footer from "../components/footer"
+import LargeWorkerCard from "../components/LargeWorkerCard"
+import Navbar from "../components/navbar"
+import "../styles/SingleProfession.css"
+import api from "../api/axios"
 
 function SingleProfession() {
-	let data = getData()
-
 	let params = useParams()
-	let profession = getProfession(params.professionEnglish)
+	let profession = params.profession
+
+	const [workers, setWorkers] = React.useState([])
+	React.useEffect(async () => {
+		try {
+			const response = await api.get("/users", {
+				params: { profession: profession }
+			})
+			setWorkers(response.data)
+		} catch (err) {
+			console.error(err.message)
+		}
+	},[])
 
 	return (
-		<div className='container'>
+		<div className="container">
 			<Navbar />
-			<div className='workers'>
-				{data.workers.map((worker) => {
+			<div className="workers">
+				{workers.map((worker) => {
 					return (
-						worker.profession === profession.arabic_name && (
 							<LargeWorkerCard key={worker.id} worker={worker} />
-						)
 					)
 				})}
 			</div>
