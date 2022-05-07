@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import workerPic from '../images/placeholder_200px_200px.png'
-import '../styles/LargeWorkerCard.css'
+import React from "react"
+import { Link } from "react-router-dom"
+import workerPic from "../images/placeholder_200px_200px.png"
+import "../styles/LargeWorkerCard.css"
+import { imageServerUrl } from "./../api/imageServerApi"
 
 function LargeWorkerCard(props) {
 	var rating = 0
@@ -12,13 +13,22 @@ function LargeWorkerCard(props) {
 	return (
 		<div>
 			<Link to={`/worker${props.worker.id}`}>
-				<div className='large-worker-card'>
-					<div className='right-section'>
-						<img src={workerPic} alt='picture of the worker' />
+				<div className="large-worker-card">
+					<div className="right-section">
+						<img
+							width="200"
+							height="200"
+							src={
+								props.worker.profilePictureUrl
+									? `${imageServerUrl}/${props.worker.profilePictureUrl}`
+									: workerPic
+							}
+							alt="picture of the worker"
+						/>
 					</div>
-					<div className='left-section'>
+					<div className="left-section">
 						<h2>{`${props.worker.firstName} ${props.worker.lastName}`}</h2>
-						<h4>{rating ? `${rating}/5` : 'لا يوجد تقييم'}</h4>
+						<h4>{rating ? `${rating}/5` : "لا يوجد تقييم"}</h4>
 					</div>
 				</div>
 			</Link>

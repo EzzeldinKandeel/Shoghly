@@ -1,23 +1,42 @@
-import React from 'react'
-import { getClient } from '../data'
-import '../styles/ReviewBox.css'
-import client_photo from '../images/placeholder_50px_50px.png'
+import React from "react"
+import "../styles/ReviewBox.css"
+import client_photo from "../images/placeholder_50px_50px.png"
+import api from "../api/axios"
+import { imageServerUrl } from './../api/imageServerApi';
 
 function ReviewBox(props) {
-	const client = getClient(props.review.client_id)
+	const [reviewer, setReviewer] = React.useState({})
+	React.useEffect(async () => {
+		try {
+			const response = await api.get("/users", {
+				params: {
+					id: props.review.clientId
+				}
+			})
+			setReviewer(response.data[0])
+		} catch (err) {
+			console.error(err.message)
+		}
+	})
 
 	return (
-		<div className='review-box'>
-			<div className='client-info'>
+		<div className="review-box">
+			<div className="client-info">
 				<img
-					src={client_photo}
-					alt='Picture of the client who wrote the review'
+					width="50"
+					height="50"
+					src={
+						reviewer.profilePictureUrl
+							? `${imageServerUrl}/${reviewer.profilePictureUrl}`
+							: client_photo
+					}
+					alt="Picture of the client who wrote the review"
 				/>
 				<h5>
-					{client.name.first} {client.name.last}
+					{reviewer.firstName} {reviewer.lastName}
 				</h5>
 			</div>
-			<div className='review-date'>
+			<div className="review-date">
 				<span>
 					الوقت:&nbsp;
 					{props.review.date.minute} :&nbsp;
@@ -28,12 +47,12 @@ function ReviewBox(props) {
 					{props.review.date.year}
 				</span>
 			</div>
-			<div className='rating-and-title'>
+			<div className="rating-and-title">
 				<h6>{props.review.rating} / 5</h6>
-				<h5>{props.review.review_head}</h5>
+				<h5>{props.review.head}</h5>
 			</div>
-			<div className='review-body'>
-				<p>{props.review.review_body}</p>
+			<div className="review-body">
+				<p>{props.review.body}</p>
 			</div>
 		</div>
 	)
