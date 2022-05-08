@@ -32,3 +32,16 @@
 	margin: 0px;
 	font-size: 1.3rem;
 }
+.delete-review-button {
+	border: none;
+	background: transparent;
+	font-family: 'Readex Pro', sans-serif;
+	text-decoration: underline;
+	color: var(--red);
+	align-self: flex-start;
+	margin-inline-start: auto;
+}
+.delete-review-button:hover {
+	color: var(--navy);
+	cursor: pointer;
+}

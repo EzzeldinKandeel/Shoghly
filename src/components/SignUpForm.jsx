@@ -277,10 +277,7 @@ function SignUpForm() {
 								-- إختر --
 							</option>
 							{professions.map((profession) => (
-								<option
-									key={profession}
-									value={profession}
-								>
+								<option key={profession} value={profession}>
 									{profession}
 								</option>
 							))}
@@ -299,15 +296,17 @@ function SignUpForm() {
 						/>
 					</div>
 				)}
-				<div className="button-container multiple-horizontal-buttons">
-					<input
-						type="submit"
-						value="تسجيل"
-						className="main-button signup-submit"
-					/>
-					<Link to="/" className="main-button signup-cancel">
+				<div className="multiple-horizontal-buttons">
+					<button type="submit" className="main-button">
+						تسجيل
+					</button>
+					<button
+						type="button"
+						className="secondary-button"
+						onClick={() => navigate("/")}
+					>
 						إلغاء
-					</Link>
+					</button>
 				</div>
 			</form>
 			<p style={{ textAlign: "center" }}>
