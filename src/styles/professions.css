@@ -1,19 +1,31 @@
 .profession-card > div {
-	display: flex;
-	box-shadow: 1px 1px 5px black;
-	height: 200px;
-	width: 300px;
-	font-size: 1.5rem;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  box-shadow: 1px 1px 5px black;
+  height: 200px;
+  width: 300px;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
 }
 .profession-card > div:hover {
-	box-shadow: none;
-	border: 2px solid black;
+  box-shadow: none;
+  border: 2px solid black;
 }
 .profession-cards {
-	display: flex;
-	gap: 2rem;
-	flex-wrap: wrap;
-	margin-inline: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-inline: 2rem;
+}
+
+@media screen and (max-width: 820px) {
+  .profession-card > div {
+    height: 160px;
+    width: auto;
+    margin-bottom: 2rem;
+  }
+  .profession-cards {
+    display: block;
+    align-items: center;
+  }
 }
