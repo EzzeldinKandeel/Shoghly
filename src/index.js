@@ -6,9 +6,6 @@ import reportWebVitals from "./reportWebVitals"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./routes/login"
 import HomeScreen from "./routes/HomeScreen"
-import ChooseAccountType from "./routes/ChooseAccountType"
-import WorkerSignUp from "./routes/WorkerSignUp"
-import ClientSignUp from "./routes/ClientSignUp"
 import Profession from "./routes/professions"
 import SingleProfession from "./routes/SingleProfession"
 import WorkerPage from "./routes/WorkerPage"
@@ -16,6 +13,7 @@ import Favorites from "./routes/Favorites"
 import Conversations from "./routes/Conversations"
 import { UserProvider } from "./context/UserProvider"
 import SignUp from "./routes/SignUp"
+import SettingsPage from "./routes/SettingsPage"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -25,9 +23,7 @@ ReactDOM.render(
 					<Route path="/" element={<App />}>
 						<Route path="" element={<HomeScreen />} />
 						<Route path="login" element={<Login />} />
-						<Route path="choose-account-type" element={<ChooseAccountType />} />
 						<Route path="sign-up" element={<SignUp />} />
-						<Route path="signup-as-a-client" element={<ClientSignUp />} />
 						<Route path="professions" element={<App />}>
 							<Route path="" element={<Profession />} />
 							<Route path=":profession" element={<SingleProfession />} />
@@ -35,6 +31,7 @@ ReactDOM.render(
 						<Route path="favorites" element={<Favorites />} />
 						<Route path="conversations" element={<Conversations />} />
 						<Route path="worker:workerId" element={<WorkerPage />} />
+						<Route path="settings" element={<SettingsPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -33,26 +33,20 @@ function Navbar() {
 						<Link to="/favorites">المفضلات</Link>
 					</li>
 				)}
-				{user && (
+				{/* {user && (
 					<li>
 						<Link to="/conversations">المحادثات</Link>
 					</li>
-				)}
+				)} */}
 				<li>
 					<Link to="/about">عن الموقع</Link>
 				</li>
 			</ul>
-			<ul className="account-management">
-				{user ? (
+			{user ? (
+				<ul className="account-management">
 					<li>
 						<Link to="/settings">الإعدادات</Link>
 					</li>
-				) : (
-					<li>
-						<Link to="/login">تسجيل الدخول</Link>
-					</li>
-				)}
-				{user ? (
 					<li
 						onClick={() => {
 							setUser(null)
@@ -61,12 +55,17 @@ function Navbar() {
 					>
 						تسجيل الخروج
 					</li>
-				) : (
+				</ul>
+			) : (
+				<ul className="account-management">
+					<li>
+						<Link to="/login">تسجيل الدخول</Link>
+					</li>
 					<li>
 						<Link to="/sign-up">إنشاء حساب جديد</Link>
 					</li>
-				)}
-			</ul>
+				</ul>
+			)}
 		</div>
 	)
 }

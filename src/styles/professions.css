@@ -12,10 +12,12 @@
   border: 2px solid black;
 }
 .profession-cards {
+  max-width: 90%;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  margin-inline: 2rem;
+  justify-content: center;
+  margin-inline: auto;
 }
 
 @media screen and (max-width: 820px) {
