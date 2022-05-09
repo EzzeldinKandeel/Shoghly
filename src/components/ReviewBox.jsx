@@ -2,9 +2,12 @@ import React from "react"
 import "../styles/ReviewBox.css"
 import client_photo from "../images/placeholder_50px_50px.png"
 import api from "../api/axios"
-import { imageServerUrl } from './../api/imageServerApi';
+import { imageServerUrl } from "./../api/imageServerApi"
+import CustomRating from "./CustomRating"
+import UserContext from "../context/UserProvider"
 
 function ReviewBox(props) {
+	const { user } = React.useContext(UserContext)
 	const [reviewer, setReviewer] = React.useState({})
 	React.useEffect(async () => {
 		try {
@@ -17,7 +20,9 @@ function ReviewBox(props) {
 		} catch (err) {
 			console.error(err.message)
 		}
-	})
+	}, [])
+
+	let reviewDate = new Date(props.review.dateTime)
 
 	return (
 		<div className="review-box">
@@ -35,21 +40,30 @@ function ReviewBox(props) {
 				<h5>
 					{reviewer.firstName} {reviewer.lastName}
 				</h5>
+				{user && props.review.clientId === user.id && (
+					<button className="delete-review-button" onClick={props.deleteReview}>
+						حذف التعليق
+					</button>
+				)}
 			</div>
 			<div className="review-date">
 				<span>
 					الوقت:&nbsp;
-					{props.review.date.minute} :&nbsp;
-					{props.review.date.hour}
+					{reviewDate.getMinutes()} :&nbsp;
+					{reviewDate.getHours()}
 					&nbsp;&nbsp;&nbsp; التاريخ:&nbsp;
-					{props.review.date.day} /&nbsp;
-					{props.review.date.month} /&nbsp;
-					{props.review.date.year}
+					{reviewDate.getDate()} /&nbsp;
+					{reviewDate.getMonth() + 1} /&nbsp;
+					{reviewDate.getFullYear()}
 				</span>
 			</div>
 			<div className="rating-and-title">
-				<h6>{props.review.rating} / 5</h6>
-				<h5>{props.review.head}</h5>
+				<CustomRating
+					name="reviewRating"
+					value={parseInt(props.review.rating)}
+					readOnly
+				/>
+				<h5>{props.review.title}</h5>
 			</div>
 			<div className="review-body">
 				<p>{props.review.body}</p>

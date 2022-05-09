@@ -6,7 +6,7 @@ import UserContext from "../context/UserProvider"
 
 function LoginBox() {
 	let navigate = useNavigate()
-	
+
 	const { setUser } = React.useContext(UserContext)
 	const [loginData, setLoginData] = React.useState({ email: "", password: "" })
 
@@ -23,7 +23,7 @@ function LoginBox() {
 	async function handleSubmit(event) {
 		event.preventDefault()
 		try {
-			const response = await api.get("/users", { params:  loginData  })
+			const response = await api.get("/users", { params: loginData })
 			setUser(response.data[0])
 			navigate("/")
 		} catch (error) {
@@ -57,7 +57,12 @@ function LoginBox() {
 					/>
 				</div>
 				<div className="button-container">
-					<input type="submit" value="دخول" className="main-button" />
+					<input
+						type="submit"
+						value="دخول"
+						style={{ width: "100%" }}
+						className="main-button"
+					/>
 				</div>
 			</form>
 			<p style={{ textAlign: "center" }}>

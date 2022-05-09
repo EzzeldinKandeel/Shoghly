@@ -1,15 +1,11 @@
 .multiple-horizontal-buttons {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
 }
-.signup-cancel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid black;
-	background-color: white;
-	color: black;
+.multiple-horizontal-buttons > * {
+	flex: 1;
 }
 .input-error {
 	margin: 0px;
