@@ -20,12 +20,18 @@
 
 @media screen and (max-width: 820px) {
   .profession-card > div {
-    height: 160px;
+    height: 155px;
     width: auto;
-    margin-bottom: 2rem;
   }
   .profession-cards {
-    display: block;
+    width: 50%;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 1rem;
+  }
+  .profession-cards > div {
+    flex: 0 0 100%;
   }
 }
