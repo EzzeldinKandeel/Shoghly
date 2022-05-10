@@ -8,6 +8,7 @@ import api from "../api/axios"
 import NewReview from "./NewReview"
 import CustomRating from "./CustomRating"
 import UserContext from "../context/UserProvider"
+import PhoneIcon from '@mui/icons-material/Phone';
 
 function WorkerDetails() {
 	const { user } = React.useContext(UserContext)
@@ -68,9 +69,11 @@ function WorkerDetails() {
 						<h1>
 							{worker.firstName} {worker.lastName}
 						</h1>
-						<h4>{worker.city}</h4>
 						<h4>{worker.profession}</h4>
-						<h4>
+						<h4>{worker.city}</h4>
+						{worker.line && <h4>{worker.line}</h4>}
+						<h4 style={{display: "flex", alignItems: "center", gap: "5px"}}><PhoneIcon />{worker.phone}</h4>
+						<h4 style={{fontSize: "12px"}}>
 							{rating ? (
 								<CustomRating name="workerRating" value={rating} readOnly />
 							) : (
@@ -79,13 +82,19 @@ function WorkerDetails() {
 						</h4>
 					</div>
 				</div>
-				{/* <div className='worker-details--secondary-section bio'>
+				{/* <div className='bio'>
 				{worker.bio}
 			</div> */}
-				<div className="worker-details--secondary-section projects">
-					<h2>المعرض</h2>
-				</div>
-				<div className="worker-details--secondary-section reviews">
+				{Boolean(worker.projects.length) && (
+					<div className="projects">
+						<h2>المعرض</h2>
+						<div className="photos">
+							{worker.projects.map((project)=> <img src={`${imageServerUrl}/${project}`} height="200px" />)}
+						</div>
+					</div>
+				)}
+
+				<div className="reviews">
 					<h2>التعليقات</h2>
 					{user &&
 						(newReview ? (
@@ -122,4 +131,4 @@ function WorkerDetails() {
 	)
 }
 
-export default WorkerDetails;
+export default WorkerDetails
