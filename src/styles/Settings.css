@@ -1,0 +1,22 @@
+.settings {
+    align-self: center;
+    width: min(80%, 600px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px black;
+}
+.settings-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    padding-right: 20px;
+    font-size: 18px;
+    gap: 3px;
+}
+.settings-section:hover {
+    background-color: lightgray;
+}
+.settings-section + .settings-section {
+    border-top: 1px solid gray;
+}

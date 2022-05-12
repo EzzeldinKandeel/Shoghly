@@ -1,5 +1,5 @@
 import React from "react"
-import { getData } from "../data"
+import { getCities } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
@@ -7,7 +7,7 @@ import UserContext from "../context/UserProvider"
 
 function SignUpForm() {
 	let navigate = useNavigate()
-	const data = getData()
+	const cities = getCities()
 	const MOB_REGEX = /^[0-9]{11}$/
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
@@ -40,8 +40,12 @@ function SignUpForm() {
 	})
 
 	React.useEffect(async () => {
-		const professionsResponse = await api.get("/professions")
-		setProfessions(professionsResponse.data)
+        try {
+            const professionsResponse = await api.get("/professions")
+            setProfessions(professionsResponse.data)
+        } catch (err) {
+            console.error(err.message)
+        }
 	}, [])
 
 	function checkAge(birthDate) {
@@ -223,7 +227,7 @@ function SignUpForm() {
 						<option disabled value="">
 							-- إختر --
 						</option>
-						{data.cities.map((city) => (
+						{cities.map((city) => (
 							<option key={city} value={city}>
 								{city}
 							</option>

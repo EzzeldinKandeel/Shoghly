@@ -23,12 +23,10 @@ function Navbar() {
 				<li>
 					<Link to="/">الصفحة الرئيسية</Link>
 				</li>
-				{(!user || user.role === "client") && (
-					<li>
-						<Link to="/professions">الحرف</Link>
-					</li>
-				)}
-				{user && user.role === "client" && (
+				<li>
+					<Link to="/professions">الحرف</Link>
+				</li>
+				{user && (
 					<li>
 						<Link to="/favorites">المفضلات</Link>
 					</li>
