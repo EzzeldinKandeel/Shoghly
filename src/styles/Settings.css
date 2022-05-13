@@ -20,3 +20,25 @@
 .settings-section + .settings-section {
     border-top: 1px solid gray;
 }
+.edit-profile--user-data {
+    margin: 0px;
+    color: gray;
+    font-size: 0.9em;
+}
+.data-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+.edit-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--red);
+    text-decoration: underline;
+    font-family: inherit;
+}
+.edit-toggle:hover {
+    color: var(--navy);
+    cursor: pointer;
+}

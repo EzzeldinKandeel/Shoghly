@@ -9,7 +9,7 @@ import HomeScreen from "./routes/HomeScreen"
 import Profession from "./routes/professions"
 import SingleProfession from "./routes/SingleProfession"
 import WorkerPage from "./routes/WorkerPage"
-import Conversations from "./routes/Conversations"
+// import Conversations from "./routes/Conversations"
 import { UserProvider } from "./context/UserProvider"
 import SignUp from "./routes/SignUp"
 import SettingsPage from "./routes/SettingsPage"
@@ -30,7 +30,7 @@ ReactDOM.render(
 							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
 						<Route path="favorites" element={<FavoritesPage />} />
-						<Route path="conversations" element={<Conversations />} />
+						{/* <Route path="conversations" element={<Conversations />} /> */}
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings" element={<SettingsPage />} />
 						<Route path="edit-profile" element={<EditProfilePage />} />
