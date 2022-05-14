@@ -3,9 +3,12 @@ import UserContext from "../context/UserProvider"
 import api from "../api/axios"
 import { getCities } from "./../data"
 import ErrorIcon from "@mui/icons-material/Error"
+import imageApi from "../api/imageServerApi"
 
 function EditProfile() {
 	const MOB_REGEX = /^[0-9]{11}$/
+	let imageData = new FormData()
+	const imageRef = React.useRef(null)
 
 	const cities = getCities()
 	const { user, setUser } = React.useContext(UserContext)
@@ -51,6 +54,9 @@ function EditProfile() {
 		if (!edit.phone) {
 			setPhoneIsValid(true)
 		}
+		if (!edit.profilePictureUrl) {
+			imageData = new FormData()
+		}
 		for (let property in edit) {
 			if (!edit[property]) {
 				setUpdatedUser((prevUpdatedUser) => ({
@@ -70,8 +76,10 @@ function EditProfile() {
 	}, [])
 
 	function handleChange(event) {
-		setIsEmpty(false)
 		const { name, value } = event.target
+		if (name === "phone")
+			setPhoneIsValid(true)
+		setIsEmpty(false)
 		setUpdatedUser((prevUpdatedUser) => {
 			return {
 				...prevUpdatedUser,
@@ -80,21 +88,43 @@ function EditProfile() {
 		})
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault()
+		// if (imageRef && imageRef.current.files.length != 0) {
+		// 	try {
+		// 		const imageResponse = await imageApi.post("", imageData, {
+		// 			headers: {
+		// 				"Content-Type": "multipart/form-data"
+		// 			}
+		// 		})
+		// 		console.log(imageResponse)
+		// 	} catch (err) {
+		// 		console.error(err.message)
+		// 	}
+		// }
 		let finalUpdatedUser = { ...updatedUser }
+		let phoneCheck = true
+		let emptyCheck = false
 		for (let property in finalUpdatedUser) {
 			if (finalUpdatedUser[property] === "") {
 				delete finalUpdatedUser[property]
 			}
 		}
-		if (finalUpdatedUser.phone) {
-			setPhoneIsValid(MOB_REGEX.test(finalUpdatedUser.phone))
-		}
 		if (Object.keys(finalUpdatedUser).length === 0) {
-			setIsEmpty(true)
+			emptyCheck = true
+			setIsEmpty(emptyCheck)
+		}
+		else if (finalUpdatedUser.phone) {
+			phoneCheck = MOB_REGEX.test(finalUpdatedUser.phone)
+			setPhoneIsValid(phoneCheck)
 		}
 		console.log(finalUpdatedUser)
+		try {
+			const response = await api.patch(`/users/${user.id}`, finalUpdatedUser)
+			setUser(response.data)
+		} catch (err) {
+			console.error(err)
+		}
 	}
 	console.log(updatedUser)
 
@@ -102,7 +132,21 @@ function EditProfile() {
 		<div className="form">
 			<form onSubmit={handleSubmit}>
 				<div className="data-container">
-					<label>الاسم الأول: </label>
+					<label>الصورة الشخصية</label>
+					{edit.profilePictureUrl && (
+						<input
+							ref={imageRef}
+							type="file"
+							name="profilePictureUrl"
+							onChange={(e) => {
+								imageData.append("image", e.target.files[0])
+							}}
+						/>
+					)}
+					{editToggle("profilePictureUrl")}
+				</div>
+				<div className="data-container">
+					<label>الاسم الأول </label>
 					{edit.firstName ? (
 						<input
 							type="text"
@@ -118,7 +162,7 @@ function EditProfile() {
 					{editToggle("firstName")}
 				</div>
 				<div className="data-container">
-					<label>الاسم الأخير: </label>
+					<label>الاسم الأخير </label>
 					{edit.lastName ? (
 						<input
 							type="text"
@@ -134,7 +178,7 @@ function EditProfile() {
 					{editToggle("lastName")}
 				</div>
 				<div className="data-container">
-					<label>الجنس: </label>
+					<label>الجنس </label>
 					{edit.gender ? (
 						<select
 							name="gender"
@@ -157,7 +201,7 @@ function EditProfile() {
 					{editToggle("gender")}
 				</div>
 				<div className="data-container">
-					<label>المحافظة: </label>
+					<label>المحافظة </label>
 					{edit.city ? (
 						<select
 							name="city"
@@ -181,7 +225,7 @@ function EditProfile() {
 					{editToggle("city")}
 				</div>
 				<div className="data-container">
-					<label>رقم المحمول: </label>
+					<label>رقم المحمول </label>
 					{edit.phone ? (
 						<input
 							type="tel"
@@ -206,7 +250,7 @@ function EditProfile() {
 				</div>
 				{user.role === "worker" && (
 					<div className="data-container">
-						<label>الحرفة: </label>
+						<label>الحرفة </label>
 						{edit.profession ? (
 							<select
 								name="profession"
@@ -232,7 +276,7 @@ function EditProfile() {
 				)}
 				{user.role === "worker" && (
 					<div className="data-container">
-						<label>العنوان: </label>
+						<label>العنوان </label>
 						{edit.line ? (
 							<input
 								type="text"

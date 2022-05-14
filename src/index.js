@@ -15,6 +15,7 @@ import SignUp from "./routes/SignUp"
 import SettingsPage from "./routes/SettingsPage"
 import FavoritesPage from "./routes/FavoritesPage"
 import EditProfilePage from "./routes/EditProfilePage"
+import AccountSettingsPage from "./routes/AccountSettingsPage"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.render(
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings" element={<SettingsPage />} />
 						<Route path="edit-profile" element={<EditProfilePage />} />
+						<Route path="account-settings" element={<AccountSettingsPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
