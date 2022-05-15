@@ -42,3 +42,30 @@
     color: var(--navy);
     cursor: pointer;
 }
+.account-settings-section {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+}
+.selected {
+    background-color: darkgray;
+}
+.selected:hover {
+    background-color: darkgray;
+}
+.account-settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+.account-settings > .used {
+    width: fit-content;
+}
+.account-settings-window {
+    box-shadow: 1px 1px 5px black;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
