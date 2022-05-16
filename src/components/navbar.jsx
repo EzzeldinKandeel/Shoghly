@@ -36,9 +36,16 @@ function Navbar() {
 						<Link to="/conversations">المحادثات</Link>
 					</li>
 				)} */}
-				<li>
-					<Link to="/about">عن الموقع</Link>
-				</li>
+				{user && user.role === "worker" && (
+					<>
+						<li>
+							<Link to="/reviews">التعليقات</Link>
+						</li>
+						<li>
+							<Link to="/projects">المعرض</Link>
+						</li>
+					</>
+				)}
 			</ul>
 			{user ? (
 				<ul className="account-management">

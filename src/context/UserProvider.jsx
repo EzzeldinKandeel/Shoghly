@@ -4,23 +4,40 @@ const UserContext = createContext({})
 
 export const UserProvider = ({ children }) => {
 	const [user, setUser] = useState({
-		firstName: "سامح",
-		lastName: "حمدى",
-		email: "sameh_hamdi@yahoo.com",
-		password: "yellowyelloW1!",
+		firstName: "شكري",
+		lastName: "نجيب",
+		email: "shokri_n@gmail.com",
+		password: "redblueA@2",
 		gender: "male",
-		role: "client",
-		profession: "",
-		phone: "01006388264",
+		role: "worker",
+		profession: "تركيب أرضيات",
+		phone: "01113760002",
 		country: "مصر",
-		city: "بني سويف",
+		city: "سوهاج",
 		line: "",
-		birthDate: "1980-02-03",
-		id: 1,
+		birthDate: "1985-03-26",
+		id: 2,
 		projects: [],
-		reviews: [],
-		profilePictureUrl: "",
-		favoritesId: [2, 4],
+		reviews: [
+			{
+				rating: "2",
+				title: "مش قد كده",
+				body: "لا تعطوه أموالكم.",
+				dateTime: "2022-05-09T17:49:18.221Z",
+				clientId: 1,
+				id: 0
+			},
+			{
+				rating: "5",
+				title: "أحسن أرضيات",
+				body: "أعطوه أموالكم.",
+				dateTime: "2022-05-09T17:50:17.493Z",
+				clientId: 3,
+				id: 1
+			}
+		],
+		profilePictureUrl: "ian-dooley-d1UPkiFd04A-unsplash.jpg",
+		favoritesId: [],
 		blockedId: [],
 		registrationDate: "2022-05-06T20:29:28.228Z"
 	})
