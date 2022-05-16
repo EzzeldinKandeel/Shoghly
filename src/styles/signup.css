@@ -10,7 +10,9 @@
 .input-error {
 	margin: 0px;
 	font-size: 0.6rem;
-	width: 100%;
+	width: 175px;
+	align-self: flex-end;
+	margin-top: -1rem;
 }
 .input-box-container {
 	display: flex;
