@@ -4,7 +4,7 @@
       "firstName": "سامح",
       "lastName": "حمدى",
       "email": "sameh_hamdi@yahoo.com",
-      "password": "yellowyelloW1!",
+      "password": "Standard1!",
       "gender": "male",
       "role": "client",
       "profession": "",
@@ -17,7 +17,10 @@
       "projects": [],
       "reviews": [],
       "profilePictureUrl": "",
-      "favoritesId": [],
+      "favoritesId": [
+        2,
+        4
+      ],
       "blockedId": [],
       "registrationDate": "2022-05-06T20:29:28.228Z"
     },
@@ -95,7 +98,16 @@
       "birthDate": "1979-07-14",
       "id": 4,
       "projects": [],
-      "reviews": [],
+      "reviews": [
+        {
+          "rating": "1",
+          "title": "الأسوء على الإطلاق",
+          "body": "لا أنصح بالتعامل معه.",
+          "dateTime": "2022-05-13T12:53:15.277Z",
+          "clientId": 2,
+          "id": 0
+        }
+      ],
       "profilePictureUrl": "",
       "favoritesId": [],
       "blockedId": [],
@@ -215,7 +227,9 @@
       "city": "أسوان",
       "line": "17 شارع الشهيد",
       "birthDate": "1993-07-28",
-      "projects": ["nathan-oakley-OngbrOmqtzc-unsplash.jpg"],
+      "projects": [
+        "nathan-oakley-OngbrOmqtzc-unsplash.jpg"
+      ],
       "reviews": [],
       "profilePictureUrl": "",
       "favoritesId": [],

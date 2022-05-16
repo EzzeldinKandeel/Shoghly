@@ -6,6 +6,7 @@
 	margin-bottom: auto;
 }
 .form > form {
+	height: max(fit-content, 500px);
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;

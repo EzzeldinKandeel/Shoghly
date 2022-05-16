@@ -1,5 +1,5 @@
 import React from "react"
-import { getData } from "../data"
+import { getCities } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
@@ -7,7 +7,7 @@ import UserContext from "../context/UserProvider"
 
 function SignUpForm() {
 	let navigate = useNavigate()
-	const data = getData()
+	const cities = getCities()
 	const MOB_REGEX = /^[0-9]{11}$/
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
@@ -40,8 +40,12 @@ function SignUpForm() {
 	})
 
 	React.useEffect(async () => {
-		const professionsResponse = await api.get("/professions")
-		setProfessions(professionsResponse.data)
+		try {
+			const professionsResponse = await api.get("/professions")
+			setProfessions(professionsResponse.data)
+		} catch (err) {
+			console.error(err.message)
+		}
 	}, [])
 
 	function checkAge(birthDate) {
@@ -151,14 +155,14 @@ function SignUpForm() {
 						className="input-box"
 						required
 					/>
-					<p
-						className="input-error"
-						style={{ display: validSignUpData.password ? "none" : "" }}
-					>
-						يجب أن يتكون الرقم السري من 8 إلى 24 حرف، منهم على الأقل حرف علوى
-						واحد، حرف سفلي واحد، رقم واحد، وعلامة من العلامات !@#$%.
-					</p>
 				</div>
+				<p
+					className="input-error"
+					style={{ display: validSignUpData.password ? "none" : "" }}
+				>
+					يجب أن يتكون الرقم السري من 8 إلى 24 حرف، منهم على الأقل حرف علوى
+					واحد، حرف سفلي واحد، رقم واحد، وعلامة من العلامات !@#$%.
+				</p>
 				<div className="input-container">
 					<label>تأكيد على الرقم السري: </label>
 					<input
@@ -169,6 +173,7 @@ function SignUpForm() {
 						className="input-box"
 						required
 					/>
+				</div>
 					<p
 						className="input-error"
 						style={{
@@ -177,7 +182,6 @@ function SignUpForm() {
 					>
 						الرقم السري غير مطابق.
 					</p>
-				</div>
 				<div className="input-container">
 					<label>تاريخ الميلاد: </label>
 					<input
@@ -188,13 +192,13 @@ function SignUpForm() {
 						className="input-box"
 						required
 					/>
+				</div>
 					<p
 						className="input-error"
 						style={{ display: validSignUpData.age ? "none" : "" }}
 					>
 						لا يسمح بالتسجيل لمن هم دون 18 عام.
 					</p>
-				</div>
 				<div className="input-container">
 					<label>الجنس: </label>
 					<select
@@ -223,7 +227,7 @@ function SignUpForm() {
 						<option disabled value="">
 							-- إختر --
 						</option>
-						{data.cities.map((city) => (
+						{cities.map((city) => (
 							<option key={city} value={city}>
 								{city}
 							</option>
@@ -240,13 +244,13 @@ function SignUpForm() {
 						className="input-box"
 						required
 					/>
+				</div>
 					<p
 						className="input-error"
 						style={{ display: validSignUpData.phone ? "none" : "" }}
 					>
 						برجاء إدخال رقم محمول صحيح (11 رقم).
 					</p>
-				</div>
 				<div className="input-container">
 					<label>نوع الحساب: </label>
 					<select

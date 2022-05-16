@@ -9,6 +9,7 @@ function LoginBox() {
 
 	const { setUser } = React.useContext(UserContext)
 	const [loginData, setLoginData] = React.useState({ email: "", password: "" })
+	const [isInvalid, setIsInvalid] = React.useState(false)
 
 	function handleChange(event) {
 		const { name, value } = event.target
@@ -24,8 +25,13 @@ function LoginBox() {
 		event.preventDefault()
 		try {
 			const response = await api.get("/users", { params: loginData })
-			setUser(response.data[0])
-			navigate("/")
+			console.log(response.data.length)
+			if (response.data.length === 0) {
+				setIsInvalid(true)
+			} else {
+				setUser(response.data[0])
+				navigate("/")
+			}
 		} catch (error) {
 			console.log(`Error: ${error.message}`)
 		}
@@ -34,6 +40,17 @@ function LoginBox() {
 	return (
 		<div className="form">
 			<form onSubmit={handleSubmit}>
+				{isInvalid && (
+					<p
+						style={{
+							alignSelf: "center",
+							fontSize: "0.9rem",
+							color: "var(--red)"
+						}}
+					>
+						البريد الإلكتروني أو الرقم السرى غير صحيح
+					</p>
+				)}
 				<div className="input-container">
 					<label>البريد الإلكتروني: </label>
 					<input

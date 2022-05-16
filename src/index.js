@@ -9,12 +9,14 @@ import HomeScreen from "./routes/HomeScreen";
 import Profession from "./routes/professions";
 import SingleProfession from "./routes/SingleProfession";
 import WorkerPage from "./routes/WorkerPage";
-import Favorites from "./routes/Favorites";
-import Conversations from "./routes/Conversations";
 import { UserProvider } from "./context/UserProvider";
 import SignUp from "./routes/SignUp";
 import SettingsPage from "./routes/SettingsPage";
 import ReviewsPage from "./routes/ReviewsPage";
+// import Conversations from "./routes/Conversations"
+import FavoritesPage from "./routes/FavoritesPage";
+import EditProfilePage from "./routes/EditProfilePage";
+import AccountSettingsPage from "./routes/AccountSettingsPage";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -29,11 +31,13 @@ ReactDOM.render(
 							<Route path="" element={<Profession />} />
 							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
-						<Route path="favorites" element={<Favorites />} />
-						<Route path="conversations" element={<Conversations />} />
+						<Route path="favorites" element={<FavoritesPage />} />
+						{/* <Route path="conversations" element={<Conversations />} /> */}
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings" element={<SettingsPage />} />
 						<Route path="reviews" element={<ReviewsPage />} />
+						<Route path="edit-profile" element={<EditProfilePage />} />
+						<Route path="account-settings" element={<AccountSettingsPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
