@@ -1,21 +1,22 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import "./index.css"
-import App from "./App"
-import reportWebVitals from "./reportWebVitals"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./routes/login"
-import HomeScreen from "./routes/HomeScreen"
-import Profession from "./routes/professions"
-import SingleProfession from "./routes/SingleProfession"
-import WorkerPage from "./routes/WorkerPage"
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./routes/login";
+import HomeScreen from "./routes/HomeScreen";
+import Profession from "./routes/professions";
+import SingleProfession from "./routes/SingleProfession";
+import WorkerPage from "./routes/WorkerPage";
+import { UserProvider } from "./context/UserProvider";
+import SignUp from "./routes/SignUp";
+import SettingsPage from "./routes/SettingsPage";
+import ReviewsPage from "./routes/ReviewsPage";
 // import Conversations from "./routes/Conversations"
-import { UserProvider } from "./context/UserProvider"
-import SignUp from "./routes/SignUp"
-import SettingsPage from "./routes/SettingsPage"
-import FavoritesPage from "./routes/FavoritesPage"
-import EditProfilePage from "./routes/EditProfilePage"
-import AccountSettingsPage from "./routes/AccountSettingsPage"
+import FavoritesPage from "./routes/FavoritesPage";
+import EditProfilePage from "./routes/EditProfilePage";
+import AccountSettingsPage from "./routes/AccountSettingsPage";
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.render(
 						{/* <Route path="conversations" element={<Conversations />} /> */}
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings" element={<SettingsPage />} />
+						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfilePage />} />
 						<Route path="account-settings" element={<AccountSettingsPage />} />
 					</Route>
@@ -42,9 +44,9 @@ ReactDOM.render(
 		</UserProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
-)
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
+reportWebVitals();

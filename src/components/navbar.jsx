@@ -1,14 +1,14 @@
-import React from "react"
-import "../styles/navbar.css"
-import { Link, useNavigate } from "react-router-dom"
-import logo_placeholder from "../images/placeholder_50px_50px.png"
-import UserContext from "../context/UserProvider"
+import React from "react";
+import "../styles/navbar.css";
+import { Link, useNavigate } from "react-router-dom";
+import logo_placeholder from "../images/placeholder_50px_50px.png";
+import UserContext from "../context/UserProvider";
 
 function Navbar() {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
-	const { user, setUser } = React.useContext(UserContext)
-	console.log(user)
+	const { user, setUser } = React.useContext(UserContext);
+	console.log(user);
 
 	return (
 		<div className="navbar">
@@ -36,6 +36,12 @@ function Navbar() {
 						<Link to="/conversations">المحادثات</Link>
 					</li>
 				)} */}
+				{user && user.role === "worker" && (
+					<li>
+						<Link to="/reviews">التقييمات</Link>
+					</li>
+				)}
+
 				<li>
 					<Link to="/about">عن الموقع</Link>
 				</li>
@@ -47,8 +53,8 @@ function Navbar() {
 					</li>
 					<li
 						onClick={() => {
-							setUser(null)
-							navigate("/")
+							setUser(null);
+							navigate("/");
 						}}
 					>
 						تسجيل الخروج
@@ -65,7 +71,7 @@ function Navbar() {
 				</ul>
 			)}
 		</div>
-	)
+	);
 }
 
-export default Navbar
+export default Navbar;
