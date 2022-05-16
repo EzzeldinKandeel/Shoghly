@@ -1,7 +1,0 @@
-.reviews-page {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: min(90%, 900px);
-    align-self: center;
-}

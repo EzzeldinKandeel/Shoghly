@@ -16,8 +16,6 @@ import SettingsPage from "./routes/SettingsPage"
 import FavoritesPage from "./routes/FavoritesPage"
 import EditProfilePage from "./routes/EditProfilePage"
 import AccountSettingsPage from "./routes/AccountSettingsPage"
-import WorkerReviewsPage from "./routes/WorkerReviewsPage"
-import WorkerProjectsPage from "./routes/WorkerProjectsPage"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -38,8 +36,6 @@ ReactDOM.render(
 						<Route path="settings" element={<SettingsPage />} />
 						<Route path="edit-profile" element={<EditProfilePage />} />
 						<Route path="account-settings" element={<AccountSettingsPage />} />
-						<Route path="reviews" element={<WorkerReviewsPage />} />
-						<Route path="projects" element={<WorkerProjectsPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

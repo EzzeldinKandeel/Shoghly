@@ -4,8 +4,6 @@
 	align-self: center;
 	margin-top: auto;
 	margin-bottom: auto;
-	width: min(80%, 600px);
-	box-shadow: 1px 1px 5px black;
 }
 .form > form {
 	height: max(fit-content, 500px);
@@ -13,8 +11,7 @@
 	flex-direction: column;
 	gap: 1rem;
 	padding: 50px;
-	width: fit-content;
-	align-self: center;
+	box-shadow: 1px 1px 5px black;
 }
 .input-container {
 	display: flex;
