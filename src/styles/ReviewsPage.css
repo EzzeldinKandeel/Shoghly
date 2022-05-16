@@ -1,0 +1,10 @@
+.review-boxes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.reviews-container {
+    
+    width: min(90%, 900px);
+    margin-inline: auto;
+}
