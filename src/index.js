@@ -9,7 +9,7 @@ import HomeScreen from "./routes/HomeScreen";
 import Profession from "./routes/professions";
 import SingleProfession from "./routes/SingleProfession";
 import WorkerPage from "./routes/WorkerPage";
-import { UserProvider } from "./context/UserProvider";
+import { AuthProvider } from "./context/AuthProvider";
 import SignUp from "./routes/SignUp";
 import SettingsPage from "./routes/SettingsPage";
 import ReviewsPage from "./routes/ReviewsPage";
@@ -20,7 +20,7 @@ import AccountSettingsPage from "./routes/AccountSettingsPage";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<UserProvider>
+		<AuthProvider>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<App />}>
@@ -41,7 +41,7 @@ ReactDOM.render(
 					</Route>
 				</Routes>
 			</BrowserRouter>
-		</UserProvider>
+		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

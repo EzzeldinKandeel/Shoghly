@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "../styles/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import logo_placeholder from "../images/placeholder_50px_50px.png";
-import UserContext from "../context/UserProvider";
+import AuthContext from "../context/AuthProvider";
+import api from "../api/axios"
 
 function Navbar() {
 	const navigate = useNavigate();
 
-	const { user, setUser } = React.useContext(UserContext);
-	console.log(user);
+	const { Auth } = useContext(AuthContext)
+	useEffect(async ()=>{
+		if (Auth) {
+			try {
+				const response = await api.get(`/profile/${Auth.id}`)
+			} catch (err) {
+				console.error(err)				
+			}
+		}
+	})
 
 	return (
 		<div className="navbar">

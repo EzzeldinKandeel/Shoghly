@@ -1,5 +1,5 @@
 import React from "react"
-import { getCities } from "../data"
+import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
@@ -13,7 +13,7 @@ function SignUpForm() {
 
 	const { setUser } = React.useContext(UserContext)
 
-	const [professions, setProfessions] = React.useState([])
+	const [professions] = React.useState(getProfessions())
 
 	const [signUpData, setSignUpData] = React.useState({
 		firstName: "",
@@ -38,15 +38,6 @@ function SignUpForm() {
 		passwordConfirm: true,
 		age: true
 	})
-
-	React.useEffect(async () => {
-		try {
-			const professionsResponse = await api.get("/professions")
-			setProfessions(professionsResponse.data)
-		} catch (err) {
-			console.error(err.message)
-		}
-	}, [])
 
 	function checkAge(birthDate) {
 		let currentDate = new Date()
@@ -90,21 +81,12 @@ function SignUpForm() {
 					line: ""
 				}
 			}
-			finalSignUpData = {
-				...finalSignUpData,
-				projects: [],
-				reviews: [],
-				profilePictureUrl: "",
-				favoritesId: [],
-				blockedId: [],
-				registrationDate: new Date()
-			}
+			delete finalSignUpData.birthDate
 			try {
-				const response = await api.post("/users", finalSignUpData)
-				setUser(response.data)
-				navigate("/")
+				const response1 = await api.post("/signup", finalSignUpData)
+				navigate("/login")
 			} catch (err) {
-				console.log(`Error: ${err.message}`)
+				console.error(err)
 			}
 		}
 	}
