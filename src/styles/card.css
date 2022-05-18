@@ -1,6 +1,11 @@
 .card {
 	box-shadow: 1px 1px 5px black;
 	color: var(--navy);
+	display: flex;
+	flex-direction: column;
+}
+.card:hover {
+	cursor: pointer;
 }
 #worker-name,
 #profession {

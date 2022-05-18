@@ -17,6 +17,7 @@ import ReviewsPage from "./routes/ReviewsPage";
 import FavoritesPage from "./routes/FavoritesPage";
 import EditProfilePage from "./routes/EditProfilePage";
 import AccountSettingsPage from "./routes/AccountSettingsPage";
+import ResetPassword from './routes/ResetPassword';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -38,6 +39,7 @@ ReactDOM.render(
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfilePage />} />
 						<Route path="account-settings" element={<AccountSettingsPage />} />
+						<Route path="reset-password" element={<ResetPassword />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

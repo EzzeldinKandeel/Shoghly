@@ -1,16 +1,25 @@
-import React from 'react'
-import '../styles/MainContent.css'
-import Card from './card'
+import React, { useEffect, useContext, useState } from "react"
+import "../styles/MainContent.css"
+import Card from "./card"
+import api from "../api/axios"
+import AuthContext from "../context/AuthProvider"
 
 function MainContent() {
+	const {auth} = useContext(AuthContext)
+	const [firstName, setFirstName] = useState("")
+	useEffect(async ()=>{
+		if (auth) {try {
+			const response = await api.get(`/profile/${auth.id}`)
+			setFirstName(response.data.info.firstName)
+		} catch (err) {
+			console.error(err)
+		}}
+	})
+
 	return (
-		<div className='main-content'>
-			<section className='main-section' id='hero'></section>
-			<section className='main-section' id='most-popular'>
-				<Card />
-				<Card />
-				<Card />
-				<Card />
+		<div className="main-content">
+			{auth && <h2 style={{color: "var(--gray)"}}>أهلًا، {firstName}!</h2>}
+			<section className="main-section">
 				<Card />
 				<Card />
 				<Card />
@@ -18,8 +27,6 @@ function MainContent() {
 				<Card />
 				<Card />
 			</section>
-			<section className='main-section' id='recent-additions'></section>
-			<section className='main-section' id='popular-professions'></section>
 		</div>
 	)
 }

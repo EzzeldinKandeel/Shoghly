@@ -33,6 +33,11 @@
 .navbar li {
   list-style: none;
   align-self: center;
+  transition: 250ms;
+  transition-property: color;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .navbar li:hover {
   color: var(--navy);

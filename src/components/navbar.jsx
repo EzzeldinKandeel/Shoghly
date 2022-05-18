@@ -1,23 +1,15 @@
-import React, { useContext, useEffect } from "react";
-import "../styles/navbar.css";
-import { Link, useNavigate } from "react-router-dom";
-import logo_placeholder from "../images/placeholder_50px_50px.png";
-import AuthContext from "../context/AuthProvider";
+import React, { useContext } from "react"
+import "../styles/navbar.css"
+import { Link, useNavigate } from "react-router-dom"
+import logo_placeholder from "../images/placeholder_50px_50px.png"
+import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
+import LogoutIcon from "@mui/icons-material/Logout"
+import SettingsIcon from "@mui/icons-material/Settings"
 
 function Navbar() {
-	const navigate = useNavigate();
-
-	const { Auth } = useContext(AuthContext)
-	useEffect(async ()=>{
-		if (Auth) {
-			try {
-				const response = await api.get(`/profile/${Auth.id}`)
-			} catch (err) {
-				console.error(err)				
-			}
-		}
-	})
+	const navigate = useNavigate()
+	const { auth, setAuth } = useContext(AuthContext)
 
 	return (
 		<div className="navbar">
@@ -35,7 +27,7 @@ function Navbar() {
 				<li>
 					<Link to="/professions">الحرف</Link>
 				</li>
-				{user && (
+				{auth && (
 					<li>
 						<Link to="/favorites">المفضلات</Link>
 					</li>
@@ -45,28 +37,31 @@ function Navbar() {
 						<Link to="/conversations">المحادثات</Link>
 					</li>
 				)} */}
-				{user && user.role === "worker" && (
+				{auth?.role === "worker" && (
 					<li>
 						<Link to="/reviews">التقييمات</Link>
 					</li>
 				)}
 
-				<li>
+				{/* <li>
 					<Link to="/about">عن الموقع</Link>
-				</li>
+				</li> */}
 			</ul>
-			{user ? (
+			{auth ? (
 				<ul className="account-management">
 					<li>
-						<Link to="/settings">الإعدادات</Link>
+						<Link to="/settings">
+							<SettingsIcon />
+							الإعدادات
+						</Link>
 					</li>
 					<li
 						onClick={() => {
-							setUser(null);
-							navigate("/");
+							setAuth(null)
+							navigate("/")
 						}}
 					>
-						تسجيل الخروج
+						<LogoutIcon /> تسجيل الخروج
 					</li>
 				</ul>
 			) : (
@@ -80,7 +75,7 @@ function Navbar() {
 				</ul>
 			)}
 		</div>
-	);
+	)
 }
 
-export default Navbar;
+export default Navbar

@@ -1,40 +1,46 @@
-import React from "react"
-import UserContext from "../context/UserProvider"
+import React, { useEffect, useState, useContext, useRef } from "react"
 import api from "../api/axios"
 import { getCities } from "./../data"
 import ErrorIcon from "@mui/icons-material/Error"
-import imageApi from "../api/imageServerApi"
+import AuthContext from "../context/AuthProvider"
+import EditIcon from '@mui/icons-material/Edit';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 function EditProfile() {
 	const MOB_REGEX = /^[0-9]{11}$/
 	let imageData = new FormData()
-	const imageRef = React.useRef(null)
+	const imageRef = useRef(null)
 
 	const cities = getCities()
-	const { user, setUser } = React.useContext(UserContext)
-	const [edit, setEdit] = React.useState({
+	const { auth } = useContext(AuthContext)
+	const [currentUser, setCurrentUser] = useState({
+		firstName: "",
+		lastName: "",
+		gender: "",
+		phone: "",
+		city: "",
+		line: ""
+	})
+	const [edit, setEdit] = useState({
 		firstName: false,
 		lastName: false,
 		gender: false,
-		profession: false,
 		phone: false,
 		city: false,
 		line: false,
 		profilePictureUrl: false
 	})
-	const [professions, setProfessions] = React.useState([])
-	const [updatedUser, setUpdatedUser] = React.useState({
+	const [updatedUser, setUpdatedUser] = useState({
 		firstName: "",
 		lastName: "",
 		gender: "",
-		profession: "",
 		phone: "",
 		city: "",
 		line: "",
-		profilePictureUrl: ""
+		country: "مصر"
 	})
-	const [phoneIsValid, setPhoneIsValid] = React.useState(true)
-	const [isEmpty, setIsEmpty] = React.useState(false)
+	const [phoneIsValid, setPhoneIsValid] = useState(true)
+	const [isEmpty, setIsEmpty] = useState(false)
 	const editToggle = (id) => (
 		<button
 			className="edit-toggle"
@@ -47,16 +53,24 @@ function EditProfile() {
 			}}
 			id={id}
 		>
-			{edit[id] ? "إلغاء" : "تعديل"}
+			{edit[id] ? <CancelIcon /> : <EditIcon />}
 		</button>
 	)
-	React.useEffect(() => {
+	useEffect(async () => {
+		try {
+			const getProfileResponse = await api.get(`/profile/${auth.id}`)
+			setCurrentUser(getProfileResponse.data.info)
+		} catch (err) {
+			console.error(err)
+		}
+	}, [])
+	useEffect(() => {
 		if (!edit.phone) {
 			setPhoneIsValid(true)
 		}
-		if (!edit.profilePictureUrl) {
-			imageData = new FormData()
-		}
+		// if (!edit.profilePictureUrl) {
+		// 	imageData = new FormData()
+		// }
 		for (let property in edit) {
 			if (!edit[property]) {
 				setUpdatedUser((prevUpdatedUser) => ({
@@ -66,19 +80,10 @@ function EditProfile() {
 			}
 		}
 	}, [edit])
-	React.useEffect(async () => {
-		try {
-			const professionsResponse = await api.get("/professions")
-			setProfessions(professionsResponse.data)
-		} catch (err) {
-			console.error(err.message)
-		}
-	}, [])
 
 	function handleChange(event) {
 		const { name, value } = event.target
-		if (name === "phone")
-			setPhoneIsValid(true)
+		if (name === "phone") setPhoneIsValid(true)
 		setIsEmpty(false)
 		setUpdatedUser((prevUpdatedUser) => {
 			return {
@@ -105,23 +110,27 @@ function EditProfile() {
 		let finalUpdatedUser = { ...updatedUser }
 		let phoneCheck = true
 		let emptyCheck = false
-		for (let property in finalUpdatedUser) {
-			if (finalUpdatedUser[property] === "") {
-				delete finalUpdatedUser[property]
-			}
-		}
-		if (Object.keys(finalUpdatedUser).length === 0) {
+		if (Object.values(finalUpdatedUser).every((value) => value === "")) {
 			emptyCheck = true
 			setIsEmpty(emptyCheck)
+			return
 		}
-		else if (finalUpdatedUser.phone) {
+		if (finalUpdatedUser.phone) {
 			phoneCheck = MOB_REGEX.test(finalUpdatedUser.phone)
 			setPhoneIsValid(phoneCheck)
+			if (phoneCheck) return
+		}
+		for (let property in finalUpdatedUser) {
+			if (finalUpdatedUser[property] === "") {
+				finalUpdatedUser[property] = currentUser[property]
+			}
 		}
 		console.log(finalUpdatedUser)
 		try {
-			const response = await api.patch(`/users/${user.id}`, finalUpdatedUser)
-			setUser(response.data)
+			const response = await api.put("/profile", finalUpdatedUser, {
+				headers: { Authorization: `Bearer ${auth.token}` }
+			})
+			console.log(response)
 		} catch (err) {
 			console.error(err)
 		}
@@ -130,8 +139,8 @@ function EditProfile() {
 
 	return (
 		<div className="form">
-			<form onSubmit={handleSubmit}>
-				<div className="data-container">
+			<form style={{width: "520px", height: "450px", justifyContent: "center"}} onSubmit={handleSubmit}>
+				{/* <div className="data-container">
 					<label>الصورة الشخصية</label>
 					{edit.profilePictureUrl && (
 						<input
@@ -144,7 +153,7 @@ function EditProfile() {
 						/>
 					)}
 					{editToggle("profilePictureUrl")}
-				</div>
+				</div> */}
 				<div className="data-container">
 					<label>الاسم الأول </label>
 					{edit.firstName ? (
@@ -157,7 +166,7 @@ function EditProfile() {
 							required
 						/>
 					) : (
-						<p className="edit-profile--user-data">{user.firstName}</p>
+						<p className="edit-profile--user-data">{currentUser.firstName}</p>
 					)}
 					{editToggle("firstName")}
 				</div>
@@ -173,7 +182,7 @@ function EditProfile() {
 							required
 						/>
 					) : (
-						<p className="edit-profile--user-data">{user.lastName}</p>
+						<p className="edit-profile--user-data">{currentUser.lastName}</p>
 					)}
 					{editToggle("lastName")}
 				</div>
@@ -190,13 +199,11 @@ function EditProfile() {
 							<option disabled value="">
 								-- إختر --
 							</option>
-							<option value="male">ذكر</option>
-							<option value="female">أنثى</option>
+							<option value="ذكر">ذكر</option>
+							<option value="أنثى">أنثى</option>
 						</select>
 					) : (
-						<p className="edit-profile--user-data">
-							{user.gender === "male" ? "ذكر" : "أنثى"}
-						</p>
+						<p className="edit-profile--user-data">{currentUser.gender}</p>
 					)}
 					{editToggle("gender")}
 				</div>
@@ -214,13 +221,13 @@ function EditProfile() {
 								-- إختر --
 							</option>
 							{cities.map((city) => (
-								<option key={city} value={city}>
+								<option key={cities.indexOf(city)} value={city}>
 									{city}
 								</option>
 							))}
 						</select>
 					) : (
-						<p className="edit-profile--user-data">{user.city}</p>
+						<p className="edit-profile--user-data">{currentUser.city}</p>
 					)}
 					{editToggle("city")}
 				</div>
@@ -236,7 +243,7 @@ function EditProfile() {
 							required
 						/>
 					) : (
-						<p className="edit-profile--user-data">{user.phone}</p>
+						<p className="edit-profile--user-data">{currentUser.phone}</p>
 					)}
 					{editToggle("phone")}
 					<p
@@ -248,50 +255,24 @@ function EditProfile() {
 						برجاء إدخال رقم محمول صحيح (11 رقم).
 					</p>
 				</div>
-				{user.role === "worker" && (
-					<div className="data-container">
-						<label>الحرفة </label>
-						{edit.profession ? (
-							<select
-								name="profession"
-								value={updatedUser.profession}
-								onChange={handleChange}
-								className="input-box"
-								required
-							>
-								<option disabled value="">
-									-- إختر --
-								</option>
-								{professions.map((profession) => (
-									<option key={profession} value={profession}>
-										{profession}
-									</option>
-								))}
-							</select>
-						) : (
-							<p className="edit-profile--user-data">{user.profession}</p>
-						)}
-						{editToggle("profession")}
-					</div>
-				)}
-				{user.role === "worker" && (
-					<div className="data-container">
-						<label>العنوان </label>
-						{edit.line ? (
-							<input
-								type="text"
-								name="line"
-								value={updatedUser.line}
-								onChange={handleChange}
-								className="input-box"
-							/>
-						) : (
-							<p className="edit-profile--user-data">{user.line}</p>
-						)}
-						{editToggle("line")}
-					</div>
-				)}
-				<button className="main-button">تأكيد</button>
+				<div className="data-container">
+					<label>العنوان </label>
+					{edit.line ? (
+						<input
+							type="text"
+							name="line"
+							value={updatedUser.line}
+							onChange={handleChange}
+							className="input-box"
+						/>
+					) : (
+						<p className="edit-profile--user-data">{currentUser.line}</p>
+					)}
+					{editToggle("line")}
+				</div>
+				<button className="main-button" style={{ alignSelf: "center" }}>
+					تأكيد
+				</button>
 				{isEmpty && (
 					<p
 						style={{

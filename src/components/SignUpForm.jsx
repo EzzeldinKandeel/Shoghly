@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
@@ -7,19 +7,18 @@ import UserContext from "../context/UserProvider"
 
 function SignUpForm() {
 	let navigate = useNavigate()
+
 	const cities = getCities()
+	const professions = getProfessions()
 	const MOB_REGEX = /^[0-9]{11}$/
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
-	const { setUser } = React.useContext(UserContext)
-
-	const [professions] = React.useState(getProfessions())
-
-	const [signUpData, setSignUpData] = React.useState({
+	const [signUpData, setSignUpData] = useState({
 		firstName: "",
 		lastName: "",
 		email: "",
 		password: "",
+		passwordConfirm: "",
 		gender: "",
 		role: "",
 		profession: "",
@@ -29,10 +28,7 @@ function SignUpForm() {
 		line: "",
 		birthDate: ""
 	})
-
-	const [passwordConfirm, setPasswordConfirm] = React.useState("")
-
-	const [validSignUpData, setValidSignUpData] = React.useState({
+	const [validSignUpData, setValidSignUpData] = useState({
 		phone: true,
 		password: true,
 		passwordConfirm: true,
@@ -59,35 +55,30 @@ function SignUpForm() {
 		})
 	}
 
-	function handleChangePasswordConfirm(event) {
-		setPasswordConfirm(event.target.value)
-	}
-
 	async function handleSubmit(event) {
 		event.preventDefault()
 		let validityChecks = {
 			phone: MOB_REGEX.test(signUpData.phone),
 			password: PWD_REGEX.test(signUpData.password),
-			passwordConfirm: signUpData.password === passwordConfirm,
+			passwordConfirm: signUpData.password === signUpData.passwordConfirm,
 			age: checkAge(signUpData.birthDate)
 		}
 		setValidSignUpData(validityChecks)
-		if (Object.values(validityChecks).every((value) => value)) {
-			let finalSignUpData = { ...signUpData }
-			if (finalSignUpData.role === "client") {
-				finalSignUpData = {
-					...finalSignUpData,
-					profession: "",
-					line: ""
-				}
-			}
-			delete finalSignUpData.birthDate
-			try {
-				const response1 = await api.post("/signup", finalSignUpData)
-				navigate("/login")
-			} catch (err) {
-				console.error(err)
-			}
+
+		if (Object.values(validityChecks).some((value) => !value)) return
+		let finalSignUpData = { ...signUpData }
+
+		if (finalSignUpData.role === "client") {
+			delete finalSignUpData.profession
+		}
+		delete finalSignUpData.birthDate
+		delete finalSignUpData.passwordConfirm
+
+		try {
+			const response1 = await api.post("/signup", finalSignUpData)
+			navigate("/login")
+		} catch (err) {
+			console.error(err)
 		}
 	}
 
@@ -95,7 +86,7 @@ function SignUpForm() {
 		<div className="form">
 			<form onSubmit={handleSubmit}>
 				<div className="input-container">
-					<label>الاسم الأول: </label>
+					<label>الاسم الأول</label>
 					<input
 						type="text"
 						name="firstName"
@@ -106,7 +97,7 @@ function SignUpForm() {
 					/>
 				</div>
 				<div className="input-container">
-					<label>الاسم الأخير: </label>
+					<label>الاسم الأخير</label>
 					<input
 						type="text"
 						name="lastName"
@@ -117,7 +108,7 @@ function SignUpForm() {
 					/>
 				</div>
 				<div className="input-container">
-					<label>البريد الإلكتروني: </label>
+					<label>البريد الإلكتروني</label>
 					<input
 						type="email"
 						name="email"
@@ -128,7 +119,7 @@ function SignUpForm() {
 					/>
 				</div>
 				<div className="input-container">
-					<label>الرقم السري: </label>
+					<label>كلمة المرور</label>
 					<input
 						type="password"
 						name="password"
@@ -142,30 +133,30 @@ function SignUpForm() {
 					className="input-error"
 					style={{ display: validSignUpData.password ? "none" : "" }}
 				>
-					يجب أن يتكون الرقم السري من 8 إلى 24 حرف، منهم على الأقل حرف علوى
+					يجب أن تتكون كلمة المرور من 8 إلى 24 حرف، منهم على الأقل حرف علوى
 					واحد، حرف سفلي واحد، رقم واحد، وعلامة من العلامات !@#$%.
 				</p>
 				<div className="input-container">
-					<label>تأكيد على الرقم السري: </label>
+					<label>أعد إدخال كلمة المرور</label>
 					<input
 						type="password"
 						name="passwordConfirm"
-						value={passwordConfirm}
-						onChange={handleChangePasswordConfirm}
+						value={signUpData.passwordConfirm}
+						onChange={handleChange}
 						className="input-box"
 						required
 					/>
 				</div>
-					<p
-						className="input-error"
-						style={{
-							display: validSignUpData.passwordConfirm ? "none" : ""
-						}}
-					>
-						الرقم السري غير مطابق.
-					</p>
+				<p
+					className="input-error"
+					style={{
+						display: validSignUpData.passwordConfirm ? "none" : ""
+					}}
+				>
+					كلمة المرور غير مطابقة.
+				</p>
 				<div className="input-container">
-					<label>تاريخ الميلاد: </label>
+					<label>تاريخ الميلاد</label>
 					<input
 						type="date"
 						name="birthDate"
@@ -175,14 +166,14 @@ function SignUpForm() {
 						required
 					/>
 				</div>
-					<p
-						className="input-error"
-						style={{ display: validSignUpData.age ? "none" : "" }}
-					>
-						لا يسمح بالتسجيل لمن هم دون 18 عام.
-					</p>
+				<p
+					className="input-error"
+					style={{ display: validSignUpData.age ? "none" : "" }}
+				>
+					لا يسمح بالتسجيل لمن هم دون 18 عام.
+				</p>
 				<div className="input-container">
-					<label>الجنس: </label>
+					<label>الجنس</label>
 					<select
 						name="gender"
 						value={signUpData.gender}
@@ -198,7 +189,7 @@ function SignUpForm() {
 					</select>
 				</div>
 				<div className="input-container">
-					<label>المحافظة: </label>
+					<label>المحافظة</label>
 					<select
 						name="city"
 						value={signUpData.city}
@@ -210,14 +201,14 @@ function SignUpForm() {
 							-- إختر --
 						</option>
 						{cities.map((city) => (
-							<option key={city} value={city}>
+							<option key={cities.indexOf(city)} value={city}>
 								{city}
 							</option>
 						))}
 					</select>
 				</div>
 				<div className="input-container">
-					<label>رقم المحمول: </label>
+					<label>رقم المحمول</label>
 					<input
 						type="tel"
 						name="phone"
@@ -227,14 +218,24 @@ function SignUpForm() {
 						required
 					/>
 				</div>
-					<p
-						className="input-error"
-						style={{ display: validSignUpData.phone ? "none" : "" }}
-					>
-						برجاء إدخال رقم محمول صحيح (11 رقم).
-					</p>
+				<p
+					className="input-error"
+					style={{ display: validSignUpData.phone ? "none" : "" }}
+				>
+					برجاء إدخال رقم محمول صحيح (11 رقم).
+				</p>
 				<div className="input-container">
-					<label>نوع الحساب: </label>
+					<label>العنوان</label>
+					<input
+						type="text"
+						name="line"
+						value={signUpData.line}
+						onChange={handleChange}
+						className="input-box"
+					/>
+				</div>
+				<div className="input-container">
+					<label>نوع الحساب</label>
 					<select
 						name="role"
 						value={signUpData.role}
@@ -251,7 +252,7 @@ function SignUpForm() {
 				</div>
 				{signUpData.role === "worker" && (
 					<div className="input-container">
-						<label>الحرفة: </label>
+						<label>الحرفة</label>
 						<select
 							name="profession"
 							value={signUpData.profession}
@@ -263,23 +264,11 @@ function SignUpForm() {
 								-- إختر --
 							</option>
 							{professions.map((profession) => (
-								<option key={profession} value={profession}>
+								<option key={professions.indexOf(profession)} value={profession}>
 									{profession}
 								</option>
 							))}
 						</select>
-					</div>
-				)}
-				{signUpData.role === "worker" && (
-					<div className="input-container">
-						<label>العنوان: </label>
-						<input
-							type="text"
-							name="line"
-							value={signUpData.line}
-							onChange={handleChange}
-							className="input-box"
-						/>
 					</div>
 				)}
 				<div className="multiple-horizontal-buttons">
