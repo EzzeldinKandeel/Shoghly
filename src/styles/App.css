@@ -14,9 +14,6 @@ a,
 Link {
 	text-decoration: none;
 	color: inherit;
-	display: flex;
-	align-items: center;
-	gap: 5px;
 }
 a:visited,
 Link:visited {
@@ -33,11 +30,12 @@ textarea {
 	color: var(--gray);
 	padding: 10px;
 }
-.main-button, .secondary-button {
+.main-button,
+.secondary-button {
 	width: 200px;
 	height: 2.5rem;
 	border: none;
-	font-family: 'Readex Pro', sans-serif;
+	font-family: "Readex Pro", sans-serif;
 	box-shadow: 1px 1px 5px black;
 	transition: 250ms;
 	transition-property: background-color;

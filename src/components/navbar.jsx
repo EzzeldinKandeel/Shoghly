@@ -50,18 +50,20 @@ function Navbar() {
 			{auth ? (
 				<ul className="account-management">
 					<li>
-						<Link to="/settings">
+						<Link to="/settings" className="align-icon">
 							<SettingsIcon />
 							الإعدادات
 						</Link>
 					</li>
 					<li
+						className="align-icon"
 						onClick={() => {
 							setAuth(null)
 							navigate("/")
 						}}
 					>
-						<LogoutIcon /> تسجيل الخروج
+						<LogoutIcon />
+						تسجيل الخروج
 					</li>
 				</ul>
 			) : (
