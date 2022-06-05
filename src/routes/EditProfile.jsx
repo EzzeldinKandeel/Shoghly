@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react"
 import api from "../api/axios"
-import { getCities } from "./../data"
+import { getCities } from "../data"
 import ErrorIcon from "@mui/icons-material/Error"
 import AuthContext from "../context/AuthProvider"
 import EditIcon from '@mui/icons-material/Edit';

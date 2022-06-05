@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-import Navbar from "../components/navbar"
-import Footer from "../components/footer"
 import api from "../api/axios"
 import DoneIcon from "@mui/icons-material/Done"
 
@@ -17,8 +15,7 @@ function ResetPassword() {
 		}
 	}
 	return (
-		<div className="container">
-			<Navbar />
+		<>
 			{sent ? (
 				<h2
 					style={{
@@ -67,8 +64,7 @@ function ResetPassword() {
 					</form>
 				</>
 			)}
-			<Footer />
-		</div>
+		</>
 	)
 }
 

@@ -1,5 +1,5 @@
 import React from "react"
-import LargeWorkerCard from "./LargeWorkerCard"
+import LargeWorkerCard from "../components/LargeWorkerCard"
 import "../styles/SingleProfession.css"
 import UserContext from "../context/UserProvider"
 import api from "../api/axios"

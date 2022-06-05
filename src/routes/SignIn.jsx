@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 
-function LoginBox() {
+function SignIn() {
 	let navigate = useNavigate()
 
 	const { auth, setAuth } = useContext(AuthContext)
@@ -79,12 +79,12 @@ function LoginBox() {
 						required
 					/>
 				</div>
-					<input
-						type="submit"
-						value="دخول"
-						style={{ alignSelf: "center" }}
-						className="main-button"
-					/>
+				<input
+					type="submit"
+					value="دخول"
+					style={{ alignSelf: "center" }}
+					className="main-button"
+				/>
 			</form>
 			<p style={{ textAlign: "center" }}>
 				ليس لديك حساب؟{" "}
@@ -101,4 +101,4 @@ function LoginBox() {
 	)
 }
 
-export default LoginBox
+export default SignIn

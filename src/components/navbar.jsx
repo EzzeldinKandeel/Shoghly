@@ -3,7 +3,6 @@ import "../styles/navbar.css"
 import { Link, useNavigate } from "react-router-dom"
 import logo_placeholder from "../images/placeholder_50px_50px.png"
 import AuthContext from "../context/AuthProvider"
-import api from "../api/axios"
 import LogoutIcon from "@mui/icons-material/Logout"
 import SettingsIcon from "@mui/icons-material/Settings"
 
@@ -69,7 +68,7 @@ function Navbar() {
 			) : (
 				<ul className="account-management">
 					<li>
-						<Link to="/login">تسجيل الدخول</Link>
+						<Link to="/sign-in">تسجيل الدخول</Link>
 					</li>
 					<li>
 						<Link to="/sign-up">إنشاء حساب جديد</Link>

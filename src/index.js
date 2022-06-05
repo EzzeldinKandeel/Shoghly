@@ -4,20 +4,20 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./routes/login";
 import HomeScreen from "./routes/HomeScreen";
-import Profession from "./routes/professions";
+import Professions from "./routes/Professions";
 import SingleProfession from "./routes/SingleProfession";
 import WorkerPage from "./routes/WorkerPage";
 import { AuthProvider } from "./context/AuthProvider";
 import SignUp from "./routes/SignUp";
-import SettingsPage from "./routes/SettingsPage";
+import Settings from "./routes/Settings";
 import ReviewsPage from "./routes/ReviewsPage";
 // import Conversations from "./routes/Conversations"
-import FavoritesPage from "./routes/FavoritesPage";
-import EditProfilePage from "./routes/EditProfilePage";
-import AccountSettingsPage from "./routes/AccountSettingsPage";
+import Favorites from "./routes/Favorites";
+import EditProfile from "./routes/EditProfile";
+import AccountSettings from "./routes/AccountSettings";
 import ResetPassword from './routes/ResetPassword';
+import SignIn from './routes/SignIn';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -26,19 +26,19 @@ ReactDOM.render(
 				<Routes>
 					<Route path="/" element={<App />}>
 						<Route path="" element={<HomeScreen />} />
-						<Route path="login" element={<Login />} />
+						<Route path="sign-in" element={<SignIn />} />
 						<Route path="sign-up" element={<SignUp />} />
-						<Route path="professions" element={<App />}>
-							<Route path="" element={<Profession />} />
+						<Route path="professions">
+							<Route path="" element={<Professions />} />
 							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
-						<Route path="favorites" element={<FavoritesPage />} />
+						<Route path="favorites" element={<Favorites />} />
 						{/* <Route path="conversations" element={<Conversations />} /> */}
 						<Route path="worker:workerId" element={<WorkerPage />} />
-						<Route path="settings" element={<SettingsPage />} />
+						<Route path="settings" element={<Settings />} />
 						<Route path="reviews" element={<ReviewsPage />} />
-						<Route path="edit-profile" element={<EditProfilePage />} />
-						<Route path="account-settings" element={<AccountSettingsPage />} />
+						<Route path="edit-profile" element={<EditProfile />} />
+						<Route path="account-settings" element={<AccountSettings />} />
 						<Route path="reset-password" element={<ResetPassword />} />
 					</Route>
 				</Routes>

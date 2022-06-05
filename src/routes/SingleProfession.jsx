@@ -1,8 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import Footer from "../components/footer"
 import LargeWorkerCard from "../components/LargeWorkerCard"
-import Navbar from "../components/navbar"
 import "../styles/SingleProfession.css"
 import api from "../api/axios"
 import UserContext from "../context/UserProvider"
@@ -25,8 +23,6 @@ function SingleProfession() {
 	}, [])
 
 	return (
-		<div className="container">
-			<Navbar />
 			<div className="workers">
 				{user
 					? workers
@@ -38,8 +34,6 @@ function SingleProfession() {
 							<LargeWorkerCard key={worker.id} worker={worker} />
 					  ))}
 			</div>
-			<Footer />
-		</div>
 	)
 }
 

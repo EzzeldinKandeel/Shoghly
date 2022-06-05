@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function ProfessionCards(props) {
+function ProfessionCard(props) {
 	return (
 		<div>
 			<Link
@@ -14,4 +14,4 @@ function ProfessionCards(props) {
 	)
 }
 
-export default ProfessionCards
+export default ProfessionCard

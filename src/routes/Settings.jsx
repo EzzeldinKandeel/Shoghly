@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
 
 function Settings() {
-
 	return (
 		<div className="settings">
 			<Link to="/edit-profile" className="settings-section">
