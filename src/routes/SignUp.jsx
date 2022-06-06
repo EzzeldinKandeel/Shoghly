@@ -288,7 +288,7 @@ function SignUp() {
 			</form>
 			<p style={{ textAlign: "center" }}>
 				لديك حساب بالفعل؟{" "}
-				<Link to="/login" style={{ color: "var(--red)" }}>
+				<Link to="/sign-in" style={{ color: "var(--red)" }}>
 					تسجيل الدخول
 				</Link>
 			</p>
