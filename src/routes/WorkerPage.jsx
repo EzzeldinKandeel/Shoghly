@@ -1,40 +1,41 @@
-import React from "react"
+import React, { useContext, useState, useEffect } from "react"
 import "../styles/WorkerDetails.css"
 import workerPic from "../images/placeholder_300px_300px.png"
 import ReviewBox from "../components/ReviewBox"
-import { imageServerUrl } from "./../api/imageServerApi"
 import { useParams } from "react-router-dom"
 import api from "../api/axios"
 import NewReview from "../components/NewReview"
 import CustomRating from "../components/CustomRating"
-import UserContext from "../context/UserProvider"
 import PhoneIcon from "@mui/icons-material/Phone"
+import AuthContext from "../context/AuthProvider"
 
 function WorkerPage() {
-	const { user } = React.useContext(UserContext)
+	const { auth } = useContext(AuthContext)
 	let params = useParams()
 
-	const [getTrigger, setGetTrigger] = React.useState(true)
-	const [worker, setWorker] = React.useState(null)
-	const [newReview, setNewReview] = React.useState(false)
-	React.useEffect(async () => {
+	const [getTrigger, setGetTrigger] = useState(true)
+	const [worker, setWorker] = useState(null)
+	const [reviews, setReviews] = useState(null)
+	const [newReview, setNewReview] = useState(false)
+	useEffect(async () => {
 		try {
-			const response = await api.get("/users", {
-				params: { id: params.workerId }
-			})
-			setWorker(response.data[0])
-			console.log(response.data[0])
+			const workerResponse = await api.get(`/profile/${params.workerId}`)
+			setWorker({ ...workerResponse.data.info, id: params.workerId })
+			if (auth) {
+				const reviewsResponse = await api.get(
+					`/workers/${params.workerId}/reviews`,
+					{ headers: { Authorization: `Bearer ${auth.token}` } }
+				)
+				console.log(reviewsResponse.data)
+				setReviews(reviewsResponse.data.reviews)
+			}
+			console.log(workerResponse.data)
 		} catch (err) {
 			console.error(err.message)
 		}
 	}, [getTrigger])
 	var rating = 0
 	console.log(worker)
-	if (worker) {
-		worker.reviews.forEach((review) => {
-			rating += parseInt(review.rating) / worker.reviews.length
-		})
-	}
 	function deleteReview(index) {
 		return async () => {
 			let reviews = worker.reviews
@@ -57,11 +58,7 @@ function WorkerPage() {
 						<img
 							width="300"
 							height="300"
-							src={
-								worker.profilePictureUrl
-									? `${imageServerUrl}/${worker.profilePictureUrl}`
-									: workerPic
-							}
+							src={worker.picture || workerPic}
 							alt="Picture of The Worker"
 						/>
 					</div>
@@ -88,7 +85,7 @@ function WorkerPage() {
 				{/* <div className='bio'>
 				{worker.bio}
 			</div> */}
-				{Boolean(worker.projects.length) && (
+				{/* {Boolean(worker.projects.length) && (
 					<div className="projects">
 						<h2>المعرض</h2>
 						<div className="photos">
@@ -97,9 +94,9 @@ function WorkerPage() {
 							))}
 						</div>
 					</div>
-				)}
+				)} */}
 
-				<div className="reviews">
+				{/* <div className="reviews">
 					<h2>التعليقات</h2>
 					{user &&
 						user.id != worker.id &&
@@ -131,7 +128,7 @@ function WorkerPage() {
 							))}
 						</div>
 					)}
-				</div>
+				</div> */}
 			</div>
 		)
 	)

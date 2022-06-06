@@ -58,6 +58,7 @@ function Navbar() {
 						className="align-icon"
 						onClick={() => {
 							setAuth(null)
+							localStorage.removeItem("auth")
 							navigate("/")
 						}}
 					>
