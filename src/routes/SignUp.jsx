@@ -9,7 +9,8 @@ function SignUp() {
 
 	const cities = getCities()
 	const professions = getProfessions()
-	const MOB_REGEX = /^[0-9]{11}$/
+	const MOB_REGEX = /^01[0125][0-9]{8}$/
+
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
 	const [signUpData, setSignUpData] = useState({
