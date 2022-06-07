@@ -2,27 +2,33 @@ import React from "react"
 import "../styles/ReviewBox.css"
 import client_photo from "../images/placeholder_50px_50px.png"
 import api from "../api/axios"
-import { imageServerUrl } from "./../api/imageServerApi"
 import CustomRating from "./CustomRating"
-import UserContext from "../context/UserProvider"
+import AuthContext from "../context/AuthProvider"
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function ReviewBox(props) {
-	const { user } = React.useContext(UserContext)
+	const { auth } = React.useContext(AuthContext)
 	const [reviewer, setReviewer] = React.useState({})
 	React.useEffect(async () => {
 		try {
-			const response = await api.get("/users", {
-				params: {
-					id: props.review.clientId
-				}
-			})
-			setReviewer(response.data[0])
+			const response = await api.get(`/profile/${props.review.clientId}`)
+			setReviewer(response.data.info)
 		} catch (err) {
 			console.error(err.message)
 		}
 	}, [])
 
-	let reviewDate = new Date(props.review.dateTime)
+	let reviewDate = new Date(props.review.createdAt)
+	async function deleteReview() {
+		try {
+			const response = await api.delete(`/reviews/${props.review.reviewId}`, {
+				headers: { Authorization: `Bearer ${auth.token}` }
+			})
+			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
+		} catch (error) {
+			console.error(error)
+		}
+	}
 
 	return (
 		<div className="review-box">
@@ -30,19 +36,15 @@ function ReviewBox(props) {
 				<img
 					width="50"
 					height="50"
-					src={
-						reviewer.profilePictureUrl
-							? `${imageServerUrl}/${reviewer.profilePictureUrl}`
-							: client_photo
-					}
+					src={reviewer.picture || client_photo}
 					alt="Picture of the client who wrote the review"
 				/>
 				<h5>
 					{reviewer.firstName} {reviewer.lastName}
 				</h5>
-				{user && props.review.clientId === user.id && (
-					<button className="delete-review-button" onClick={props.deleteReview}>
-						حذف التعليق
+				{auth && props.review.clientId === auth.id && (
+					<button className="delete-review-button" onClick={deleteReview}>
+						<DeleteIcon />
 					</button>
 				)}
 			</div>
@@ -63,10 +65,9 @@ function ReviewBox(props) {
 					value={parseInt(props.review.rating)}
 					readOnly
 				/>
-				<h5>{props.review.title}</h5>
 			</div>
 			<div className="review-body">
-				<p>{props.review.body}</p>
+				<p>{props.review.description}</p>
 			</div>
 		</div>
 	)
