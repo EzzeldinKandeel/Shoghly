@@ -1,23 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeScreen from "./routes/HomeScreen";
-import Professions from "./routes/Professions";
-import SingleProfession from "./routes/SingleProfession";
-import WorkerPage from "./routes/WorkerPage";
-import { AuthProvider } from "./context/AuthProvider";
-import SignUp from "./routes/SignUp";
-import Settings from "./routes/Settings";
-import ReviewsPage from "./routes/ReviewsPage";
+import React from "react"
+import ReactDOM from "react-dom"
+import "./index.css"
+import App from "./App"
+import reportWebVitals from "./reportWebVitals"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import HomeScreen from "./routes/HomeScreen"
+import Professions from "./routes/Professions"
+import SingleProfession from "./routes/SingleProfession"
+import WorkerPage from "./routes/WorkerPage"
+import { AuthProvider } from "./context/AuthProvider"
+import SignUp from "./routes/SignUp"
+import Settings from "./routes/Settings"
+import ReviewsPage from "./routes/ReviewsPage"
 // import Conversations from "./routes/Conversations"
-import Favorites from "./routes/Favorites";
-import EditProfile from "./routes/EditProfile";
-import AccountSettings from "./routes/AccountSettings";
-import ResetPassword from './routes/ResetPassword';
-import SignIn from './routes/SignIn';
+import Favorites from "./routes/Favorites"
+import EditProfile from "./routes/EditProfile"
+import AccountSettings from "./routes/AccountSettings"
+import ResetPassword from "./routes/ResetPassword"
+import EmailVerification from "./routes/EmailVerification"
+import SignIn from "./routes/SignIn"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -40,15 +41,16 @@ ReactDOM.render(
 						<Route path="edit-profile" element={<EditProfile />} />
 						<Route path="account-settings" element={<AccountSettings />} />
 						<Route path="reset-password" element={<ResetPassword />} />
+						<Route path="email-verification" element={<EmailVerification />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
 		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

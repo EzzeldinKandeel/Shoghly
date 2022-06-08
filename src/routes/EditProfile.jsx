@@ -3,11 +3,11 @@ import api from "../api/axios"
 import { getCities } from "../data"
 import ErrorIcon from "@mui/icons-material/Error"
 import AuthContext from "../context/AuthProvider"
-import EditIcon from '@mui/icons-material/Edit';
-import CancelIcon from '@mui/icons-material/Cancel';
+import EditIcon from "@mui/icons-material/Edit"
+import CancelIcon from "@mui/icons-material/Cancel"
 
 function EditProfile() {
-	const MOB_REGEX = /^[0-9]{11}$/
+	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	let imageData = new FormData()
 	const imageRef = useRef(null)
 
@@ -139,7 +139,10 @@ function EditProfile() {
 
 	return (
 		<div className="form">
-			<form style={{width: "520px", height: "450px", justifyContent: "center"}} onSubmit={handleSubmit}>
+			<form
+				style={{ width: "520px", height: "450px", justifyContent: "center" }}
+				onSubmit={handleSubmit}
+			>
 				{/* <div className="data-container">
 					<label>الصورة الشخصية</label>
 					{edit.profilePictureUrl && (
