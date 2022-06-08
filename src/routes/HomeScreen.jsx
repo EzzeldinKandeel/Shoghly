@@ -16,7 +16,7 @@ function HomeScreen() {
 				console.error(err)
 			}
 		}
-	})
+	}, [auth])
 
 	return (
 		<div className="main-content">

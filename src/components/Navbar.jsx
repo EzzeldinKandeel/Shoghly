@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom"
 import logo_placeholder from "../images/placeholder_50px_50px.png"
 import AuthContext from "../context/AuthProvider"
 import LogoutIcon from "@mui/icons-material/Logout"
+import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from "@mui/icons-material/Settings"
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 function Navbar() {
 	const navigate = useNavigate()
@@ -26,11 +28,11 @@ function Navbar() {
 				<li>
 					<Link to="/professions">الحرف</Link>
 				</li>
-				{auth && (
+				{/* {auth && (
 					<li>
 						<Link to="/favorites">المفضلات</Link>
 					</li>
-				)}
+				)} */}
 				{/* {user && (
 					<li>
 						<Link to="/conversations">المحادثات</Link>
@@ -58,7 +60,7 @@ function Navbar() {
 						className="align-icon"
 						onClick={() => {
 							setAuth(null)
-							localStorage.removeItem("auth")
+							localStorage.removeItem("shoghlyAppAuth")
 							navigate("/")
 						}}
 					>
@@ -69,10 +71,10 @@ function Navbar() {
 			) : (
 				<ul className="account-management">
 					<li>
-						<Link to="/sign-in">تسجيل الدخول</Link>
+						<Link to="/sign-in" className="align-icon"><LoginIcon />تسجيل الدخول</Link>
 					</li>
 					<li>
-						<Link to="/sign-up">إنشاء حساب جديد</Link>
+						<Link to="/sign-up" className="align-icon"><AccountBoxIcon />إنشاء حساب جديد</Link>
 					</li>
 				</ul>
 			)}

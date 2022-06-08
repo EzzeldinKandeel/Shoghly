@@ -17,6 +17,7 @@ function WorkerPage() {
 	const [worker, setWorker] = useState(null)
 	const [reviews, setReviews] = useState(null)
 	const [newReview, setNewReview] = useState(false)
+	const [currentUserHasReviewed, setCurrentUserHasReviewed] = useState(false)
 	useEffect(async () => {
 		try {
 			const workerResponse = await api.get(`/profile/${params.workerId}`)
@@ -34,22 +35,13 @@ function WorkerPage() {
 			console.error(err.message)
 		}
 	}, [getTrigger])
-	var rating = 0
+
+	useEffect(() => {
+		setCurrentUserHasReviewed(
+			reviews?.some((review) => review.clientId === auth.id)
+		)
+	}, [reviews])
 	console.log(worker)
-	function deleteReview(index) {
-		return async () => {
-			let reviews = worker.reviews
-			reviews.splice(index, 1)
-			try {
-				const response = await api.patch(`/users/${worker.id}`, {
-					reviews: reviews
-				})
-				setWorker(response.data)
-			} catch (err) {
-				console.error(err.message)
-			}
-		}
-	}
 	return (
 		worker && (
 			<div className="worker-details">
@@ -74,8 +66,12 @@ function WorkerPage() {
 							{worker.phone}
 						</h4>
 						<h4 style={{ fontSize: "12px" }}>
-							{rating ? (
-								<CustomRating name="workerRating" value={rating} readOnly />
+							{worker.rating ? (
+								<CustomRating
+									name="workerRating"
+									value={parseInt(worker.rating)}
+									readOnly
+								/>
 							) : (
 								"لا يوجد تقييم"
 							)}
@@ -96,10 +92,11 @@ function WorkerPage() {
 					</div>
 				)} */}
 
-				{/* <div className="reviews">
+				<div className="reviews">
 					<h2>التعليقات</h2>
-					{user &&
-						user.id != worker.id &&
+					{auth &&
+						auth.id != worker.id &&
+						!currentUserHasReviewed &&
 						(newReview ? (
 							<div style={{ marginBottom: "1rem" }}>
 								<NewReview
@@ -117,18 +114,18 @@ function WorkerPage() {
 								أضف تعليق
 							</button>
 						))}
-					{Boolean(worker.reviews.length) && (
+					{Boolean(reviews?.length) && (
 						<div className="review-boxes">
-							{worker.reviews.map((review) => (
+							{reviews.map((review) => (
 								<ReviewBox
-									key={worker.reviews.indexOf(review)}
-									deleteReview={deleteReview(worker.reviews.indexOf(review))}
+									key={review.reviewId}
+									setGetTrigger={setGetTrigger}
 									review={review}
 								/>
 							))}
 						</div>
 					)}
-				</div> */}
+				</div>
 			</div>
 		)
 	)

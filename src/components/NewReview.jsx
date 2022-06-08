@@ -1,15 +1,14 @@
 import React from "react"
-import UserContext from "../context/UserProvider"
 import api from "../api/axios"
 import "../styles/NewReview.css"
 import CustomRating from "./CustomRating"
+import AuthContext from "../context/AuthProvider"
 
 function NewReview(props) {
-	const { user } = React.useContext(UserContext)
+	const { auth } = React.useContext(AuthContext)
 	const [reviewData, setReviewData] = React.useState({
 		rating: 1,
-		title: "",
-		body: ""
+		description: ""
 	})
 
 	function handleChange(e) {
@@ -22,16 +21,12 @@ function NewReview(props) {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		const finalReviewData = {
-			...reviewData,
-			dateTime: new Date(),
-			clientId: user.id,
-			id: props.worker.reviews.length
-		}
 		try {
-			const response = await api.patch(`/users/${props.worker.id}`, {
-				reviews: [...props.worker.reviews, finalReviewData]
-			})
+			const response = await api.post(
+				`/workers/${props.worker.id}/reviews`,
+				reviewData,
+				{ headers: { Authorization: `Bearer ${auth.token}` } }
+			)
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 			props.setNewReview(false)
 		} catch (err) {
@@ -49,19 +44,8 @@ function NewReview(props) {
 					onChange={handleChange}
 				/>
 			</div>
-			<label htmlFor="title">العنوان</label>
 			<textarea
-				name="title"
-				id="title"
-				cols="30"
-				rows="1"
-				value={reviewData.title}
-				onChange={handleChange}
-			></textarea>
-			<label htmlFor="body">التعليق</label>
-			<textarea
-				name="body"
-				id="body"
+				name="description"
 				cols="30"
 				rows="10"
 				value={reviewData.body}

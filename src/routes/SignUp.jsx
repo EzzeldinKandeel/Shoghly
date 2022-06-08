@@ -76,7 +76,7 @@ function SignUp() {
 
 		try {
 			const response1 = await api.post("/signup", finalSignUpData)
-			navigate("/login")
+			navigate("/sign-in")
 		} catch (err) {
 			console.error(err)
 		}

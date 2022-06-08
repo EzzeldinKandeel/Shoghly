@@ -5,6 +5,15 @@ import DoneIcon from "@mui/icons-material/Done"
 function ResetPassword() {
 	const [email, setEmail] = useState("")
 	const [sent, setSent] = useState(false)
+	const styles = {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		alignSelf: "center",
+		justifyContent: "center",
+		marginBlock: "auto",
+		width: "min(90%, 400px)"
+	}
 	async function handleSubmit(e) {
 		e.preventDefault()
 		try {
@@ -15,12 +24,10 @@ function ResetPassword() {
 		}
 	}
 	return (
-		<>
+		<div style={styles}>
 			{sent ? (
 				<h2
 					style={{
-						alignSelf: "center",
-						marginBlock: "auto",
 						display: "flex",
 						alignItems: "center",
 						gap: "1rem"
@@ -33,9 +40,8 @@ function ResetPassword() {
 				<>
 					<p
 						style={{
-							marginBlockStart: "auto",
 							marginBlockEnd: "2rem",
-							alignSelf: "center"
+							textAlign: "center"
 						}}
 					>
 						أدخل عنوان البريد الإلكتروني الذي استخدمته في التسجيل لإرسال رابط
@@ -64,7 +70,7 @@ function ResetPassword() {
 					</form>
 				</>
 			)}
-		</>
+		</div>
 	)
 }
 
