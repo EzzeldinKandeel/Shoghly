@@ -15,7 +15,7 @@ import ReviewsPage from "./routes/ReviewsPage";
 // import Conversations from "./routes/Conversations"
 import Favorites from "./routes/Favorites";
 import EditProfile from "./routes/EditProfile";
-import AccountSettings from "./routes/AccountSettings";
+import ChangePassword from "./routes/ChangePassword";
 import ResetPassword from './routes/ResetPassword';
 import SignIn from './routes/SignIn';
 
@@ -38,7 +38,7 @@ ReactDOM.render(
 						<Route path="settings" element={<Settings />} />
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfile />} />
-						<Route path="account-settings" element={<AccountSettings />} />
+						<Route path="change-password" element={<ChangePassword />} />
 						<Route path="reset-password" element={<ResetPassword />} />
 					</Route>
 				</Routes>

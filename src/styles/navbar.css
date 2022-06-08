@@ -10,7 +10,6 @@
 	flex-wrap: wrap;
 	background-color: var(--red);
 	color: var(--white);
-	margin-bottom: 2rem;
 	gap: 1rem;
 	box-shadow: 1px 1px 5px black;
 }
@@ -78,7 +77,6 @@
 	}
 	.navbar {
 		padding: 12px;
-		margin-bottom: 32px;
 	}
 	.logo {
 		margin-top: 0.6em;

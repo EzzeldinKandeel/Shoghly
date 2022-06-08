@@ -3,8 +3,8 @@ import api from "../api/axios"
 import { getCities } from "../data"
 import ErrorIcon from "@mui/icons-material/Error"
 import AuthContext from "../context/AuthProvider"
-import EditIcon from '@mui/icons-material/Edit';
-import CancelIcon from '@mui/icons-material/Cancel';
+import EditIcon from "@mui/icons-material/Edit"
+import CancelIcon from "@mui/icons-material/Cancel"
 
 function EditProfile() {
 	const MOB_REGEX = /^[0-9]{11}$/
@@ -28,7 +28,7 @@ function EditProfile() {
 		phone: false,
 		city: false,
 		line: false,
-		profilePictureUrl: false
+		picture: false
 	})
 	const [updatedUser, setUpdatedUser] = useState({
 		firstName: "",
@@ -36,8 +36,7 @@ function EditProfile() {
 		gender: "",
 		phone: "",
 		city: "",
-		line: "",
-		country: "مصر"
+		line: ""
 	})
 	const [phoneIsValid, setPhoneIsValid] = useState(true)
 	const [isEmpty, setIsEmpty] = useState(false)
@@ -68,9 +67,9 @@ function EditProfile() {
 		if (!edit.phone) {
 			setPhoneIsValid(true)
 		}
-		// if (!edit.profilePictureUrl) {
-		// 	imageData = new FormData()
-		// }
+		if (!edit.picture) {
+			imageData = new FormData()
+		}
 		for (let property in edit) {
 			if (!edit[property]) {
 				setUpdatedUser((prevUpdatedUser) => ({
@@ -95,19 +94,21 @@ function EditProfile() {
 
 	async function handleSubmit(event) {
 		event.preventDefault()
-		// if (imageRef && imageRef.current.files.length != 0) {
-		// 	try {
-		// 		const imageResponse = await imageApi.post("", imageData, {
-		// 			headers: {
-		// 				"Content-Type": "multipart/form-data"
-		// 			}
-		// 		})
-		// 		console.log(imageResponse)
-		// 	} catch (err) {
-		// 		console.error(err.message)
-		// 	}
-		// }
-		let finalUpdatedUser = { ...updatedUser }
+		if (imageRef && imageRef.current.files.length > 0) {
+			try {
+				const imageResponse = await api.post("/upload", imageData, {
+					headers: {
+						"Content-Type": "multipart/form-data",
+						Authorization: `Bearer ${auth.token}`
+					}
+				})
+				console.log(imageResponse)
+			} catch (err) {
+				console.error(err.message)
+			}
+		}
+		let finalUpdatedUser = {}
+		finalUpdatedUser = { ...updatedUser }
 		let phoneCheck = true
 		let emptyCheck = false
 		if (Object.values(finalUpdatedUser).every((value) => value === "")) {
@@ -125,6 +126,7 @@ function EditProfile() {
 				finalUpdatedUser[property] = currentUser[property]
 			}
 		}
+		finalUpdatedUser = {...finalUpdatedUser, country: "مصر"}
 		console.log(finalUpdatedUser)
 		try {
 			const response = await api.put("/profile", finalUpdatedUser, {
@@ -139,21 +141,24 @@ function EditProfile() {
 
 	return (
 		<div className="form">
-			<form style={{width: "520px", height: "450px", justifyContent: "center"}} onSubmit={handleSubmit}>
-				{/* <div className="data-container">
+			<form
+				style={{ width: "520px", height: "450px", justifyContent: "center" }}
+				onSubmit={handleSubmit}
+			>
+				<div className="data-container">
 					<label>الصورة الشخصية</label>
-					{edit.profilePictureUrl && (
+					{edit.picture && (
 						<input
 							ref={imageRef}
 							type="file"
-							name="profilePictureUrl"
+							name="picture"
 							onChange={(e) => {
-								imageData.append("image", e.target.files[0])
+								imageData.append("photos", e.target.files[0])
 							}}
 						/>
 					)}
-					{editToggle("profilePictureUrl")}
-				</div> */}
+					{editToggle("picture")}
+				</div>
 				<div className="data-container">
 					<label>الاسم الأول </label>
 					{edit.firstName ? (

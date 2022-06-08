@@ -26,11 +26,11 @@ function Navbar() {
 				<li>
 					<Link to="/professions">الحرف</Link>
 				</li>
-				{auth && (
+				{/* {auth && (
 					<li>
 						<Link to="/favorites">المفضلات</Link>
 					</li>
-				)}
+				)} */}
 				{/* {user && (
 					<li>
 						<Link to="/conversations">المحادثات</Link>

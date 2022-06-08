@@ -10,8 +10,8 @@ function Settings() {
 				تعديل الصفحة الشخصية
 				<ArrowBackIosNewIcon fontSize="small" />
 			</Link>
-			<Link to="/account-settings" className="settings-section">
-				تعديل بيانات الحساب
+			<Link to="/change-password" className="settings-section">
+				تغيير كلمة السر
 				<ArrowBackIosNewIcon fontSize="small" />
 			</Link>
 		</div>
