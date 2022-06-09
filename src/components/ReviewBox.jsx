@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit"
 
 function ReviewBox(props) {
 	let reviewDate = new Date(props.review.createdAt)
+	let editDate = new Date(props.review.updatedAt)
 	let originalReview = {
 		rating: props.review.rating,
 		description: props.review.description
@@ -108,6 +109,19 @@ function ReviewBox(props) {
 					{String(reviewDate.getFullYear())}
 				</span>
 			</div>
+			{props.review.createdAt !== props.review.updatedAt && (
+				<div className="review-date" style={{ marginBlockStart: "-0.2rem" }}>
+					<span>
+						أخر تعديل&nbsp;-&nbsp; الوقت:&nbsp;
+						{addZeroOnTheLeft(editDate.getMinutes())} :&nbsp;
+						{addZeroOnTheLeft(editDate.getHours())}
+						&nbsp;&nbsp;&nbsp; التاريخ:&nbsp;
+						{addZeroOnTheLeft(editDate.getDate())} /&nbsp;
+						{addZeroOnTheLeft(editDate.getMonth() + 1)} /&nbsp;
+						{String(editDate.getFullYear())}
+					</span>
+				</div>
+			)}
 			<div className="rating-and-title">
 				{edit ? (
 					<CustomRating

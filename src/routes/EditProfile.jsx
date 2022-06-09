@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from "react"
 import api from "../api/axios"
 import { getCities } from "../data"
-import ErrorIcon from "@mui/icons-material/Error"
 import AuthContext from "../context/AuthProvider"
-import EditIcon from "@mui/icons-material/Edit"
-import CancelIcon from "@mui/icons-material/Cancel"
 import userPlaceHolderPic from "../images/placeholder_50px_50px.png"
 
 function EditProfile() {
@@ -51,10 +48,14 @@ function EditProfile() {
 					}
 				})
 				const imageChangeResponse = await api.post(
-					`/profile/${auth.id}/changePicture`,
+					"/profile/changePicture",
 					{ picture: imageUploadResponse.data.data[0].url },
 					{ headers: { Authorization: `Bearer ${auth.token}` } }
 				)
+				setUserData((prevUserData) => ({
+					...prevUserData,
+					picture: imageUploadResponse.data.data[0].url
+				}))
 			} catch (err) {
 				console.error(err.message)
 			}
@@ -78,7 +79,11 @@ function EditProfile() {
 		<form className="full-page-form" onSubmit={handleSubmit}>
 			<div className="data-container">
 				<label>الصورة الشخصية</label>
-				<img src={userData.picture || userPlaceHolderPic} />
+				<img
+					height="50px"
+					width="50px"
+					src={userData.picture || userPlaceHolderPic}
+				/>
 				<input
 					ref={imageRef}
 					type="file"
