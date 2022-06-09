@@ -48,7 +48,7 @@ function NewReview(props) {
 				name="description"
 				cols="30"
 				rows="10"
-				value={reviewData.body}
+				value={reviewData.description}
 				onChange={handleChange}
 			></textarea>
 			<div className="review-box--buttons">

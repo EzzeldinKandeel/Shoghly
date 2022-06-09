@@ -71,7 +71,7 @@ function EmailVerification() {
 				</div>
 				<input
 					type="submit"
-					value="دخول"
+					value="تأكيد"
 					style={{ alignSelf: "center" }}
 					className="main-button"
 				/>

@@ -37,7 +37,6 @@
 	background: transparent;
 	color: var(--red);
 	align-self: flex-start;
-	margin-inline-start: auto;
 	transition: 250ms;
 	transition-property: color;
 }
