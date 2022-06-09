@@ -19,6 +19,7 @@ import ChangePassword from "./routes/ChangePassword"
 import ResetPassword from "./routes/ResetPassword"
 import SignIn from "./routes/SignIn"
 import EmailVerification from "./routes/EmailVerification"
+import SearchPage from "./routes/SearchPage"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -42,6 +43,7 @@ ReactDOM.render(
 						<Route path="change-password" element={<ChangePassword />} />
 						<Route path="reset-password" element={<ResetPassword />} />
 						<Route path="email-verification" element={<EmailVerification />} />
+						<Route path="search" element={<SearchPage />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -20,14 +20,16 @@ function Favorites() {
 		}
 	}, [])
 
-	return (
-		favorites ? (
-			<div className="workers">
-				{favorites.map((worker) => (
-					<LargeWorkerCard key={worker.id} worker={worker} />
-				))}
-			</div>
-		) : <h1 style={{margin: "auto", fontWeight: "200", color: "gray"}}>لا توجد مفضلات</h1>
+	return favorites ? (
+		<div className="workers">
+			{favorites.map((worker) => (
+				<LargeWorkerCard key={worker.id} worker={worker} />
+			))}
+		</div>
+	) : (
+		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
+			لا توجد مفضلات
+		</h1>
 	)
 }
 

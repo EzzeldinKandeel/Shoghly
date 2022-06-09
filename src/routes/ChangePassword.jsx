@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import ErrorIcon from "@mui/icons-material/Error"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 
 function ChangePassword() {
 	let navigate = useNavigate()

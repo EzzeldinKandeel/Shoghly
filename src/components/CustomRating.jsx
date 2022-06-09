@@ -7,27 +7,24 @@ import createCache from "@emotion/cache"
 import { prefixer } from "stylis"
 
 function CustomRating(props) {
+	const theme = createTheme({
+		direction: "rtl"
+	})
 
-    const theme = createTheme({
-        direction: "rtl"
-    })
-    
-    const cacheRtl = createCache({
-        key: "muirtl",
-        stylisPlugins: [prefixer, rtlPlugin]
-    })
+	const cacheRtl = createCache({
+		key: "muirtl",
+		stylisPlugins: [prefixer, rtlPlugin]
+	})
 
-    return (
-        <CacheProvider value={cacheRtl}>
-					<ThemeProvider theme={theme}>
-						<div dir="rtl">
-							<Rating
-								{...props}
-							/>
-						</div>
-					</ThemeProvider>
-				</CacheProvider>
-    )
+	return (
+		<CacheProvider value={cacheRtl}>
+			<ThemeProvider theme={theme}>
+				<div dir="rtl">
+					<Rating {...props} />
+				</div>
+			</ThemeProvider>
+		</CacheProvider>
+	)
 }
 
 export default CustomRating

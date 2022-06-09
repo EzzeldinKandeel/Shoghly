@@ -61,9 +61,14 @@ function WorkerPage() {
 						<h4>{worker.profession}</h4>
 						<h4>{worker.city}</h4>
 						{worker.line && <h4>{worker.line}</h4>}
-						<h4 style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-							<PhoneIcon />
-							{worker.phone}
+						<h4>
+							<a
+								style={{ display: "flex", alignItems: "center", gap: "5px" }}
+								href={`tel:${worker.phone}`}
+							>
+								<PhoneIcon />
+								{worker.phone}
+							</a>
 						</h4>
 						<h4 style={{ fontSize: "12px" }}>
 							{worker.rating ? (

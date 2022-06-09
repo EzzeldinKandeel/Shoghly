@@ -7,11 +7,11 @@ function Professions() {
 	const professions = getProfessions()
 
 	return (
-			<div className="profession-cards">
-				{professions.map((profession) => {
-					return <ProfessionCard key={profession} profession={profession} />
-				})}
-			</div>
+		<div className="profession-cards">
+			{professions.map((profession) => {
+				return <ProfessionCard key={profession} profession={profession} />
+			})}
+		</div>
 	)
 }
 

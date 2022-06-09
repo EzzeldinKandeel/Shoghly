@@ -42,7 +42,7 @@ function SignIn() {
 	useEffect(() => {
 		localStorage.setItem("shoghlyAppAuth", JSON.stringify(auth))
 	}, [auth])
-	
+
 	console.log(auth)
 
 	return (

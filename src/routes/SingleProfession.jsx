@@ -23,17 +23,17 @@ function SingleProfession() {
 	}, [])
 
 	return (
-			<div className="workers">
-				{user
-					? workers
-							.filter((worker) => worker.id != user.id)
-							.map((worker) => (
-								<LargeWorkerCard key={worker.id} worker={worker} />
-							))
-					: workers.map((worker) => (
+		<div className="workers">
+			{user
+				? workers
+						.filter((worker) => worker.id != user.id)
+						.map((worker) => (
 							<LargeWorkerCard key={worker.id} worker={worker} />
-					  ))}
-			</div>
+						))
+				: workers.map((worker) => (
+						<LargeWorkerCard key={worker.id} worker={worker} />
+				  ))}
+		</div>
 	)
 }
 
