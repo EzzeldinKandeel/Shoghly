@@ -57,3 +57,6 @@ textarea {
 	background-color: lightgray;
 	cursor: pointer;
 }
+.image-cover {
+	object-fit: cover;
+}

@@ -52,6 +52,7 @@ function WorkerPage() {
 							height="300"
 							src={worker.picture || workerPic}
 							alt="Picture of The Worker"
+							className="image-cover"
 						/>
 					</div>
 					<div className="main-details--text">

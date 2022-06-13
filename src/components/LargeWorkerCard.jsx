@@ -25,6 +25,7 @@ function LargeWorkerCard(props) {
 									: workerPic
 							}
 							alt="picture of the worker"
+							className="image-cover"
 						/>
 					</div>
 					<div className="left-section">

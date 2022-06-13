@@ -73,6 +73,7 @@ function ReviewBox(props) {
 					height="50"
 					src={reviewer.picture || client_photo}
 					alt="Picture of the client who wrote the review"
+					className="image-cover"
 				/>
 				<h5>
 					{reviewer.firstName} {reviewer.lastName}

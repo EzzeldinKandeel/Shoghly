@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 function SmallWorkerCard(props) {
 	return (
 		<Link to={`/${props.id}`} className="card">
-			<img src={worker_picture} alt="picture of the worker" />
+			<img height="150" width="150" src={worker_picture} alt="picture of the worker" className="image-cover" />
 			<h3 id="worker-name"></h3>
 			<h4 id="profession"></h4>
 		</Link>

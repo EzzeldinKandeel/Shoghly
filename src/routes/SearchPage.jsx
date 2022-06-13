@@ -3,24 +3,22 @@ import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
 import "../styles/SearchPage.css"
 import MiniWorkerCard from "../components/MiniWorkerCard"
+import { getCities } from './../data';
 
 function SearchPage() {
 	const { auth } = useContext(AuthContext)
+	const cities = getCities()
 	const [searchQuery, setSearchQuery] = useState("")
 	const [city, setCity] = useState("")
 	const [liveResults, setLiveResults] = useState([])
-	function handleChange(e) {
-		let value = e.target.value
-		setSearchQuery(value)
-	}
-	async function getCity() {
+	useEffect(async () => {
 		try {
 			const cityResponse = await api.get(`/profile/${auth.id}`)
 			setCity(cityResponse.data.info.city)
 		} catch (err) {
 			console.error(err)
 		}
-	}
+	}, [])
 	useEffect(async () => {
 		if (searchQuery.length > 0) {
 			try {
@@ -30,25 +28,48 @@ function SearchPage() {
 				})
 				setLiveResults(response.data.results)
 			} catch (err) {
-				console.error(err)
+				setLiveResults([])
 			}
 		} else {
 			setLiveResults([])
 		}
-	}, [searchQuery])
+	}, [searchQuery, city])
+
+	function handleChange(e) {
+		let value = e.target.value
+		setSearchQuery(value)
+	}
+	function handleCitySelection(e) {
+		let value = e.target.value
+		setCity(value)
+	}
 
 	return (
 		<div className="search-page">
-			<input
-				name="search"
-				value={searchQuery}
-				onChange={handleChange}
-				onFocus={getCity}
-				type="search"
-				className="input-box search-box"
-				placeholder="بحث"
-				autoComplete="off"
-			/>
+			<div className="city-and-query">
+				<input
+					name="search"
+					value={searchQuery}
+					onChange={handleChange}
+					type="search"
+					className="input-box search-box"
+					placeholder="بحث"
+					autoComplete="off"
+				/>
+				<select
+						name="city"
+						value={city}
+						onChange={handleCitySelection}
+						className="input-box city-select"
+						required
+					>
+						{cities.map((city) => (
+							<option key={cities.indexOf(city)} value={city}>
+								{city}
+							</option>
+						))}
+					</select>
+			</div>
 			{liveResults.length ? (
 				<div className="live-search-results">
 					{liveResults.map((worker) => (

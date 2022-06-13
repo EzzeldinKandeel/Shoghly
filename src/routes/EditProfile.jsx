@@ -80,9 +80,10 @@ function EditProfile() {
 			<div className="data-container">
 				<label>الصورة الشخصية</label>
 				<img
-					height="50px"
-					width="50px"
+					height="50"
+					width="50"
 					src={userData.picture || userPlaceHolderPic}
+					className="image-cover"
 				/>
 				<input
 					ref={imageRef}

@@ -8,6 +8,8 @@
 }
 .search-box {
 	width: min(500px, 100%);
+	margin-inline: auto;
+
 }
 .live-search-results {
 	width: min(500px, 100%);
@@ -33,4 +35,14 @@
 .mini-card * {
 	margin: 0px;
 	padding: 0px;
+}
+.city-and-query {
+	display: flex;
+	flex-direction: column;
+	width: min(500px, 100%);
+	gap: 1rem;
+}
+.city-select {
+	width: 150px;
+	align-self: flex-end;
 }
