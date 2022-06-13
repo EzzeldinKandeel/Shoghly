@@ -24,7 +24,6 @@ function LargeWorkerCard(props) {
 									? `${imageServerUrl}/${props.worker.profilePictureUrl}`
 									: workerPic
 							}
-							alt="picture of the worker"
 							className="image-cover"
 						/>
 					</div>

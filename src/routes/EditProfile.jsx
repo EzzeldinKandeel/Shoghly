@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from "react"
 import api from "../api/axios"
 import { getCities } from "../data"
 import AuthContext from "../context/AuthProvider"
-import userPlaceHolderPic from "../images/placeholder_50px_50px.png"
+import avatar from "../images/avatar.png"
 
 function EditProfile() {
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
@@ -82,7 +82,7 @@ function EditProfile() {
 				<img
 					height="50"
 					width="50"
-					src={userData.picture || userPlaceHolderPic}
+					src={userData.picture || avatar}
 					className="image-cover"
 				/>
 				<input

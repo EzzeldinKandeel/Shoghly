@@ -184,8 +184,8 @@ function SignUp() {
 						<option disabled value="">
 							-- إختر --
 						</option>
-						<option value="male">ذكر</option>
-						<option value="female">أنثى</option>
+						<option value="ذكر">ذكر</option>
+						<option value="أنثى">أنثى</option>
 					</select>
 				</div>
 				<div className="input-container">

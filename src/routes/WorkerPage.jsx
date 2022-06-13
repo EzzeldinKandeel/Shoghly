@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import "../styles/WorkerDetails.css"
-import workerPic from "../images/placeholder_300px_300px.png"
+import avatar from "../images/avatar.png"
 import ReviewBox from "../components/ReviewBox"
 import { useParams } from "react-router-dom"
 import api from "../api/axios"
@@ -50,8 +50,7 @@ function WorkerPage() {
 						<img
 							width="300"
 							height="300"
-							src={worker.picture || workerPic}
-							alt="Picture of The Worker"
+							src={worker.picture || avatar}
 							className="image-cover"
 						/>
 					</div>

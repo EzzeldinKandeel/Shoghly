@@ -14,9 +14,6 @@ function Navbar() {
 
 	return (
 		<div className="navbar">
-			<Link to="/" className="logo">
-				<img src={logo_placeholder} alt="logo" className="logo-image" />
-			</Link>
 			<h1 className="app-name">
 				<Link to="/">شغلي</Link>
 			</h1>
@@ -47,9 +44,11 @@ function Navbar() {
 				{/* <li>
 					<Link to="/about">عن الموقع</Link>
 				</li> */}
-				<li>
-					<Link to="/search">بحث</Link>
-				</li>
+				{auth && (
+					<li>
+						<Link to="/search">بحث</Link>
+					</li>
+				)}
 			</ul>
 			{auth ? (
 				<ul className="account-management">

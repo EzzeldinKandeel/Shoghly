@@ -6,6 +6,7 @@ import CustomRating from "./CustomRating"
 import AuthContext from "../context/AuthProvider"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
+import avatar from "../images/avatar.png"
 
 function ReviewBox(props) {
 	let reviewDate = new Date(props.review.createdAt)
@@ -71,8 +72,7 @@ function ReviewBox(props) {
 				<img
 					width="50"
 					height="50"
-					src={reviewer.picture || client_photo}
-					alt="Picture of the client who wrote the review"
+					src={reviewer.picture || avatar}
 					className="image-cover"
 				/>
 				<h5>

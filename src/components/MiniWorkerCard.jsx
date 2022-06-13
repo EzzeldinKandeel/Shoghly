@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import avatar from "../images/avatar.png"
 
 function MiniWorkerCard(props) {
 	let worker = props.worker
@@ -9,7 +10,7 @@ function MiniWorkerCard(props) {
 				<img
 					height="70"
 					width="70"
-					src={worker.picture}
+					src={worker.picture || avatar}
 					className="image-cover"
 				/>
 				<h2>{worker.fullName}</h2>
