@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
@@ -10,7 +10,26 @@ function SignUp() {
 	const cities = getCities()
 	const professions = getProfessions()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
-
+	let currentDate = new Date()
+	let years = (() => {
+		let arr = []
+		for (let i = 1900; i <= currentDate.getFullYear(); i++) arr.push(i)
+		return arr
+	})()
+	let months = (() => {
+		let arr = []
+		for (let i = 1; i <= 12; i++) arr.push(i)
+		return arr
+	})()
+	const generateDays = (month, year) => {
+		let arr = []
+		let lastDay = 30
+		if (["0", "2", "4", "6", "7", "9", "11"].includes(month)) lastDay = 31
+		else if (year % 4 === 0 && month === "1") lastDay = 29
+		else if (month === "1") lastDay = 28
+		for (let i = 1; i <= lastDay; i++) arr.push(i)
+		return arr
+	}
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
 	const [signUpData, setSignUpData] = useState({
@@ -26,7 +45,9 @@ function SignUp() {
 		country: "مصر",
 		city: "",
 		line: "",
-		birthDate: ""
+		day: currentDate.getDate(),
+		month: currentDate.getMonth(),
+		year: currentDate.getFullYear()
 	})
 	const [validSignUpData, setValidSignUpData] = useState({
 		phone: true,
@@ -34,16 +55,25 @@ function SignUp() {
 		passwordConfirm: true,
 		age: true
 	})
+	const [days, setDays] = useState([])
 
-	function checkAge(birthDate) {
-		let currentDate = new Date()
-		let applicantBD = new Date(birthDate)
+	useEffect(() => {
+		setDays(generateDays(signUpData.month, signUpData.year))
+	}, [signUpData.month, signUpData.year])
 
+	function checkAge() {
+		let applicantBD = new Date(
+			signUpData.year,
+			signUpData.month,
+			signUpData.day
+		)
+		console.log(applicantBD)
 		currentDate = currentDate.getTime()
 		applicantBD = applicantBD.getTime()
 
 		return currentDate - applicantBD >= 568024668000
 	}
+	console.log(checkAge())
 
 	function handleChange(event) {
 		const { name, value } = event.target
@@ -61,7 +91,7 @@ function SignUp() {
 			phone: MOB_REGEX.test(signUpData.phone),
 			password: PWD_REGEX.test(signUpData.password),
 			passwordConfirm: signUpData.password === signUpData.passwordConfirm,
-			age: checkAge(signUpData.birthDate)
+			age: checkAge()
 		}
 		setValidSignUpData(validityChecks)
 
@@ -157,14 +187,47 @@ function SignUp() {
 				</p>
 				<div className="input-container">
 					<label>تاريخ الميلاد</label>
-					<input
-						type="date"
-						name="birthDate"
-						value={signUpData.birthDate}
-						onChange={handleChange}
-						className="input-box"
-						required
-					/>
+					<div style={{display: "flex", flexDirection: "row", width: "100%", flexGrow: "1", gap: "1rem"}}>
+						<select
+							name="day"
+							className="input-box"
+							value={signUpData.day}
+							onChange={handleChange}
+							required
+						>
+							{days.map((day) => (
+								<option key={day} value={day}>
+									{day}
+								</option>
+							))}
+						</select>
+						<select
+							name="month"
+							className="input-box"
+							value={signUpData.month}
+							onChange={handleChange}
+							required
+						>
+							{months.map((month) => (
+								<option key={month} value={month - 1}>
+									{month}
+								</option>
+							))}
+						</select>
+						<select
+							name="year"
+							className="input-box"
+							value={signUpData.year}
+							onChange={handleChange}
+							required
+						>
+							{years.map((year) => (
+								<option key={year} value={year}>
+									{year}
+								</option>
+							))}
+						</select>
+					</div>
 				</div>
 				<p
 					className="input-error"

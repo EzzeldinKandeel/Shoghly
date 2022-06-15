@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import "../styles/login.css"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import api from "../api/axios"
 
 function EmailVerification() {

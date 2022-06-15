@@ -8,11 +8,12 @@ function EditProfile() {
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	let imageData = new FormData()
 	const imageRef = useRef(null)
-
 	const cities = getCities()
+
 	const { auth } = useContext(AuthContext)
 	const [userData, setUserData] = useState({})
 	const [phoneIsValid, setPhoneIsValid] = useState(true)
+
 	useEffect(async () => {
 		try {
 			const getProfileResponse = await api.get(`/profile/${auth.id}`)
@@ -34,7 +35,6 @@ function EditProfile() {
 			}
 		})
 	}
-
 	async function handleSubmit(event) {
 		event.preventDefault()
 		if (!phoneIsValid) return
@@ -89,10 +89,7 @@ function EditProfile() {
 					ref={imageRef}
 					type="file"
 					name="picture"
-					// onChange={(e) => {
-					// 	console.log(e.target.files)
-					// 	imageData.append("photos", e.target.files[0])
-					// }}
+					accept="image/*"
 				/>
 			</div>
 			<div className="data-container">
@@ -184,20 +181,6 @@ function EditProfile() {
 			<button className="main-button" style={{ alignSelf: "center" }}>
 				تأكيد
 			</button>
-			{/* <p
-					style={{
-						fontSize: "0.9em",
-						display: "flex",
-						gap: "4px",
-						alignSelf: "center",
-						color: "var(--red)",
-						textAlign: "center",
-						margin: "0px"
-					}}
-				>
-					<ErrorIcon fontSize="small" sx={{ color: "var(--red)" }} />
-					لم يتم إدخال تعديلات
-				</p> */}
 		</form>
 	)
 }
