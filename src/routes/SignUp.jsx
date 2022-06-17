@@ -10,7 +10,7 @@ function SignUp() {
 	const cities = getCities()
 	const professions = getProfessions()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
-	let currentDate = new Date()
+	const currentDate = new Date()
 	let years = (() => {
 		let arr = []
 		for (let i = 1900; i <= currentDate.getFullYear(); i++) arr.push(i)
@@ -67,13 +67,11 @@ function SignUp() {
 			signUpData.month,
 			signUpData.day
 		)
-		console.log(applicantBD)
-		currentDate = currentDate.getTime()
+		let dayDate = currentDate.getTime()
 		applicantBD = applicantBD.getTime()
 
-		return currentDate - applicantBD >= 568024668000
+		return dayDate - applicantBD >= 568024668000
 	}
-	console.log(checkAge())
 
 	function handleChange(event) {
 		const { name, value } = event.target
