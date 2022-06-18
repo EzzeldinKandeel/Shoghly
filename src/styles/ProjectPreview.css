@@ -1,0 +1,19 @@
+.project-preview-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+.project-preview-description {
+    text-indent: 1rem;
+}
+.project-preview {
+    transition: 250ms;
+    transition-property: background-color;
+}
+.project-preview:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+.project-preview-pic {
+    mix-blend-mode: darken;
+}

@@ -8,6 +8,7 @@ import NewReview from "../components/NewReview"
 import CustomRating from "../components/CustomRating"
 import PhoneIcon from "@mui/icons-material/Phone"
 import AuthContext from "../context/AuthProvider"
+import ProjectPreview from "./../components/ProjectPreview"
 
 function WorkerPage() {
 	const { auth } = useContext(AuthContext)
@@ -16,6 +17,7 @@ function WorkerPage() {
 	const [getTrigger, setGetTrigger] = useState(true)
 	const [worker, setWorker] = useState(null)
 	const [reviews, setReviews] = useState(null)
+	const [projects, setProjects] = useState(null)
 	const [newReview, setNewReview] = useState(false)
 	const [currentUserHasReviewed, setCurrentUserHasReviewed] = useState(false)
 	useEffect(async () => {
@@ -35,12 +37,24 @@ function WorkerPage() {
 			console.error(err.message)
 		}
 	}, [getTrigger])
-
 	useEffect(() => {
 		setCurrentUserHasReviewed(
 			reviews?.some((review) => review.clientId === auth.id)
 		)
 	}, [reviews])
+	useEffect(async () => {
+		if (auth) {
+			try {
+				const projectsResponse = await api.get(
+					`/workers/${params.workerId}/projects`,
+					{ headers: { Authorization: `Bearer ${auth.token}` } }
+				)
+				setProjects(projectsResponse.data.projects)
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	}, [])
 	console.log(worker)
 	return (
 		worker && (
@@ -83,19 +97,16 @@ function WorkerPage() {
 						</h4>
 					</div>
 				</div>
-				{/* <div className='bio'>
-				{worker.bio}
-			</div> */}
-				{/* {Boolean(worker.projects.length) && (
+				{Boolean(projects?.length) && (
 					<div className="projects">
 						<h2>المعرض</h2>
-						<div className="photos">
-							{worker.projects.map((project) => (
-								<img src={`${imageServerUrl}/${project}`} height="200px" />
+						<div className="project-cards">
+							{projects.map((project) => (
+								<ProjectPreview project={project} key={project.prjectId} />
 							))}
 						</div>
 					</div>
-				)} */}
+				)}
 
 				<div className="reviews">
 					<h2>التعليقات</h2>
