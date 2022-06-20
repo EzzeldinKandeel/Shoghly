@@ -56,6 +56,7 @@ function WorkerPage() {
 		}
 	}, [])
 	console.log(worker)
+	console.log(projects)
 	return (
 		worker && (
 			<div className="worker-details">
@@ -102,7 +103,7 @@ function WorkerPage() {
 						<h2>المعرض</h2>
 						<div className="project-cards">
 							{projects.map((project) => (
-								<ProjectPreview project={project} key={project.prjectId} />
+								<ProjectPreview project={project} key={project.projectId} />
 							))}
 						</div>
 					</div>

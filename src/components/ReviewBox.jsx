@@ -7,10 +7,9 @@ import AuthContext from "../context/AuthProvider"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import avatar from "../images/avatar.png"
+import DateView from "./DateView"
 
 function ReviewBox(props) {
-	let reviewDate = new Date(props.review.createdAt)
-	let editDate = new Date(props.review.updatedAt)
 	let originalReview = {
 		rating: props.review.rating,
 		description: props.review.description
@@ -20,13 +19,6 @@ function ReviewBox(props) {
 	const [edit, setEdit] = useState(false)
 	const [editData, setEditData] = useState(originalReview)
 
-	function addZeroOnTheLeft(inputNumber) {
-		let outputNumber = String(inputNumber)
-		if (outputNumber.length === 1) {
-			outputNumber = "0" + outputNumber
-		}
-		return outputNumber
-	}
 	useEffect(async () => {
 		try {
 			const response = await api.get(`/profile/${props.review.clientId}`)
@@ -99,30 +91,10 @@ function ReviewBox(props) {
 					</>
 				)}
 			</div>
-			<div className="review-date">
-				<span>
-					الوقت:&nbsp;
-					{addZeroOnTheLeft(reviewDate.getMinutes())} :&nbsp;
-					{addZeroOnTheLeft(reviewDate.getHours())}
-					&nbsp;&nbsp;&nbsp; التاريخ:&nbsp;
-					{addZeroOnTheLeft(reviewDate.getDate())} /&nbsp;
-					{addZeroOnTheLeft(reviewDate.getMonth() + 1)} /&nbsp;
-					{String(reviewDate.getFullYear())}
-				</span>
-			</div>
-			{props.review.createdAt !== props.review.updatedAt && (
-				<div className="review-date" style={{ marginBlockStart: "-0.2rem" }}>
-					<span>
-						أخر تعديل&nbsp;-&nbsp; الوقت:&nbsp;
-						{addZeroOnTheLeft(editDate.getMinutes())} :&nbsp;
-						{addZeroOnTheLeft(editDate.getHours())}
-						&nbsp;&nbsp;&nbsp; التاريخ:&nbsp;
-						{addZeroOnTheLeft(editDate.getDate())} /&nbsp;
-						{addZeroOnTheLeft(editDate.getMonth() + 1)} /&nbsp;
-						{String(editDate.getFullYear())}
-					</span>
-				</div>
-			)}
+			<DateView
+				dateCreated={props.review.createdAt}
+				dateUpdated={props.review.updatedAt}
+			/>
 			<div className="rating-and-title">
 				{edit ? (
 					<CustomRating

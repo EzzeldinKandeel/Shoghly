@@ -71,9 +71,6 @@ function EditProfile() {
 			console.error(err)
 		}
 	}
-	useEffect(() => {
-		console.log(imageData)
-	}, [imageData])
 
 	return (
 		<form className="full-page-form" onSubmit={handleSubmit}>

@@ -36,9 +36,14 @@ function Navbar() {
 					</li>
 				)} */}
 				{auth?.role === "worker" && (
-					<li>
-						<Link to="/reviews">التقييمات</Link>
-					</li>
+					<>
+						<li>
+							<Link to="/reviews">التقييمات</Link>
+						</li>
+						<li>
+							<Link to="/projects">المعرض</Link>
+						</li>
+					</>
 				)}
 
 				{/* <li>

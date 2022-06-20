@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import workerPic from "../images/placeholder_200px_200px.png"
 import "../styles/LargeWorkerCard.css"
 import "../styles/SingleProfession.css"
-import { imageServerUrl } from "./../api/imageServerApi"
 
 function LargeWorkerCard(props) {
 	var rating = 0
@@ -19,11 +18,7 @@ function LargeWorkerCard(props) {
 						<img
 							width="200"
 							height="200"
-							src={
-								props.worker.profilePictureUrl
-									? `${imageServerUrl}/${props.worker.profilePictureUrl}`
-									: workerPic
-							}
+							src={workerPic}
 							className="image-cover"
 						/>
 					</div>

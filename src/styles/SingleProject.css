@@ -1,0 +1,26 @@
+.project-page {
+    margin-inline: auto;
+    width: min(90%, 1000px);
+}
+.project-pictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.project-creator {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: fit-content;
+}
+
+@media screen and (max-width: 700px) {
+	.project-picture {
+		width: 100%;
+	}
+}
+@media screen and (min-width: 701px) {
+	.project-picture {
+		height: 300px;
+	}
+}

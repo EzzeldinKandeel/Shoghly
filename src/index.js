@@ -20,6 +20,8 @@ import ResetPassword from "./routes/ResetPassword"
 import SignIn from "./routes/SignIn"
 import EmailVerification from "./routes/EmailVerification"
 import SearchPage from "./routes/SearchPage"
+import SignleProject from "./routes/SingleProject"
+import ProjectsPage from "./routes/ProjectsPage"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -44,6 +46,10 @@ ReactDOM.render(
 						<Route path="reset-password" element={<ResetPassword />} />
 						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="search" element={<SearchPage />} />
+						<Route path="projects">
+							<Route path="" element={<ProjectsPage />} />
+							<Route path=":projectId" element={<SignleProject />} />
+						</Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>
