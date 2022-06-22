@@ -16,8 +16,12 @@ function EditProfile() {
 
 	useEffect(async () => {
 		try {
-			const getProfileResponse = await api.get(`/profile/${auth.id}`)
-			setUserData(getProfileResponse.data.info)
+			const getProfileResponse = await api.get("/users", {
+				headers: {
+					Authorization: `Bearer ${auth.token}`
+				}
+			})
+			setUserData(getProfileResponse.data.data)
 		} catch (err) {
 			console.error(err)
 		}
@@ -38,6 +42,7 @@ function EditProfile() {
 	async function handleSubmit(event) {
 		event.preventDefault()
 		if (!phoneIsValid) return
+		let finaluserData = { ...userData }
 		if (imageRef?.current.files.length > 0) {
 			imageData.append("photos", imageRef.current.files[0])
 			try {
@@ -47,23 +52,24 @@ function EditProfile() {
 						Authorization: `Bearer ${auth.token}`
 					}
 				})
-				const imageChangeResponse = await api.post(
-					"/profile/changePicture",
-					{ picture: imageUploadResponse.data.data[0].url },
-					{ headers: { Authorization: `Bearer ${auth.token}` } }
-				)
 				setUserData((prevUserData) => ({
 					...prevUserData,
 					picture: imageUploadResponse.data.data[0].url
 				}))
+				finaluserData = {
+					...finaluserData,
+					picture: imageUploadResponse.data.data[0].url
+				}
 			} catch (err) {
 				console.error(err.message)
 			}
 		}
-		let finaluserData = { ...userData }
+		delete finaluserData.id
+		delete finaluserData.profession
+		delete finaluserData.role
 		console.log(finaluserData)
 		try {
-			const response = await api.put("/profile", finaluserData, {
+			const response = await api.put("/users", finaluserData, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
 			console.log(response)
@@ -82,12 +88,7 @@ function EditProfile() {
 					src={userData.picture || avatar}
 					className="image-cover"
 				/>
-				<input
-					ref={imageRef}
-					type="file"
-					name="picture"
-					accept="image/*"
-				/>
+				<input ref={imageRef} type="file" name="picture" accept="image/*" />
 			</div>
 			<div className="data-container">
 				<label>الاسم الأول </label>

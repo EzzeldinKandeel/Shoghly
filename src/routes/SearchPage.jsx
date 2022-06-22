@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
 import "../styles/SearchPage.css"
 import MiniWorkerCard from "../components/MiniWorkerCard"
-import { getCities } from './../data';
+import { getCities } from "./../data"
 
 function SearchPage() {
 	const { auth } = useContext(AuthContext)
@@ -13,8 +13,12 @@ function SearchPage() {
 	const [liveResults, setLiveResults] = useState([])
 	useEffect(async () => {
 		try {
-			const cityResponse = await api.get(`/profile/${auth.id}`)
-			setCity(cityResponse.data.info.city)
+			const cityResponse = await api.get("/users", {
+				headers: {
+					Authorization: `Bearer ${auth.token}`
+				}
+			})
+			setCity(cityResponse.data.data.city)
 		} catch (err) {
 			console.error(err)
 		}
@@ -57,18 +61,18 @@ function SearchPage() {
 					autoComplete="off"
 				/>
 				<select
-						name="city"
-						value={city}
-						onChange={handleCitySelection}
-						className="input-box city-select"
-						required
-					>
-						{cities.map((city) => (
-							<option key={cities.indexOf(city)} value={city}>
-								{city}
-							</option>
-						))}
-					</select>
+					name="city"
+					value={city}
+					onChange={handleCitySelection}
+					className="input-box city-select"
+					required
+				>
+					{cities.map((city) => (
+						<option key={cities.indexOf(city)} value={city}>
+							{city}
+						</option>
+					))}
+				</select>
 			</div>
 			{liveResults.length ? (
 				<div className="live-search-results">

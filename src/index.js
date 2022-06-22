@@ -22,6 +22,7 @@ import EmailVerification from "./routes/EmailVerification"
 import SearchPage from "./routes/SearchPage"
 import SignleProject from "./routes/SingleProject"
 import ProjectsPage from "./routes/ProjectsPage"
+import DeleteAccount from "./routes/DeleteAccount"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -39,10 +40,15 @@ ReactDOM.render(
 						<Route path="favorites" element={<Favorites />} />
 						{/* <Route path="conversations" element={<Conversations />} /> */}
 						<Route path="worker:workerId" element={<WorkerPage />} />
-						<Route path="settings" element={<Settings />} />
+						<Route path="settings">
+							<Route path="" element={<Settings />} />
+							<Route path="edit-profile" element={<EditProfile />} />
+							<Route path="change-password" element={<ChangePassword />} />
+							<Route path="delete-account" element={<DeleteAccount />} />
+						</Route>
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfile />} />
-						<Route path="change-password" element={<ChangePassword />} />
+						
 						<Route path="reset-password" element={<ResetPassword />} />
 						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="search" element={<SearchPage />} />

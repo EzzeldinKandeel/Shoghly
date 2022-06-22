@@ -35,7 +35,7 @@ function ChangePassword() {
 		let finalData = { ...userData }
 		delete finalData.passwordConfirm
 		try {
-			const response = await api.post("/change-password", finalData, {
+			const response = await api.post("/settings/change-password", finalData, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
 			navigate(-1)

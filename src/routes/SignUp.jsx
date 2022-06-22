@@ -99,11 +99,13 @@ function SignUp() {
 		if (finalSignUpData.role === "client") {
 			delete finalSignUpData.profession
 		}
-		delete finalSignUpData.birthDate
+		delete finalSignUpData.day
+		delete finalSignUpData.month
+		delete finalSignUpData.year
 		delete finalSignUpData.passwordConfirm
 
 		try {
-			const response1 = await api.post("/signup", finalSignUpData)
+			const response1 = await api.post("/users", finalSignUpData)
 			navigate("/sign-in")
 		} catch (err) {
 			console.error(err)

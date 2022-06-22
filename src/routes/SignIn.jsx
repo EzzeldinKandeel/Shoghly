@@ -25,13 +25,13 @@ function SignIn() {
 		event.preventDefault()
 		try {
 			const signInResponse = await api.post("/signin", loginData)
-			const getProfileResponse = await api.get(
-				`/profile/${signInResponse.data.userId}`
-			)
+			const getUserDataResponse = await api.get("/users", {
+				headers: { Authorization: `Bearer ${signInResponse.data.accessToken}` }
+			})
 			setAuth({
 				token: signInResponse.data.accessToken,
 				id: signInResponse.data.userId,
-				role: getProfileResponse.data.info.role
+				role: getUserDataResponse.data.data.role
 			})
 			navigate("/")
 		} catch (error) {

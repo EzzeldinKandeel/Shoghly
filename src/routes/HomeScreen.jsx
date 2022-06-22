@@ -10,8 +10,12 @@ function HomeScreen() {
 	useEffect(async () => {
 		if (auth) {
 			try {
-				const response = await api.get(`/profile/${auth.id}`)
-				setFirstName(response.data.info.firstName)
+				const response = await api.get("/users", {
+					headers: {
+						Authorization: `Bearer ${auth.token}`
+					}
+				})
+				setFirstName(response.data.data.firstName)
 			} catch (err) {
 				console.error(err)
 			}
