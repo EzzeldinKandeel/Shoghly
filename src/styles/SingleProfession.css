@@ -2,19 +2,5 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  margin-inline: 2rem;
   justify-content: center;
-}
-
-@media screen and (max-width: 820px) {
-  .workers {
-    width: 50%;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    gap: 1rem;
-  }
-  .large-worker-card {
-    width: auto;
-  }
 }

@@ -3,6 +3,7 @@ import api from "../api/axios"
 import { getCities } from "../data"
 import AuthContext from "../context/AuthProvider"
 import avatar from "../images/avatar.png"
+import CircularProgress from "@mui/material/CircularProgress"
 
 function EditProfile() {
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
@@ -13,6 +14,8 @@ function EditProfile() {
 	const { auth } = useContext(AuthContext)
 	const [userData, setUserData] = useState({})
 	const [phoneIsValid, setPhoneIsValid] = useState(true)
+	const [getTrigger, setGetTrigger] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(async () => {
 		try {
@@ -25,7 +28,7 @@ function EditProfile() {
 		} catch (err) {
 			console.error(err)
 		}
-	}, [])
+	}, [getTrigger])
 	useEffect(() => {
 		setPhoneIsValid(MOB_REGEX.test(userData.phone))
 	}, [userData.phone])
@@ -43,6 +46,7 @@ function EditProfile() {
 		event.preventDefault()
 		if (!phoneIsValid) return
 		let finaluserData = { ...userData }
+		setIsLoading(true)
 		if (imageRef?.current.files.length > 0) {
 			imageData.append("photos", imageRef.current.files[0])
 			try {
@@ -52,10 +56,6 @@ function EditProfile() {
 						Authorization: `Bearer ${auth.token}`
 					}
 				})
-				setUserData((prevUserData) => ({
-					...prevUserData,
-					picture: imageUploadResponse.data.data[0].url
-				}))
 				finaluserData = {
 					...finaluserData,
 					picture: imageUploadResponse.data.data[0].url
@@ -69,12 +69,14 @@ function EditProfile() {
 		delete finaluserData.role
 		console.log(finaluserData)
 		try {
-			const response = await api.put("/users", finaluserData, {
+			await api.put("/users", finaluserData, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
-			console.log(response)
+			setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 		} catch (err) {
 			console.error(err)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -89,6 +91,10 @@ function EditProfile() {
 					className="image-cover"
 				/>
 				<input ref={imageRef} type="file" name="picture" accept="image/*" />
+				<CircularProgress
+					color="inherit"
+					style={{ display: isLoading ? "" : "none" }}
+				/>
 			</div>
 			<div className="data-container">
 				<label>الاسم الأول </label>

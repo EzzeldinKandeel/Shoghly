@@ -1,38 +1,41 @@
-import React from "react"
-import { useParams } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react"
+import { useParams, useOutletContext } from "react-router-dom"
 import LargeWorkerCard from "../components/LargeWorkerCard"
 import "../styles/SingleProfession.css"
 import api from "../api/axios"
-import UserContext from "../context/UserProvider"
+import AuthContext from "../context/AuthProvider"
 
 function SingleProfession() {
-	const { user } = React.useContext(UserContext)
+	const { auth } = useContext(AuthContext)
+	const { city } = useOutletContext()
 	let params = useParams()
 	let profession = params.profession
 
-	const [workers, setWorkers] = React.useState([])
-	React.useEffect(async () => {
+	const [workers, setWorkers] = useState([])
+	const [noWorkers, setNoWorkers] = useState(false)
+	useEffect(async () => {
 		try {
-			const response = await api.get("/users", {
-				params: { profession: profession }
+			const response = await api.get("/workers", {
+				params: { city: city, profession: profession },
+				headers: { Authorization: `Bearer ${auth.token}` }
 			})
-			setWorkers(response.data)
+			setWorkers(response.data.data.workers)
+			if (response.data.data.count === 0) setNoWorkers(true)
+			else setNoWorkers(false)
 		} catch (err) {
 			console.error(err.message)
 		}
-	}, [])
-
-	return (
+	}, [city])
+	console.log(city)
+	return noWorkers ? (
+		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
+			لا يوجد حرفيين.
+		</h1>
+	) : (
 		<div className="workers">
-			{user
-				? workers
-						.filter((worker) => worker.id != user.id)
-						.map((worker) => (
-							<LargeWorkerCard key={worker.id} worker={worker} />
-						))
-				: workers.map((worker) => (
-						<LargeWorkerCard key={worker.id} worker={worker} />
-				  ))}
+			{workers.map((worker) => (
+				<LargeWorkerCard key={worker.id} worker={worker} />
+			))}
 		</div>
 	)
 }

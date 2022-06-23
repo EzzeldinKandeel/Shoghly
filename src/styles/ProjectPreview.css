@@ -15,7 +15,6 @@
 	cursor: pointer;
 }
 .project-preview-pic {
-	mix-blend-mode: darken;
 	object-fit: contain;
 }
 .project-preview-date {

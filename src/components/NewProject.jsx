@@ -1,12 +1,14 @@
 import React, { useRef, useState, useContext } from "react"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
+import CircularProgress from "@mui/material/CircularProgress"
 
 function NewProject(props) {
 	const { auth } = useContext(AuthContext)
 	const imageRef = useRef(null)
 	let imageData = new FormData()
 	const [projectDescription, setProjectDescription] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
 
 	function handleChange(e) {
 		setProjectDescription(e.target.value)
@@ -15,6 +17,7 @@ function NewProject(props) {
 		e.preventDefault()
 		for (let i = 0; i < imageRef?.current.files.length; i++)
 			imageData.append("photos", imageRef.current.files[i])
+		setIsLoading(true)
 		try {
 			let uploadResponse = await api.post("/upload", imageData, {
 				headers: {
@@ -23,7 +26,7 @@ function NewProject(props) {
 				}
 			})
 			let imageURLs = uploadResponse.data.data.map((image) => image.url)
-			let projectResponse = await api.post(
+			await api.post(
 				"/workers/projects",
 				{ url: imageURLs, description: projectDescription },
 				{ headers: { Authorization: `Bearer ${auth.token}` } }
@@ -32,6 +35,8 @@ function NewProject(props) {
 			props.setNewProject(false)
 		} catch (err) {
 			console.error(err)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -46,6 +51,10 @@ function NewProject(props) {
 					accept="image/*"
 					multiple
 					required
+				/>
+				<CircularProgress
+					color="inherit"
+					style={{ display: isLoading ? "" : "none" }}
 				/>
 			</div>
 			<div className="data-container">
@@ -62,14 +71,14 @@ function NewProject(props) {
 			<div className="review-box--buttons">
 				<button
 					type="button"
-					className="secondary-button"
+					className="secondary-button review-box--button"
 					onClick={() => {
 						props.setNewProject(false)
 					}}
 				>
 					إلغاء
 				</button>
-				<button type="submit" className="main-button">
+				<button type="submit" className="main-button review-box--button">
 					نشر
 				</button>
 			</div>

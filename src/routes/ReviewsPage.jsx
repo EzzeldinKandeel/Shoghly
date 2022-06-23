@@ -12,7 +12,7 @@ function ReviewsPage() {
 			const response = await api.get(`/workers/${auth.id}/reviews`, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
-			setReviews(response.data.reviews)
+			setReviews(response.data.data.reviews)
 		} catch (err) {
 			console.error(err)
 		}

@@ -11,7 +11,7 @@ function MiniWorkerCard(props) {
 					height="70"
 					width="70"
 					src={worker.picture || avatar}
-					className="image-cover"
+					className="image-cover background-multiply"
 				/>
 				<h2>{worker.fullName}</h2>
 				<h4

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState } from "react"
 import "../styles/ReviewBox.css"
 import client_photo from "../images/placeholder_50px_50px.png"
 import api from "../api/axios"
@@ -15,18 +15,8 @@ function ReviewBox(props) {
 		description: props.review.description
 	}
 	const { auth } = useContext(AuthContext)
-	const [reviewer, setReviewer] = useState({})
 	const [edit, setEdit] = useState(false)
 	const [editData, setEditData] = useState(originalReview)
-
-	useEffect(async () => {
-		try {
-			const response = await api.get(`/profile/${props.review.clientId}`)
-			setReviewer(response.data.info)
-		} catch (err) {
-			console.error(err.message)
-		}
-	}, [])
 
 	function handleChange(e) {
 		const { name, value } = e.target
@@ -64,13 +54,13 @@ function ReviewBox(props) {
 				<img
 					width="50"
 					height="50"
-					src={reviewer.picture || avatar}
+					src={props.review.user.picture || avatar}
 					className="image-cover"
 				/>
 				<h5>
-					{reviewer.firstName} {reviewer.lastName}
+					{props.review.user.firstName} {props.review.user.lastName}
 				</h5>
-				{auth && props.review.clientId === auth.id && !edit && (
+				{auth && props.review.user.id === auth.id && !edit && (
 					<>
 						<button
 							className="delete-review-button"

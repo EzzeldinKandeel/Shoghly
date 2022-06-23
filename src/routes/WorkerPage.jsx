@@ -16,32 +16,22 @@ function WorkerPage() {
 
 	const [getTrigger, setGetTrigger] = useState(true)
 	const [worker, setWorker] = useState(null)
-	const [reviews, setReviews] = useState(null)
 	const [projects, setProjects] = useState(null)
 	const [newReview, setNewReview] = useState(false)
 	const [currentUserHasReviewed, setCurrentUserHasReviewed] = useState(false)
 	useEffect(async () => {
 		try {
-			const workerResponse = await api.get(`/profile/${params.workerId}`)
-			setWorker({ ...workerResponse.data.info, id: params.workerId })
-			if (auth) {
-				const reviewsResponse = await api.get(
-					`/workers/${params.workerId}/reviews`,
-					{ headers: { Authorization: `Bearer ${auth.token}` } }
-				)
-				console.log(reviewsResponse.data)
-				setReviews(reviewsResponse.data.reviews)
-			}
-			console.log(workerResponse.data)
+			const workerResponse = await api.get(`/workers/${params.workerId}`)
+			setWorker(workerResponse.data.data)
 		} catch (err) {
-			console.error(err.message)
+			console.error(err)
 		}
 	}, [getTrigger])
 	useEffect(() => {
 		setCurrentUserHasReviewed(
-			reviews?.some((review) => review.clientId === auth.id)
+			worker?.reviews?.some((review) => review.user.id === auth.id)
 		)
-	}, [reviews])
+	}, [worker?.reviews])
 	useEffect(async () => {
 		if (auth) {
 			try {
@@ -55,8 +45,6 @@ function WorkerPage() {
 			}
 		}
 	}, [])
-	console.log(worker)
-	console.log(projects)
 	return (
 		worker && (
 			<div className="worker-details">
@@ -131,9 +119,9 @@ function WorkerPage() {
 								أضف تعليق
 							</button>
 						))}
-					{Boolean(reviews?.length) && (
+					{Boolean(worker?.reviews?.length) && (
 						<div className="review-boxes">
-							{reviews.map((review) => (
+							{worker.reviews.map((review) => (
 								<ReviewBox
 									key={review.reviewId}
 									setGetTrigger={setGetTrigger}

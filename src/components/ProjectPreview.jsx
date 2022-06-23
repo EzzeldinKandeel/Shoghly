@@ -11,7 +11,7 @@ function ProjectPreview(props) {
 				className="project-preview-content"
 				to={`/projects/${project.projectId}`}
 			>
-				<img className="project-preview-pic" src={project.url} />
+				<img className="project-preview-pic background-multiply" src={project.pictures[0]} />
 				<p className="project-preview-description">{project.description}</p>
 				<div
 					style={{ marginBlockStart: "-1.2rem", marginInlineStart: "-1rem" }}

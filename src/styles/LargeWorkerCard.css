@@ -1,27 +1,30 @@
 .large-worker-card {
-	border: 2px solid transparent;
+	width: min(400px, 100%);
+	aspect-ratio: 2/1;
 	box-shadow: 1px 1px 5px black;
-	display: flex;
-	gap: 1rem;
-	width: 400px;
+	transition: 250ms;
+	transition-property: background-color;
 }
 .large-worker-card:hover {
-	box-shadow: none;
-	border: 2px solid black;
+	background-color: lightgray;
 }
-.right-section {
+.large-worker-card-content {
 	display: flex;
-	height: min-content;
+	gap: 1rem;
 }
-.left-section {
+.large-worker-card-pic {
+	width: 50%;
+	aspect-ratio: 1/1;
+}
+.large-worker-card-info {
 	display: flex;
 	flex-direction: column;
 	margin-left: 1rem;
 }
-.left-section > h2 {
+.large-worker-card-info > h2 {
 	margin-block: 10px;
 }
-.left-section > h4 {
+.large-worker-card-info > h4 {
 	margin: 0px;
 	font-size: 0.8rem;
 	color: var(--gray);
