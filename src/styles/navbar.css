@@ -1,6 +1,5 @@
 .navbar,
-.navbar--items,
-.account-management {
+.navbar--items {
 	display: flex;
 }
 .navbar {
@@ -12,15 +11,7 @@
 	color: var(--white);
 	gap: 1rem;
 	box-shadow: 1px 1px 5px black;
-}
-.logo {
-	display: flex;
-	height: min-content;
-}
-
-.logo-image {
-	height: 50px;
-	width: 50px;
+	min-height: 70px;
 }
 .app-name {
 	margin: 0px;
@@ -29,24 +20,24 @@
 .app-name > a:hover {
 	color: inherit;
 }
-.navbar li {
+.navbar--items > li {
 	list-style: none;
 	align-self: center;
 	transition: 250ms;
 	transition-property: color;
 }
-.navbar li:hover {
+.navbar--items > li:hover {
 	color: var(--navy);
 	cursor: pointer;
 }
-.navbar--items,
-.account-management {
+.navbar--items > li:nth-last-of-type(2) {
+	margin-inline-start: auto;
+}
+.navbar--items {
 	margin: 0px;
 	padding: 0px;
 	gap: 1em;
-}
-.account-management {
-	margin-inline-start: auto;
+	flex-grow: 1;
 }
 .align-icon {
 	display: flex;
@@ -54,8 +45,13 @@
 	align-items: center;
 	gap: 5px;
 }
+@media screen and (max-width: 800px) {
+	.navbar--items span {
+		display: none;
+	}
+}
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
 	.navbar {
 		font-size: 13px;
 	}
@@ -93,4 +89,4 @@
 		margin: 0.6em;
 		gap: 1.2em;
 	}
-}
+} */

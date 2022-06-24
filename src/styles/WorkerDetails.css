@@ -26,8 +26,3 @@
 	gap: 1rem;
 	flex-wrap: wrap;
 }
-.projects,
-.reviews {
-	width: min(100%, 900px);
-	margin-inline: auto;
-}

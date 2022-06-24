@@ -54,13 +54,13 @@ function ReviewBox(props) {
 				<img
 					width="50"
 					height="50"
-					src={props.review.user.picture || avatar}
+					src={props.review.client.picture || avatar}
 					className="image-cover"
 				/>
 				<h5>
-					{props.review.user.firstName} {props.review.user.lastName}
+					{props.review.client.firstName} {props.review.client.lastName}
 				</h5>
-				{auth && props.review.user.id === auth.id && !edit && (
+				{auth && props.review.client.id === auth.id && !edit && (
 					<>
 						<button
 							className="delete-review-button"

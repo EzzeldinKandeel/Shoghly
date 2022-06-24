@@ -3,6 +3,7 @@
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
+	max-width: 900px;
 }
 .client-info {
 	display: flex;

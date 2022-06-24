@@ -9,9 +9,7 @@ function ReviewsPage() {
 	const [reviews, setReviews] = useState([])
 	useEffect(async () => {
 		try {
-			const response = await api.get(`/workers/${auth.id}/reviews`, {
-				headers: { Authorization: `Bearer ${auth.token}` }
-			})
+			const response = await api.get(`/workers/${auth.id}`)
 			setReviews(response.data.data.reviews)
 		} catch (err) {
 			console.error(err)

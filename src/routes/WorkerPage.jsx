@@ -29,7 +29,7 @@ function WorkerPage() {
 	}, [getTrigger])
 	useEffect(() => {
 		setCurrentUserHasReviewed(
-			worker?.reviews?.some((review) => review.user.id === auth.id)
+			worker?.reviews?.some((review) => review.client.id === auth.id)
 		)
 	}, [worker?.reviews])
 	useEffect(async () => {
