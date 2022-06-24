@@ -15,19 +15,19 @@ function Footer() {
 				</h4>
 				<ul className="footer-links">
 					<li>
-						<a href="https://www.linkedin.com/in/ibrahimoraby/">Ibrahim Oraby</a>
-					</li>
-					<li>
 						<a href="https://www.linkedin.com/in/ahmednmourad/">Ahmed Nabil</a>
 					</li>
 					<li>
 						<a href="https://www.linkedin.com/in/ezzeldin-kandeel-26248621a/">Ezzeldin Kandeel</a>
 					</li>
 					<li>
-						<a href="https://www.linkedin.com/in/mohamed-elshamy-4b8236185/">Mohamed Elshamy</a>
+						<a href="https://www.linkedin.com/in/ibrahimoraby/">Ibrahim Oraby</a>
 					</li>
 					<li>
 						<a href="https://www.linkedin.com/in/mernaketana/">Merna Ketana</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/mohamed-elshamy-4b8236185/">Mohamed Elshamy</a>
 					</li>
 				</ul>
 			</span>

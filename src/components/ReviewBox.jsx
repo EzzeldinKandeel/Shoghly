@@ -25,7 +25,7 @@ function ReviewBox(props) {
 
 	async function deleteReview() {
 		try {
-			const response = await api.delete(`/reviews/${props.review.reviewId}`, {
+			const response = await api.delete(`/workers/reviews/${props.review.reviewId}`, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
@@ -37,7 +37,7 @@ function ReviewBox(props) {
 	async function confirmEdit() {
 		try {
 			const response = await api.put(
-				`/reviews/${props.review.reviewId}`,
+				`/workers/reviews/${props.review.reviewId}`,
 				editData,
 				{ headers: { Authorization: `Bearer ${auth.token}` } }
 			)

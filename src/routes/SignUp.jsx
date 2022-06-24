@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
@@ -11,6 +11,10 @@ function SignUp() {
 	const professions = getProfessions()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	const currentDate = new Date()
+	const passwordRef = useRef()
+	const passwordConfirmRef = useRef()
+	const dateRef = useRef()
+	const phoneRef = useRef()
 	let years = (() => {
 		let arr = []
 		for (let i = 1900; i <= currentDate.getFullYear(); i++) arr.push(i)
@@ -93,7 +97,13 @@ function SignUp() {
 		}
 		setValidSignUpData(validityChecks)
 
-		if (Object.values(validityChecks).some((value) => !value)) return
+		if (Object.values(validityChecks).some((value) => !value)) {
+			if (!validityChecks.password) passwordRef.current.focus()
+			else if (!validityChecks.passwordConfirm) passwordConfirmRef.current.focus()
+			else if (!validityChecks.age) dateRef.current.focus()
+			else if (!validityChecks.phone) phoneRef.current.focus()
+			return
+		}
 		let finalSignUpData = { ...signUpData }
 
 		if (finalSignUpData.role === "client") {
@@ -155,6 +165,7 @@ function SignUp() {
 						name="password"
 						value={signUpData.password}
 						onChange={handleChange}
+						ref={passwordRef}
 						className="input-box"
 						required
 					/>
@@ -173,6 +184,7 @@ function SignUp() {
 						name="passwordConfirm"
 						value={signUpData.passwordConfirm}
 						onChange={handleChange}
+						ref={passwordConfirmRef}
 						className="input-box"
 						required
 					/>
@@ -219,6 +231,7 @@ function SignUp() {
 							className="input-box"
 							value={signUpData.year}
 							onChange={handleChange}
+							ref={dateRef}
 							required
 						>
 							{years.map((year) => (
@@ -277,6 +290,7 @@ function SignUp() {
 						name="phone"
 						value={signUpData.phone}
 						onChange={handleChange}
+						ref={phoneRef}
 						className="input-box"
 						required
 					/>
