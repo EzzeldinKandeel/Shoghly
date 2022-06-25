@@ -16,8 +16,7 @@ function SingleProfession() {
 	useEffect(async () => {
 		try {
 			const response = await api.get("/workers", {
-				params: { city: city, profession: profession },
-				headers: { Authorization: `Bearer ${auth.token}` }
+				params: { city: city, profession: profession }
 			})
 			setWorkers(response.data.data.workers)
 			if (response.data.data.count === 0) setNoWorkers(true)

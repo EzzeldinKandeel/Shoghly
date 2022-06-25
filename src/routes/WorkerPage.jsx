@@ -74,10 +74,10 @@ function WorkerPage() {
 							</a>
 						</h4>
 						<h4 style={{ fontSize: "12px" }}>
-							{worker.rating ? (
+							{worker.reviewsAverage ? (
 								<CustomRating
 									name="workerRating"
-									value={parseInt(worker.reviewsAverage)}
+									value={parseInt(Math.round(worker.reviewsAverage))}
 									readOnly
 								/>
 							) : (
