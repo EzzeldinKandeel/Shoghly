@@ -3,4 +3,4 @@ The website I and four of my colleagues are developing as our graduation project
 Website content is Arabic, since the site is targeted at Egypt and Arabic-speaking Egyptians.
 
 You can check out a continuously updated build of the website at:
-https://shoghli.netlify.app/
+https://shoghly.netlify.app/
