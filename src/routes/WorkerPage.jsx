@@ -77,7 +77,7 @@ function WorkerPage() {
 							{worker.rating ? (
 								<CustomRating
 									name="workerRating"
-									value={parseInt(worker.rating)}
+									value={parseInt(worker.reviewsAverage)}
 									readOnly
 								/>
 							) : (

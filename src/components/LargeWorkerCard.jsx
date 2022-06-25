@@ -18,7 +18,7 @@ function LargeWorkerCard({ worker }) {
 						{worker.rating ? (
 							<CustomRating
 								name="workerRating"
-								value={parseInt(worker.rating)}
+								value={parseInt(worker.averageRating)}
 								readOnly
 							/>
 						) : (
