@@ -1,7 +1,6 @@
 import React, { useContext } from "react"
 import "../styles/navbar.css"
 import { Link, useNavigate } from "react-router-dom"
-import logo_placeholder from "../images/placeholder_50px_50px.png"
 import AuthContext from "../context/AuthProvider"
 import LogoutIcon from "@mui/icons-material/Logout"
 import LoginIcon from "@mui/icons-material/Login"

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react"
 import "../styles/ReviewBox.css"
-import client_photo from "../images/placeholder_50px_50px.png"
 import api from "../api/axios"
 import CustomRating from "./CustomRating"
 import AuthContext from "../context/AuthProvider"
