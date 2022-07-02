@@ -43,8 +43,6 @@ function SignIn() {
 		localStorage.setItem("shoghlyAppAuth", JSON.stringify(auth))
 	}, [auth])
 
-	console.log(auth)
-
 	return (
 		<div className="form">
 			<form onSubmit={handleSubmit}>

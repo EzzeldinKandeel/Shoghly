@@ -1,8 +1,13 @@
 import React, { useEffect, useContext, useState } from "react"
-import "../styles/MainContent.css"
+import "../styles/HomeScreen.css"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 import SmallWorkerCard from "../components/SmallWorkerCard"
+import DashboadEntry from "./../components/DashboardEntry"
+import SearchIcon from "@mui/icons-material/Search"
+import WorkIcon from "@mui/icons-material/Work"
+import ReviewsIcon from "@mui/icons-material/Reviews"
+import CollectionsIcon from "@mui/icons-material/Collections"
 
 function HomeScreen() {
 	const { auth } = useContext(AuthContext)
@@ -25,13 +30,23 @@ function HomeScreen() {
 	return (
 		<div className="main-content">
 			{auth && <h2 style={{ color: "var(--gray)" }}>أهلًا، {firstName}!</h2>}
-			<section className="main-section">
-				<SmallWorkerCard />
-				<SmallWorkerCard />
-				<SmallWorkerCard />
-				<SmallWorkerCard />
-				<SmallWorkerCard />
-				<SmallWorkerCard />
+			<section className="dashboard">
+				<DashboadEntry icon={WorkIcon} entryName="الحرف" path="/professions" />
+				{auth.role === "worker" && (
+					<>
+						<DashboadEntry
+							icon={ReviewsIcon}
+							entryName="التعليقات"
+							path="/reviews"
+						/>
+						<DashboadEntry
+							icon={CollectionsIcon}
+							entryName="المعرض"
+							path="/projects"
+						/>
+					</>
+				)}
+				<DashboadEntry icon={SearchIcon} entryName="بحث" path="/search" />
 			</section>
 		</div>
 	)

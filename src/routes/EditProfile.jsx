@@ -67,7 +67,6 @@ function EditProfile() {
 		delete finaluserData.id
 		delete finaluserData.profession
 		delete finaluserData.role
-		console.log(finaluserData)
 		try {
 			await api.put("/users", finaluserData, {
 				headers: { Authorization: `Bearer ${auth.token}` }

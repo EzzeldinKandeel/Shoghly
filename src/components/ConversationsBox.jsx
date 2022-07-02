@@ -4,7 +4,6 @@ import { getData } from "../data"
 import "../styles/conversationsBox.css"
 
 function ConversationsBox(props) {
-	console.log(props.workersIds_)
 	let data = getData()
 	let workerName
 	data.workers

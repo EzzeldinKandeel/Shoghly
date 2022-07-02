@@ -1,15 +1,15 @@
 import React from "react"
 import ProfessionCard from "../components/ProfessionCard"
 import "../styles/professions.css"
-import { getProfessions } from "../data"
+import { getProfessionPictures } from "../data"
 
 function Professions() {
-	const professions = getProfessions()
+	const professions = getProfessionPictures()
 
 	return (
 		<div className="profession-cards">
 			{professions.map((profession) => {
-				return <ProfessionCard key={profession} profession={profession} />
+				return <ProfessionCard key={profession.name} profession={profession} />
 			})}
 		</div>
 	)

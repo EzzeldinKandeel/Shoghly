@@ -14,7 +14,6 @@ function EmailVerification() {
 
 	function handleChange(event) {
 		const { name, value } = event.target
-		console.log(event.target)
 		setVerifyEmailData((prevVerifyEmailData) => {
 			return {
 				...prevVerifyEmailData,

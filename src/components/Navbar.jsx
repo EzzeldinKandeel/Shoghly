@@ -1,18 +1,19 @@
 import React, { useContext } from "react"
 import "../styles/navbar.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import AuthContext from "../context/AuthProvider"
 import LogoutIcon from "@mui/icons-material/Logout"
 import LoginIcon from "@mui/icons-material/Login"
 import SettingsIcon from "@mui/icons-material/Settings"
 import AccountBoxIcon from "@mui/icons-material/AccountBox"
-import WorkIcon from '@mui/icons-material/Work';
-import ReviewsIcon from '@mui/icons-material/Reviews';
-import CollectionsIcon from '@mui/icons-material/Collections';
-import SearchIcon from '@mui/icons-material/Search';
+import WorkIcon from "@mui/icons-material/Work"
+import ReviewsIcon from "@mui/icons-material/Reviews"
+import CollectionsIcon from "@mui/icons-material/Collections"
+import SearchIcon from "@mui/icons-material/Search"
 
 function Navbar() {
 	const navigate = useNavigate()
+	const location = useLocation()
 	const { auth, setAuth } = useContext(AuthContext)
 
 	return (
@@ -24,31 +25,39 @@ function Navbar() {
 			</h1>
 
 			<ul className="navbar--items">
-				<li>
-					<Link to="/professions" className="align-icon"><WorkIcon className="navbar-icon" />
-						<span>الحرف</span>
-					</Link>
-				</li>
-				{auth?.role === "worker" && (
+				{location.pathname !== "/" && (
 					<>
 						<li>
-							<Link to="/reviews" className="align-icon"><ReviewsIcon className="navbar-icon" />
-								<span>التقييمات</span>
+							<Link to="/professions" className="align-icon">
+								<WorkIcon className="navbar-icon" />
+								<span>الحرف</span>
 							</Link>
 						</li>
-						<li>
-							<Link to="/projects" className="align-icon"><CollectionsIcon className="navbar-icon" />
-								<span>المعرض</span>
-							</Link>
-						</li>
+						{auth?.role === "worker" && (
+							<>
+								<li>
+									<Link to="/reviews" className="align-icon">
+										<ReviewsIcon className="navbar-icon" />
+										<span>التعليقات</span>
+									</Link>
+								</li>
+								<li>
+									<Link to="/projects" className="align-icon">
+										<CollectionsIcon className="navbar-icon" />
+										<span>المعرض</span>
+									</Link>
+								</li>
+							</>
+						)}
+						{auth && (
+							<li>
+								<Link to="/search" className="align-icon">
+									<SearchIcon className="navbar-icon" />
+									<span>بحث</span>
+								</Link>
+							</li>
+						)}
 					</>
-				)}
-				{auth && (
-					<li>
-						<Link to="/search" className="align-icon"><SearchIcon className="navbar-icon" />
-							<span>بحث</span>
-						</Link>
-					</li>
 				)}
 				{auth ? (
 					<>

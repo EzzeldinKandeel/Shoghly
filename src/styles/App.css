@@ -20,10 +20,6 @@ a:visited,
 Link:visited {
 	color: inherit;
 }
-/* a:hover,
-Link:hover {
-	color: var(--navy);
-} */
 textarea {
 	resize: none;
 	font-family: inherit;

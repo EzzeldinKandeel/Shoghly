@@ -25,7 +25,7 @@ function SingleProfession() {
 			console.error(err.message)
 		}
 	}, [city])
-	console.log(city)
+	
 	return noWorkers ? (
 		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
 			لا يوجد حرفيين.

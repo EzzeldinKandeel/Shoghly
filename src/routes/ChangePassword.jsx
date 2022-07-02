@@ -43,8 +43,6 @@ function ChangePassword() {
 			console.error(err)
 		}
 	}
-	console.log(userData)
-	console.log(validData)
 
 	return (
 		<form onSubmit={handleSubmit} className="account-settings-window">

@@ -1,27 +1,42 @@
-.profession-card > div {
-	display: flex;
+.profession-card {
 	box-shadow: 1px 1px 5px black;
-	height: 200px;
-	width: 300px;
-	font-size: 1.5rem;
-	justify-content: center;
-	align-items: center;
-	transition: 250ms;
-	transition-property: background-color;
+	border-radius: 5px;
+	aspect-ratio: 4/3;
+	font-size: min(2.7vw, 1.2rem);
 }
-.profession-card > div:hover {
+.profession-card-content:hover {
 	background-color: lightgray;
 }
-.profession-cards {
-	max-width: 100%;
+.profession-card-content {
+	transition: 250ms;
+	transition-property: background-color;
+	mix-blend-mode: multiply;
+	background-color: white;
+	height: 100%;
 	display: flex;
-	gap: 2rem;
-	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
+}
+.profession-card-content > h3 {
+	font-weight: 400;
+	margin: 0px;
+	text-align: center;
+
+}
+.profession-cards {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(6, 1fr);
 	margin-inline: auto;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 999px) {
+	.profession-cards {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+/* @media screen and (max-width: 820px) {
 	.profession-card > div {
 		height: 100px;
 		width: 180px;
@@ -42,4 +57,4 @@
 	.profession-cards {
 		max-width: 90%;
 	}
-}
+} */
