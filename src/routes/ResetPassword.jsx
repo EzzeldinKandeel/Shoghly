@@ -22,7 +22,7 @@ function ResetPassword() {
 			const response = await api.post("/forgotPassword", { email })
 			setSent(true)
 		} catch (err) {
-			setError(ture)
+			setError(true)
 		}
 	}
 	return (

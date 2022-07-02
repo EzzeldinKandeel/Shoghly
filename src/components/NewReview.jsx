@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext, useState} from "react"
 import api from "../api/axios"
 import "../styles/NewReview.css"
 import CustomRating from "./CustomRating"
@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthProvider"
 import ErrorBackdrop from "./ErrorBackdrop"
 
 function NewReview(props) {
-	const { auth } = React.useContext(AuthContext)
+	const { auth } = useContext(AuthContext)
 	const [reviewData, setReviewData] = React.useState({
 		rating: 1,
 		description: ""
