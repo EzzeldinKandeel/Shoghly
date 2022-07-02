@@ -32,7 +32,7 @@ function HomeScreen() {
 			{auth && <h2 style={{ color: "var(--gray)" }}>أهلًا، {firstName}!</h2>}
 			<section className="dashboard">
 				<DashboadEntry icon={WorkIcon} entryName="الحرف" path="/professions" />
-				{auth.role === "worker" && (
+				{auth?.role === "worker" && (
 					<>
 						<DashboadEntry
 							icon={ReviewsIcon}
