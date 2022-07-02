@@ -1,7 +1,8 @@
 import React, { useRef, useState, useContext } from "react"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
-import CircularProgress from "@mui/material/CircularProgress"
+import LoadingBackdrop from "./LoadingBackdrop"
+import ErrorBackdrop from "./ErrorBackdrop"
 
 function NewProject(props) {
 	const { auth } = useContext(AuthContext)
@@ -9,6 +10,7 @@ function NewProject(props) {
 	let imageData = new FormData()
 	const [projectDescription, setProjectDescription] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(false)
 
 	function handleChange(e) {
 		setProjectDescription(e.target.value)
@@ -34,7 +36,7 @@ function NewProject(props) {
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 			props.setNewProject(false)
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		} finally {
 			setIsLoading(false)
 		}
@@ -42,6 +44,8 @@ function NewProject(props) {
 
 	return (
 		<form className="new-project" onSubmit={handleSubmit}>
+			<LoadingBackdrop open={isLoading} />
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<div className="data-container">
 				<label>أضف صور</label>
 				<input
@@ -51,10 +55,6 @@ function NewProject(props) {
 					accept="image/*"
 					multiple
 					required
-				/>
-				<CircularProgress
-					color="inherit"
-					style={{ display: isLoading ? "" : "none" }}
 				/>
 			</div>
 			<div className="data-container">

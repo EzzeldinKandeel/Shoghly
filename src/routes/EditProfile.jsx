@@ -3,7 +3,8 @@ import api from "../api/axios"
 import { getCities } from "../data"
 import AuthContext from "../context/AuthProvider"
 import avatar from "../images/avatar.png"
-import CircularProgress from "@mui/material/CircularProgress"
+import LoadingBackdrop from "../components/LoadingBackdrop"
+import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function EditProfile() {
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
@@ -16,6 +17,7 @@ function EditProfile() {
 	const [phoneIsValid, setPhoneIsValid] = useState(true)
 	const [getTrigger, setGetTrigger] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState(false)
 
 	useEffect(async () => {
 		try {
@@ -61,7 +63,9 @@ function EditProfile() {
 					picture: imageUploadResponse.data.data[0].url
 				}
 			} catch (err) {
-				console.error(err.message)
+				setIsLoading(false)
+				setError(true)
+				return
 			}
 		}
 		delete finaluserData.id
@@ -73,7 +77,7 @@ function EditProfile() {
 			})
 			setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		} finally {
 			setIsLoading(false)
 		}
@@ -81,6 +85,8 @@ function EditProfile() {
 
 	return (
 		<form className="full-page-form" onSubmit={handleSubmit}>
+			<ErrorBackdrop open={error} close={()=>setError(false)} />
+			<LoadingBackdrop open={isLoading} />
 			<div className="data-container">
 				<label>الصورة الشخصية</label>
 				<img
@@ -90,10 +96,6 @@ function EditProfile() {
 					className="image-cover"
 				/>
 				<input ref={imageRef} type="file" name="picture" accept="image/*" />
-				<CircularProgress
-					color="inherit"
-					style={{ display: isLoading ? "" : "none" }}
-				/>
 			</div>
 			<div className="data-container">
 				<label>الاسم الأول </label>

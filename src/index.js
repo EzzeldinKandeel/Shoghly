@@ -22,7 +22,8 @@ import SearchPage from "./routes/SearchPage"
 import SignleProject from "./routes/SingleProject"
 import ProjectsPage from "./routes/ProjectsPage"
 import DeleteAccount from "./routes/DeleteAccount"
-import ProfessionsContainer from './routes/ProfessionsContainer';
+import ProfessionsContainer from "./routes/ProfessionsContainer"
+import PageDoesNotExist from "./routes/PageDoesNotExist"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -48,7 +49,7 @@ ReactDOM.render(
 						</Route>
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfile />} />
-						
+
 						<Route path="reset-password" element={<ResetPassword />} />
 						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="search" element={<SearchPage />} />
@@ -56,6 +57,7 @@ ReactDOM.render(
 							<Route path="" element={<ProjectsPage />} />
 							<Route path=":projectId" element={<SignleProject />} />
 						</Route>
+						<Route path="*" element={<PageDoesNotExist />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

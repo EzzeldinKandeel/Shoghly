@@ -3,6 +3,7 @@ import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../api/axios"
+import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function SignUp() {
 	let navigate = useNavigate()
@@ -60,6 +61,7 @@ function SignUp() {
 		age: true
 	})
 	const [days, setDays] = useState([])
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
 		setDays(generateDays(signUpData.month, signUpData.year))
@@ -99,7 +101,8 @@ function SignUp() {
 
 		if (Object.values(validityChecks).some((value) => !value)) {
 			if (!validityChecks.password) passwordRef.current.focus()
-			else if (!validityChecks.passwordConfirm) passwordConfirmRef.current.focus()
+			else if (!validityChecks.passwordConfirm)
+				passwordConfirmRef.current.focus()
 			else if (!validityChecks.age) dateRef.current.focus()
 			else if (!validityChecks.phone) phoneRef.current.focus()
 			return
@@ -118,12 +121,13 @@ function SignUp() {
 			const response1 = await api.post("/users", finalSignUpData)
 			navigate("/sign-in")
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		}
 	}
 
 	return (
 		<div className="form">
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<form onSubmit={handleSubmit}>
 				<div className="input-container">
 					<label>الاسم الأول</label>
@@ -199,7 +203,15 @@ function SignUp() {
 				</p>
 				<div className="input-container">
 					<label>تاريخ الميلاد</label>
-					<div style={{display: "flex", flexDirection: "row", width: "100%", flexGrow: "1", gap: "1rem"}}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							width: "100%",
+							flexGrow: "1",
+							gap: "1rem"
+						}}
+					>
 						<select
 							name="day"
 							className="input-box"

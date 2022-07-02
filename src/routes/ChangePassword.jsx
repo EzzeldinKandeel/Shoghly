@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
-import ErrorIcon from "@mui/icons-material/Error"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 import { useNavigate } from "react-router-dom"
+import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function ChangePassword() {
 	let navigate = useNavigate()
@@ -17,6 +17,7 @@ function ChangePassword() {
 		newPassword: true,
 		passwordConfirm: true
 	})
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
 		setValidData({
@@ -40,12 +41,13 @@ function ChangePassword() {
 			})
 			navigate(-1)
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		}
 	}
 
 	return (
 		<form onSubmit={handleSubmit} className="account-settings-window">
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<div className="input-container">
 				<label>كلمة السر القديمة</label>
 				<input

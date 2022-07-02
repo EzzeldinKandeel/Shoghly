@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import avatar from "../images/avatar.png"
 import DateView from "./DateView"
+import ErrorBackdrop from "./ErrorBackdrop"
 
 function ReviewBox(props) {
 	let originalReview = {
@@ -16,6 +17,7 @@ function ReviewBox(props) {
 	const { auth } = useContext(AuthContext)
 	const [edit, setEdit] = useState(false)
 	const [editData, setEditData] = useState(originalReview)
+	const [error, setError] = useState(false)
 
 	function handleChange(e) {
 		const { name, value } = e.target
@@ -24,12 +26,15 @@ function ReviewBox(props) {
 
 	async function deleteReview() {
 		try {
-			const response = await api.delete(`/workers/reviews/${props.review.reviewId}`, {
-				headers: { Authorization: `Bearer ${auth.token}` }
-			})
+			const response = await api.delete(
+				`/workers/reviews/${props.review.reviewId}`,
+				{
+					headers: { Authorization: `Bearer ${auth.token}` }
+				}
+			)
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 		} catch (error) {
-			console.error(error)
+			setError(true)
 		}
 	}
 
@@ -43,12 +48,13 @@ function ReviewBox(props) {
 			setEdit(false)
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		}
 	}
 
 	return (
 		<div className="review-box">
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<div className="client-info">
 				<img
 					width="50"

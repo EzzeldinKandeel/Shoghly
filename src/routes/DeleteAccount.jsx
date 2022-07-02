@@ -3,10 +3,12 @@ import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
 import { useNavigate } from "react-router-dom"
 import WarningIcon from "@mui/icons-material/Warning"
+import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function DeleteAccount() {
 	const { auth, setAuth } = useContext(AuthContext)
 	let navigate = useNavigate()
+	const [error, setError] = useState(false)
 	const style = {
 		margin: "auto",
 		display: "flex",
@@ -23,17 +25,29 @@ function DeleteAccount() {
 			localStorage.removeItem("shoghlyAppAuth")
 			navigate("/")
 		} catch (err) {
-			console.error(err)
+			setError(true)
 		}
 	}
 
 	return (
 		<div style={style}>
-			<h2 className="align-icon" style={{ fontWeight: "400", margin: "0px", color: "var(--red)" }}>
+			<ErrorBackdrop open={error} close={() => setError(false)} />
+			<h2
+				className="align-icon"
+				style={{ fontWeight: "400", margin: "0px", color: "var(--red)" }}
+			>
 				<WarningIcon />
 				تحذير
 			</h2>
-			<h2 style={{ fontWeight: "200", marginBlockEnd: "2rem", marginBlockStart: "0.2rem" }}>هذا الفعل لا يمكن عكسه</h2>
+			<h2
+				style={{
+					fontWeight: "200",
+					marginBlockEnd: "2rem",
+					marginBlockStart: "0.2rem"
+				}}
+			>
+				هذا الفعل لا يمكن عكسه
+			</h2>
 			<button className="main-button" onClick={deleteAccount}>
 				حذف الحساب
 			</button>

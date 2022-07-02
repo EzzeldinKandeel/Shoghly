@@ -28,9 +28,11 @@ function WorkerPage() {
 		}
 	}, [getTrigger])
 	useEffect(() => {
-		setCurrentUserHasReviewed(
-			worker?.reviews?.some((review) => review.client.id === auth.id)
-		)
+		if (auth) {
+			setCurrentUserHasReviewed(
+				worker?.reviews?.some((review) => review.client.id === auth.id)
+			)
+		}
 	}, [worker?.reviews])
 	useEffect(async () => {
 		if (auth) {
@@ -100,6 +102,7 @@ function WorkerPage() {
 				<div className="reviews">
 					<h2>التعليقات</h2>
 					{auth &&
+						auth.role === "client" &&
 						auth.id != worker.id &&
 						!currentUserHasReviewed &&
 						(newReview ? (

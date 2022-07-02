@@ -5,13 +5,14 @@
 	font-size: min(2.7vw, 1.2rem);
 }
 .profession-card-content:hover {
-	background-color: lightgray;
+	background-color: rgba(0, 0, 0, .3);
 }
 .profession-card-content {
+	border-radius: 5px;
 	transition: 250ms;
 	transition-property: background-color;
-	mix-blend-mode: multiply;
-	background-color: white;
+	mix-blend-mode: normal;
+	background-color: rgba(255, 255, 255, .2);
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -32,29 +33,6 @@
 
 @media screen and (max-width: 999px) {
 	.profession-cards {
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
-
-/* @media screen and (max-width: 820px) {
-	.profession-card > div {
-		height: 100px;
-		width: 180px;
-		font-size: 1.2rem;
-	}
-	.profession-cards {
-		max-width: 90%;
-	}
-}
-
-@media screen and (max-width: 490px) {
-	.profession-card > div {
-		font-size: 1rem;
-		height: 45px;
-		width: 125px;
-		text-align: center;
-	}
-	.profession-cards {
-		max-width: 90%;
-	}
-} */

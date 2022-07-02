@@ -3,6 +3,7 @@ import api from "../api/axios"
 import "../styles/NewReview.css"
 import CustomRating from "./CustomRating"
 import AuthContext from "../context/AuthProvider"
+import ErrorBackdrop from "./ErrorBackdrop"
 
 function NewReview(props) {
 	const { auth } = React.useContext(AuthContext)
@@ -10,6 +11,7 @@ function NewReview(props) {
 		rating: 1,
 		description: ""
 	})
+	const [error, setError] = useState(false)
 
 	function handleChange(e) {
 		const { name, value } = e.target
@@ -30,12 +32,13 @@ function NewReview(props) {
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
 			props.setNewReview(false)
 		} catch (err) {
-			console.error(err.message)
+			setError(true)
 		}
 	}
 
 	return (
 		<form className="review-box" onSubmit={handleSubmit}>
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<div className="rating">
 				<label htmlFor="rating">التقييم</label>
 				<CustomRating

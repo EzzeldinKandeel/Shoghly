@@ -27,6 +27,8 @@ function ProfessionsContainer() {
 			} catch (err) {
 				console.error(err)
 			}
+		} else {
+			setCity("القاهرة")
 		}
 	}, [])
 
@@ -43,7 +45,7 @@ function ProfessionsContainer() {
 				onChange={handleCitySelection}
 				className="input-box city-select"
 				required
-                style={{alignSelf: "flex-end", width: "200px"}}
+				style={{ alignSelf: "flex-end", width: "200px" }}
 			>
 				{cities.map((city) => (
 					<option key={cities.indexOf(city)} value={city}>
@@ -51,7 +53,7 @@ function ProfessionsContainer() {
 					</option>
 				))}
 			</select>
-			<Outlet context={{city}} />
+			<Outlet context={{ city }} />
 		</div>
 	)
 }

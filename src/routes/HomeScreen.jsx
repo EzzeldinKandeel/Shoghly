@@ -8,10 +8,13 @@ import SearchIcon from "@mui/icons-material/Search"
 import WorkIcon from "@mui/icons-material/Work"
 import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
+import LoadingBackdrop from "../components/LoadingBackdrop"
+import ErrorBackdrop from "./../components/ErrorBackdrop"
 
 function HomeScreen() {
 	const { auth } = useContext(AuthContext)
 	const [firstName, setFirstName] = useState("")
+
 	useEffect(async () => {
 		if (auth) {
 			try {

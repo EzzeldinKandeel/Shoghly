@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import api from "../api/axios"
 import DoneIcon from "@mui/icons-material/Done"
+import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function ResetPassword() {
 	const [email, setEmail] = useState("")
 	const [sent, setSent] = useState(false)
+	const [error, setError] = useState(false)
 	const styles = {
 		display: "flex",
 		flexDirection: "column",
@@ -20,11 +22,12 @@ function ResetPassword() {
 			const response = await api.post("/forgotPassword", { email })
 			setSent(true)
 		} catch (err) {
-			console.error(err)
+			setError(ture)
 		}
 	}
 	return (
 		<div style={styles}>
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			{sent ? (
 				<h2
 					style={{

@@ -1,0 +1,15 @@
+.error-dialog {
+    background-color: white;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 5px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.error-dialog-message {
+    margin: 0px;
+}
+.error-escape-button {
+    align-self: flex-end;
+}
