@@ -99,7 +99,8 @@ function SignUp() {
 
 		if (Object.values(validityChecks).some((value) => !value)) {
 			if (!validityChecks.password) passwordRef.current.focus()
-			else if (!validityChecks.passwordConfirm) passwordConfirmRef.current.focus()
+			else if (!validityChecks.passwordConfirm)
+				passwordConfirmRef.current.focus()
 			else if (!validityChecks.age) dateRef.current.focus()
 			else if (!validityChecks.phone) phoneRef.current.focus()
 			return
@@ -199,7 +200,15 @@ function SignUp() {
 				</p>
 				<div className="input-container">
 					<label>تاريخ الميلاد</label>
-					<div style={{display: "flex", flexDirection: "row", width: "100%", flexGrow: "1", gap: "1rem"}}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							width: "100%",
+							flexGrow: "1",
+							gap: "1rem"
+						}}
+					>
 						<select
 							name="day"
 							className="input-box"

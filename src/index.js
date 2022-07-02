@@ -22,7 +22,7 @@ import SearchPage from "./routes/SearchPage"
 import SignleProject from "./routes/SingleProject"
 import ProjectsPage from "./routes/ProjectsPage"
 import DeleteAccount from "./routes/DeleteAccount"
-import ProfessionsContainer from './routes/ProfessionsContainer';
+import ProfessionsContainer from "./routes/ProfessionsContainer"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -33,6 +33,8 @@ ReactDOM.render(
 						<Route path="" element={<HomeScreen />} />
 						<Route path="sign-in" element={<SignIn />} />
 						<Route path="sign-up" element={<SignUp />} />
+						<Route path="email-verification" element={<EmailVerification />} />
+
 						<Route path="professions" element={<ProfessionsContainer />}>
 							<Route path="" element={<Professions />} />
 							<Route path=":profession" element={<SingleProfession />} />
@@ -48,9 +50,8 @@ ReactDOM.render(
 						</Route>
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfile />} />
-						
+
 						<Route path="reset-password" element={<ResetPassword />} />
-						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="search" element={<SearchPage />} />
 						<Route path="projects">
 							<Route path="" element={<ProjectsPage />} />
