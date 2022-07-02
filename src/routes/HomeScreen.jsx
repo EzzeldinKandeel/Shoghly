@@ -2,14 +2,12 @@ import React, { useEffect, useContext, useState } from "react"
 import "../styles/HomeScreen.css"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
-import SmallWorkerCard from "../components/SmallWorkerCard"
 import DashboadEntry from "./../components/DashboardEntry"
 import SearchIcon from "@mui/icons-material/Search"
 import WorkIcon from "@mui/icons-material/Work"
 import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
-import LoadingBackdrop from "../components/LoadingBackdrop"
-import ErrorBackdrop from "./../components/ErrorBackdrop"
+import VerificationNotification from "../components/VerificationNotification"
 
 function HomeScreen() {
 	const { auth } = useContext(AuthContext)

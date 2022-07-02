@@ -34,6 +34,8 @@ ReactDOM.render(
 						<Route path="" element={<HomeScreen />} />
 						<Route path="sign-in" element={<SignIn />} />
 						<Route path="sign-up" element={<SignUp />} />
+						<Route path="email-verification" element={<EmailVerification />} />
+
 						<Route path="professions" element={<ProfessionsContainer />}>
 							<Route path="" element={<Professions />} />
 							<Route path=":profession" element={<SingleProfession />} />
@@ -51,7 +53,6 @@ ReactDOM.render(
 						<Route path="edit-profile" element={<EditProfile />} />
 
 						<Route path="reset-password" element={<ResetPassword />} />
-						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="search" element={<SearchPage />} />
 						<Route path="projects">
 							<Route path="" element={<ProjectsPage />} />
