@@ -16,6 +16,7 @@ function WorkerPage() {
 
 	const [getTrigger, setGetTrigger] = useState(true)
 	const [worker, setWorker] = useState(null)
+	const [reviews, setReviews] = useState([])
 	const [projects, setProjects] = useState(null)
 	const [newReview, setNewReview] = useState(false)
 	const [currentUserHasReviewed, setCurrentUserHasReviewed] = useState(false)
@@ -23,6 +24,16 @@ function WorkerPage() {
 		try {
 			const workerResponse = await api.get(`/workers/${params.workerId}`)
 			setWorker(workerResponse.data.data)
+			setReviews(
+				workerResponse.data.data.reviews
+					.filter((review) =>
+						Object.values(review).every((value) => value !== null)
+					)
+					.sort(
+						(a, b) =>
+							new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+					)
+			)
 		} catch (err) {
 			console.error(err)
 		}
@@ -30,10 +41,10 @@ function WorkerPage() {
 	useEffect(() => {
 		if (auth) {
 			setCurrentUserHasReviewed(
-				worker?.reviews?.some((review) => review.client.id === auth.id)
+				worker?.reviews?.some((review) => review.client?.id === auth.id)
 			)
 		}
-	}, [worker?.reviews])
+	}, [reviews])
 	useEffect(async () => {
 		if (auth) {
 			try {
@@ -75,13 +86,16 @@ function WorkerPage() {
 								{worker.phone}
 							</a>
 						</h4>
-						<h4 style={{ fontSize: "12px" }}>
+						<h4 className="align-icon" style={{ fontSize: "12px" }}>
 							{worker.reviewsAverage ? (
-								<CustomRating
-									name="workerRating"
-									value={parseInt(Math.round(worker.reviewsAverage))}
-									readOnly
-								/>
+								<>
+									<CustomRating
+										name="workerRating"
+										value={parseInt(Math.round(worker.reviewsAverage))}
+										readOnly
+									/>
+									<span style={{color: "gray"}}>{`(${worker.reviewsCount})`}</span>
+								</>
 							) : (
 								"لا يوجد تقييم"
 							)}
@@ -122,9 +136,9 @@ function WorkerPage() {
 								أضف تعليق
 							</button>
 						))}
-					{Boolean(worker?.reviews?.length) && (
+					{Boolean(reviews.length) && (
 						<div className="review-boxes">
-							{worker.reviews.map((review) => (
+							{reviews.map((review) => (
 								<ReviewBox
 									key={review.reviewId}
 									setGetTrigger={setGetTrigger}

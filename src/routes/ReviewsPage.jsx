@@ -10,7 +10,12 @@ function ReviewsPage() {
 	useEffect(async () => {
 		try {
 			const response = await api.get(`/workers/${auth.id}`)
-			setReviews(response.data.data.reviews)
+			setReviews(
+				response.data.data.reviews.sort(
+					(a, b) =>
+						new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+				)
+			)
 		} catch (err) {
 			console.error(err)
 		}
