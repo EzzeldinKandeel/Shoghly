@@ -1,0 +1,16 @@
+.favorite-toggle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100vmax;
+	aspect-ratio: 1/1;
+	color: firebrick;
+	border: none;
+	background-color: transparent;
+	transition: 250ms;
+	transition-property: background-color;
+}
+.favorite-toggle:hover {
+	cursor: pointer;
+	background-color: lightgray;
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function DashboadEntry(props) {
+function DashboardEntry(props) {
 	return (
 		<div className="dashboard-entry">
 			<Link to={props.path} className="dashboard-entry-content">
@@ -12,4 +12,4 @@ function DashboadEntry(props) {
 	)
 }
 
-export default DashboadEntry
+export default DashboardEntry

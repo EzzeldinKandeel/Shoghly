@@ -10,6 +10,7 @@ import WorkIcon from "@mui/icons-material/Work"
 import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
 import SearchIcon from "@mui/icons-material/Search"
+import BookmarksIcon from "@mui/icons-material/Bookmarks"
 
 function Navbar() {
 	const navigate = useNavigate()
@@ -33,6 +34,14 @@ function Navbar() {
 								<span>الحرف</span>
 							</Link>
 						</li>
+						{auth?.role === "client" && (
+							<li>
+								<Link to="/favorites" className="align-icon">
+									<BookmarksIcon className="navbar-icon" />
+									<span>المفضلون</span>
+								</Link>
+							</li>
+						)}
 						{auth?.role === "worker" && (
 							<>
 								<li>

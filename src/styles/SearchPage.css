@@ -28,6 +28,8 @@
 	gap: 1rem;
 	transition: 250ms;
 	transition-property: background-color;
+	border-radius: 5px;
+	overflow: hidden;
 }
 .mini-card:hover {
 	background-color: lightgray;

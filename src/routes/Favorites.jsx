@@ -1,36 +1,41 @@
-import React from "react"
+import React, { useState, useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
 import LargeWorkerCard from "../components/LargeWorkerCard"
-import "../styles/SingleProfession.css"
 import api from "../api/axios"
+import "../styles/Favorites.css"
+import AuthContext from "../context/AuthProvider"
 
 function Favorites() {
-	// const { user } = React.useContext(UserContext)
-	// const [favorites, setFavorites] = React.useState(null)
-	// React.useEffect(async () => {
-	// 	if (user.favoritesId.length) {
-	// 		try {
-	// 			const response = await api.get("/users", {
-	// 				params: { id: user.favoritesId }
-	// 			})
-	// 			setFavorites(response.data)
-	// 		} catch (err) {
-	// 			console.error(err.message)
-	// 		}
-	// 	}
-	// }, [])
+	const { auth } = useContext(AuthContext)
+	const [favorites, setFavorites] = useState([])
 
-	// return favorites ? (
-	// 	<div className="workers">
-	// 		{favorites.map((worker) => (
-	// 			<LargeWorkerCard key={worker.id} worker={worker} />
-	// 		))}
-	// 	</div>
-	// ) : (
-	// 	<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
-	// 		لا توجد مفضلات
-	// 	</h1>
-	// )
-	return null
+	useEffect(async () => {
+		try {
+			const favoritesResponse = await api.get("/favorites", {
+				headers: { Authorization: `Bearer ${auth.token}` }
+			})
+			setFavorites(favoritesResponse.data.data)
+		} catch (err) {}
+	}, [])
+
+	return favorites.length ? (
+		<div className="favorites-page">
+			<h2>المفضلون</h2>
+			<div className="favorite-workers">
+				{favorites.map((fav) => (
+					<Link to={`/worker${fav.worker.id}`} key={fav.worker.id}>
+						{fav.worker.firstName} {fav.worker.lastName}
+						<br />
+						{fav.worker.gender}
+					</Link>
+				))}
+			</div>
+		</div>
+	) : (
+		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
+			لم تقم بإضافة أى حرفي حتى الآن.
+		</h1>
+	)
 }
 
 export default Favorites

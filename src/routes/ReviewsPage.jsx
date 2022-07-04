@@ -11,10 +11,14 @@ function ReviewsPage() {
 		try {
 			const response = await api.get(`/workers/${auth.id}`)
 			setReviews(
-				response.data.data.reviews.sort(
-					(a, b) =>
-						new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-				)
+				response.data.data.reviews
+					.filter((review) =>
+						Object.values(review).every((value) => value !== null)
+					)
+					.sort(
+						(a, b) =>
+							new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+					)
 			)
 		} catch (err) {
 			console.error(err)

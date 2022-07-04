@@ -9,6 +9,7 @@ import CustomRating from "../components/CustomRating"
 import PhoneIcon from "@mui/icons-material/Phone"
 import AuthContext from "../context/AuthProvider"
 import ProjectPreview from "./../components/ProjectPreview"
+import FavoriteToggle from "./../components/FavoriteToggle"
 
 function WorkerPage() {
 	const { auth } = useContext(AuthContext)
@@ -71,8 +72,11 @@ function WorkerPage() {
 						/>
 					</div>
 					<div className="main-details--text">
-						<h1>
+						<h1 className="align-icon">
 							{worker.firstName} {worker.lastName}
+							{auth?.role === "client" && (
+								<FavoriteToggle workerId={worker.id} />
+							)}
 						</h1>
 						<h4>{worker.profession}</h4>
 						<h4>{worker.city}</h4>
