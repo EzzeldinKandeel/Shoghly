@@ -94,7 +94,9 @@ function WorkerPage() {
 										value={parseInt(Math.round(worker.reviewsAverage))}
 										readOnly
 									/>
-									<span style={{color: "gray"}}>{`(${worker.reviewsCount})`}</span>
+									<span
+										style={{ color: "gray" }}
+									>{`(${worker.reviewsCount})`}</span>
 								</>
 							) : (
 								"لا يوجد تقييم"

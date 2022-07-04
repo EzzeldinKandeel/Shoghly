@@ -33,7 +33,7 @@ function SignIn() {
 				id: signInResponse.data.userId,
 				role: getUserDataResponse.data.data.role
 			})
-			navigate("/")
+			navigate(-1)
 		} catch (error) {
 			setIsInvalid(true)
 		}
