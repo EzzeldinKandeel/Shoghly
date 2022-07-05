@@ -55,7 +55,9 @@ function SignUp() {
 		year: currentDate.getFullYear()
 	})
 	const [validSignUpData, setValidSignUpData] = useState({
+		email: true,
 		phone: true,
+		phoneUnique: true,
 		password: true,
 		passwordConfirm: true,
 		age: true
@@ -121,6 +123,12 @@ function SignUp() {
 			const response1 = await api.post("/users", finalSignUpData)
 			navigate("/sign-in")
 		} catch (err) {
+			let notUniqueErrorMsg = err.response.data.error.errors[0].message
+			if (notUniqueErrorMsg === "email must be unique") {
+				setValidSignUpData.email = false
+			} else if (notUniqueErrorMsg == "phone must be unique") {
+				setValidSignUpData.phoneUnique = false
+			}
 			setError(true)
 		}
 	}
@@ -162,6 +170,12 @@ function SignUp() {
 						required
 					/>
 				</div>
+				<p
+					className="input-error"
+					style={{ display: validSignUpData.email ? "none" : "" }}
+				>
+					لقد تم استخدام هذا البريد الإلكتروني من قبل.
+				</p>
 				<div className="input-container">
 					<label>كلمة المرور</label>
 					<input
@@ -312,6 +326,12 @@ function SignUp() {
 					style={{ display: validSignUpData.phone ? "none" : "" }}
 				>
 					برجاء إدخال رقم محمول صحيح (11 رقم).
+				</p>
+				<p
+					className="input-error"
+					style={{ display: validSignUpData.phoneUnique ? "none" : "" }}
+				>
+					لقد تم استخدام هذا الرقم من قبل.
 				</p>
 				<div className="input-container">
 					<label>العنوان</label>
