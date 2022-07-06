@@ -77,6 +77,13 @@ const professionPictures = [
 	{ name: "أنظمة صوت", picture: soundSystems },
 	{ name: "صناعات يدوية", picture: crafts }
 ]
+const popularProfession = [
+	{ name: "نجارة", picture: carpentery },
+	{ name: "نقاشة", picture: wallPainting },
+	{ name: "ميكانيكا سيارات", picture: carMechanics },
+	{ name: "سباكة", picture: plumbing },
+	{ name: "كهرباء", picture: electricalWork }
+]
 
 export function getCities() {
 	return cities
@@ -86,4 +93,7 @@ export function getProfessions() {
 }
 export function getProfessionPictures() {
 	return professionPictures
+}
+export function getPopularProfessions() {
+	return popularProfession
 }

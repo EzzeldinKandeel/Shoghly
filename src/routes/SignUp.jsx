@@ -14,6 +14,7 @@ function SignUp() {
 	const professions = getProfessions()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	const currentDate = new Date()
+	const emailRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
 	const dateRef = useRef()
@@ -99,7 +100,9 @@ function SignUp() {
 			phone: MOB_REGEX.test(signUpData.phone),
 			password: PWD_REGEX.test(signUpData.password),
 			passwordConfirm: signUpData.password === signUpData.passwordConfirm,
-			age: checkAge()
+			age: checkAge(),
+			emailUnique: true,
+			phoneUnique: true
 		}
 		setValidSignUpData(validityChecks)
 
@@ -122,17 +125,19 @@ function SignUp() {
 		delete finalSignUpData.passwordConfirm
 
 		try {
-			const response1 = await api.post("/users", finalSignUpData)
+			await api.post("/users", finalSignUpData)
 			navigate("/sign-in")
 		} catch (err) {
 			let notUniqueErrorMsg = err.response.data.error.errors[0].message
-			console.log(notUniqueErrorMsg)
 			if (notUniqueErrorMsg === "email must be unique") {
-				setValidSignUpData.emailUnique = false
+				setValidSignUpData((prev) => ({ ...prev, emailUnique: false }))
+				emailRef.current.focus()
 			} else if (notUniqueErrorMsg === "phone must be unique") {
-				setValidSignUpData.phoneUnique = false
+				setValidSignUpData((prev) => ({ ...prev, phoneUnique: false }))
+				phoneRef.current.focus()
+			} else {
+				setError(true)
 			}
-			setError(true)
 		}
 	}
 
@@ -171,6 +176,7 @@ function SignUp() {
 						name="email"
 						value={signUpData.email}
 						onChange={handleChange}
+						ref={emailRef}
 						className="input-box"
 						required
 					/>

@@ -23,11 +23,11 @@ function Favorites() {
 			<h2>المفضلون</h2>
 			<div className="favorite-workers">
 				{favorites.map((fav) => (
-					<Link to={`/worker${fav.worker.id}`} key={fav.worker.id}>
-						{fav.worker.firstName} {fav.worker.lastName}
-						<br />
-						{fav.worker.gender}
-					</Link>
+					<LargeWorkerCard
+						key={fav.worker.id}
+						worker={fav.worker}
+						showProfession={true}
+					/>
 				))}
 			</div>
 		</div>

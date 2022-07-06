@@ -25,7 +25,7 @@ function SingleProfession() {
 			console.error(err.message)
 		}
 	}, [city])
-	
+
 	return noWorkers ? (
 		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
 			لا يوجد حرفيين.
@@ -33,7 +33,11 @@ function SingleProfession() {
 	) : (
 		<div className="workers">
 			{workers.map((worker) => (
-				<LargeWorkerCard key={worker.id} worker={worker} />
+				<LargeWorkerCard
+					key={worker.id}
+					worker={worker}
+					showProfession={false}
+				/>
 			))}
 		</div>
 	)

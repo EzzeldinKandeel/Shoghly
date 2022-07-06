@@ -3,15 +3,16 @@
 	flex-direction: column;
 	width: 90%;
 	margin-inline: auto;
+	gap: 2rem;
 }
 .dashboard {
+	padding: 5px;
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
 	flex-wrap: wrap;
 }
 .dashboard-entry {
-	/* border: 2px solid var(--red); */
 	box-shadow: 1px 1px 5px black;
 	border-radius: 5px;
 	font-size: clamp(0.6rem, 2vw, 1.2rem);
@@ -37,4 +38,23 @@
 }
 .dashboard-entry-content > h3 {
 	margin: 0px;
+}
+.popular-professions {
+	padding: 5px;
+	display: flex;
+	gap: 1rem;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+}
+.popular-professions > .profession-card {
+	flex-basis: 153.6px;
+	flex-shrink: 1;
+	min-width: 76.8px;
+}
+.homescreen-favorite-workers {
+	padding: 5px;
+	display: flex;
+	gap: 1rem;
+	flex-wrap: nowrap;
+	overflow-x: auto;
 }

@@ -11,6 +11,7 @@
 	margin: 0px;
 	font-size: 0.6rem;
 	margin-top: -1rem;
+	color: var(--red);
 }
 .input-box-container {
 	display: flex;

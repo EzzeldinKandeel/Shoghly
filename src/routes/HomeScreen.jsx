@@ -9,20 +9,35 @@ import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
 import VerificationNotification from "../components/VerificationNotification"
 import BookmarksIcon from "@mui/icons-material/Bookmarks"
+import { getPopularProfessions } from "../data"
+import ProfessionCard from "../components/ProfessionCard"
+import SmallWorkerCard from "../components/SmallWorkerCard"
 
 function HomeScreen() {
 	const { auth } = useContext(AuthContext)
 	const [firstName, setFirstName] = useState("")
+	const [favorites, setFavorites] = useState([])
+	const popularProfessions = getPopularProfessions()
 
 	useEffect(async () => {
 		if (auth) {
 			try {
-				const response = await api.get("/users", {
+				const nameResponse = await api.get("/users", {
 					headers: {
 						Authorization: `Bearer ${auth.token}`
 					}
 				})
-				setFirstName(response.data.data.firstName)
+				setFirstName(nameResponse.data.data.firstName)
+			} catch (err) {
+				console.error(err)
+			}
+		}
+		if (auth?.role === "client") {
+			try {
+				const favoritesResponse = await api.get("/favorites", {
+					headers: { Authorization: `Bearer ${auth.token}` }
+				})
+				setFavorites(favoritesResponse.data.data)
 			} catch (err) {
 				console.error(err)
 			}
@@ -55,8 +70,24 @@ function HomeScreen() {
 						/>
 					</>
 				)}
-				<DashboardEntry icon={SearchIcon} entryName="بحث" path="/search" />
+				{auth && (
+					<DashboardEntry icon={SearchIcon} entryName="بحث" path="/search" />
+				)}
 			</section>
+			<section className="popular-professions">
+				{popularProfessions.map((profession) => {
+					return (
+						<ProfessionCard key={profession.name} profession={profession} />
+					)
+				})}
+			</section>
+			{auth?.role === "client" && Boolean(favorites.length) && (
+				<section className="homescreen-favorite-workers">
+					{favorites.map((fav) => (
+						<SmallWorkerCard key={fav.worker.id} worker={fav.worker} />
+					))}
+				</section>
+			)}
 		</div>
 	)
 }

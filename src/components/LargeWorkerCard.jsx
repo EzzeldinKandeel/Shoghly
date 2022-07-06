@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import avatar from "../images/avatar.png"
 import "../styles/LargeWorkerCard.css"
 import CustomRating from "./CustomRating"
+import FavoriteToggle from "./FavoriteToggle"
 
-function LargeWorkerCard({ worker }) {
+function LargeWorkerCard({ worker, showProfession }) {
 	return (
 		<div className="large-worker-card">
 			<Link to={`/worker${worker.id}`} className="large-worker-card-content">
@@ -25,6 +26,7 @@ function LargeWorkerCard({ worker }) {
 							"لا يوجد تقييم"
 						)}
 					</h4>
+					{showProfession && <h4>{worker.profession}</h4>}
 				</div>
 			</Link>
 		</div>
