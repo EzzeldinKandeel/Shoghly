@@ -5,8 +5,10 @@ import AuthContext from "../context/AuthProvider"
 import avatar from "../images/avatar.png"
 import LoadingBackdrop from "../components/LoadingBackdrop"
 import ErrorBackdrop from "../components/ErrorBackdrop"
+import { useNavigate } from "react-router-dom"
 
 function EditProfile() {
+	const navigate = useNavigate()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	let imageData = new FormData()
 	const imageRef = useRef(null)
@@ -15,7 +17,6 @@ function EditProfile() {
 	const { auth } = useContext(AuthContext)
 	const [userData, setUserData] = useState({})
 	const [phoneIsValid, setPhoneIsValid] = useState(true)
-	const [getTrigger, setGetTrigger] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState(false)
 
@@ -30,7 +31,7 @@ function EditProfile() {
 		} catch (err) {
 			console.error(err)
 		}
-	}, [getTrigger])
+	}, [])
 	useEffect(() => {
 		setPhoneIsValid(MOB_REGEX.test(userData.phone))
 	}, [userData.phone])
@@ -75,7 +76,7 @@ function EditProfile() {
 			await api.put("/users", finaluserData, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
-			setGetTrigger((prevGetTrigger) => !prevGetTrigger)
+			navigate(-1)
 		} catch (err) {
 			setError(true)
 		} finally {
@@ -85,7 +86,7 @@ function EditProfile() {
 
 	return (
 		<form className="full-page-form" onSubmit={handleSubmit}>
-			<ErrorBackdrop open={error} close={()=>setError(false)} />
+			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<LoadingBackdrop open={isLoading} />
 			<div className="data-container">
 				<label>الصورة الشخصية</label>
