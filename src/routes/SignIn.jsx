@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import "../styles/login.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 
@@ -43,7 +43,9 @@ function SignIn() {
 		localStorage.setItem("shoghlyAppAuth", JSON.stringify(auth))
 	}, [auth])
 
-	return (
+	return auth ? (
+		<Navigate to="/" replace={true} />
+	) : (
 		<div className="form">
 			<form onSubmit={handleSubmit}>
 				{isInvalid && (

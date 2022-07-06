@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useContext, useState, useEffect, useRef } from "react"
 import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import ErrorBackdrop from "../components/ErrorBackdrop"
+import AuthContext from "../context/AuthProvider"
 
 function SignUp() {
 	let navigate = useNavigate()
+	const { auth, setAuth } = useContext(AuthContext)
 
 	const cities = getCities()
 	const professions = getProfessions()
@@ -55,7 +57,7 @@ function SignUp() {
 		year: currentDate.getFullYear()
 	})
 	const [validSignUpData, setValidSignUpData] = useState({
-		email: true,
+		emailUnique: true,
 		phone: true,
 		phoneUnique: true,
 		password: true,
@@ -124,16 +126,19 @@ function SignUp() {
 			navigate("/sign-in")
 		} catch (err) {
 			let notUniqueErrorMsg = err.response.data.error.errors[0].message
+			console.log(notUniqueErrorMsg)
 			if (notUniqueErrorMsg === "email must be unique") {
-				setValidSignUpData.email = false
-			} else if (notUniqueErrorMsg == "phone must be unique") {
+				setValidSignUpData.emailUnique = false
+			} else if (notUniqueErrorMsg === "phone must be unique") {
 				setValidSignUpData.phoneUnique = false
 			}
 			setError(true)
 		}
 	}
 
-	return (
+	return auth ? (
+		<Navigate to="/" replace={true} />
+	) : (
 		<div className="form">
 			<ErrorBackdrop open={error} close={() => setError(false)} />
 			<form onSubmit={handleSubmit}>
@@ -172,7 +177,7 @@ function SignUp() {
 				</div>
 				<p
 					className="input-error"
-					style={{ display: validSignUpData.email ? "none" : "" }}
+					style={{ display: validSignUpData.emailUnique ? "none" : "" }}
 				>
 					لقد تم استخدام هذا البريد الإلكتروني من قبل.
 				</p>
