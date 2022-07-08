@@ -37,7 +37,7 @@
 .edit-toggle {
 	background-color: transparent;
 	border: none;
-	color: var(--red);
+	color: var(--clr-accent-400);
 	text-decoration: underline;
 	font-family: inherit;
 	transition: 250ms;

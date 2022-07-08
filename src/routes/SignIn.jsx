@@ -53,7 +53,7 @@ function SignIn() {
 						style={{
 							alignSelf: "center",
 							fontSize: "0.9rem",
-							color: "var(--red)"
+							color: "var(--clr-accent-400)"
 						}}
 					>
 						البريد الإلكتروني أو الرقم السرى غير صحيح
@@ -90,12 +90,12 @@ function SignIn() {
 			</form>
 			<p style={{ textAlign: "center" }}>
 				ليس لديك حساب؟{" "}
-				<Link to="/sign-up" style={{ color: "var(--red)" }}>
+				<Link to="/sign-up" style={{ color: "var(--clr-accent-400)" }}>
 					إنشاء حساب جديد
 				</Link>
 			</p>
 			<p style={{ textAlign: "center", marginTop: "0px" }}>
-				<Link to="/reset-password" style={{ color: "var(--red)" }}>
+				<Link to="/reset-password" style={{ color: "var(--clr-accent-400)" }}>
 					إعادة ضبط كلمة المرور
 				</Link>
 			</p>

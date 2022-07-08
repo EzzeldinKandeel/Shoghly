@@ -1,5 +1,6 @@
 :root {
-	--red: #f44236;
+	--clr-accent-400: hsl(4, 90%, 58%);
+	--clr-accent-200: hsl(4, 72%, 65%);
 	--navy: #00003e;
 	--white: #fff8dc;
 	--gray: #323232;
@@ -38,7 +39,7 @@ textarea {
 	transition-property: background-color;
 }
 .main-button {
-	background-color: var(--red);
+	background-color: var(--clr-accent-400);
 	color: var(--white);
 }
 .secondary-button {

@@ -1,5 +1,5 @@
 .footer {
-	background-color: var(--red);
+	background-color: var(--clr-accent-400);
 	width: 100%;
 	margin-block-start: auto;
 	direction: ltr;

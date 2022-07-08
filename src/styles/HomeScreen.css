@@ -33,7 +33,7 @@
 	align-items: center;
 }
 .dashboard-entry-content > * {
-	color: var(--red);
+	color: var(--clr-accent-400);
 	font-weight: 400;
 }
 .dashboard-entry-content > h3 {

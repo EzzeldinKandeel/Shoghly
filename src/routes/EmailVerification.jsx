@@ -40,7 +40,7 @@ function EmailVerification() {
 						style={{
 							alignSelf: "center",
 							fontSize: "0.9rem",
-							color: "var(--red)"
+							color: "var(--clr-accent-400)"
 						}}
 					>
 						البريد الإلكتروني أو الكود غير صحيح

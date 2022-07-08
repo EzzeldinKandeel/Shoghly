@@ -1,10 +1,12 @@
-* {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 body {
-  color: var(--gray);
-  margin: 0;
-  font-family: 'Readex Pro', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	color: var(--gray);
+	margin: 0;
+	font-family: "Readex Pro", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

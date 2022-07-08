@@ -24,6 +24,7 @@ import ProjectsPage from "./routes/ProjectsPage"
 import DeleteAccount from "./routes/DeleteAccount"
 import ProfessionsContainer from "./routes/ProfessionsContainer"
 import PageDoesNotExist from "./routes/PageDoesNotExist"
+import Chat from "./routes/Chat"
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -58,6 +59,7 @@ ReactDOM.render(
 							<Route path="" element={<ProjectsPage />} />
 							<Route path=":projectId" element={<SignleProject />} />
 						</Route>
+						<Route path="chat" element={<Chat />} />
 						<Route path="*" element={<PageDoesNotExist />} />
 					</Route>
 				</Routes>
