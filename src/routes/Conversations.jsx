@@ -1,20 +1,42 @@
-import React from "react"
-import { getData } from "../data"
-import ConversationsBox from "../components/ConversationsBox"
+import React, { useState, useContext, useEffect } from "react"
+import AuthContext from "../context/AuthProvider"
+import "../styles/Chat.css"
+import api from "../api/axios"
+import ConversationCard from "../components/ConversationCard"
 
 function Conversations() {
-	let data = getData()
-
-	return (
-		<>
-			{data.conversations
-				.filter((x) => x.client_id == 0) // 0 means currentClient --temporary--
-				.map((x) => {
-					return (
-						<ConversationsBox key={x.worker_id} workersIds_={x.worker_id} />
-					)
-				})}
-		</>
+	const { auth } = useContext(AuthContext)
+	const [conversations, setConversations] = useState([])
+	useEffect(async () => {
+		try {
+			const conversationsResponse = await api.get("/chats", {
+				headers: { Authorization: `Bearer ${auth.token}` }
+			})
+			setConversations(conversationsResponse.data.data)
+			console.dir(conversationsResponse.data.data)
+		} catch (err) {
+			console.error(err)
+		}
+	}, [])
+	return Boolean(conversations.length) ? (
+		<div className="chat">
+			<h2
+				className="page-heading"
+				style={{ marginInlineStart: "2rem", marginBlock: "1rem" }}
+			>
+				المحادثات
+			</h2>
+			<div className="conversation-list">
+				{conversations.map((conversation) => (
+					<ConversationCard
+						conversation={conversation}
+						key={conversation.user.id}
+					/>
+				))}
+			</div>
+		</div>
+	) : (
+		<h1 className="content-does-not-exist">لا توجد محادثات</h1>
 	)
 }
 

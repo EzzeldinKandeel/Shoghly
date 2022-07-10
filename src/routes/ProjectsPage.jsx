@@ -16,7 +16,7 @@ function ProjectsPage() {
 			const response = await api.get(`/workers/${auth.id}/projects`, {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
-			setProjects(response.data.projects)
+			setProjects(response.data.data)
 		} catch (err) {
 			console.error(err)
 		}
@@ -42,14 +42,14 @@ function ProjectsPage() {
 			)}
 			{projects.length ? (
 				<div className="project-cards">
-					{projects.map((project) => (
-						<ProjectPreview project={project} key={project.projectId} />
-					))}
+					{projects
+						.filter((project) => project.pictures[0] !== null)
+						.map((project) => (
+							<ProjectPreview project={project} key={project.id} />
+						))}
 				</div>
 			) : (
-				<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
-					لا توجد مجموعات
-				</h1>
+				<h1 className="content-does-not-exist">لا توجد مجموعات</h1>
 			)}
 		</div>
 	)

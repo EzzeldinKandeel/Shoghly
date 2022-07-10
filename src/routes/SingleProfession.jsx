@@ -27,9 +27,7 @@ function SingleProfession() {
 	}, [city])
 
 	return noWorkers ? (
-		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
-			لا يوجد حرفيين.
-		</h1>
+		<h1 className="content-does-not-exist">لا يوجد حرفيين.</h1>
 	) : (
 		<div className="workers">
 			{workers.map((worker) => (

@@ -35,9 +35,7 @@ function ReviewsPage() {
 			</div>
 		</div>
 	) : (
-		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
-			لا توجد تعليقات
-		</h1>
+		<h1 className="content-does-not-exist">لا توجد تعليقات</h1>
 	)
 }
 

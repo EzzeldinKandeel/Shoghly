@@ -64,7 +64,7 @@ function SignleProject() {
 				</div>
 		  )
 		: serverThrewError && (
-				<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
+				<h1 className="content-does-not-exist">
 					المجموعة التى تحاول مشاهدتها غير موجودة.
 				</h1>
 		  )

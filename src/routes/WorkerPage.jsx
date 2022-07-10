@@ -53,7 +53,7 @@ function WorkerPage() {
 					`/workers/${params.workerId}/projects`,
 					{ headers: { Authorization: `Bearer ${auth.token}` } }
 				)
-				setProjects(projectsResponse.data.projects)
+				setProjects(projectsResponse.data.data)
 			} catch (err) {
 				console.error(err)
 			}
@@ -112,9 +112,11 @@ function WorkerPage() {
 					<div className="projects">
 						<h2>المعرض</h2>
 						<div className="project-cards">
-							{projects.map((project) => (
-								<ProjectPreview project={project} key={project.projectId} />
-							))}
+							{projects
+								.filter((project) => project.pictures[0] !== null)
+								.map((project) => (
+									<ProjectPreview project={project} key={project.id} />
+								))}
 						</div>
 					</div>
 				)}

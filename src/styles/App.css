@@ -60,3 +60,14 @@ textarea {
 .background-multiply {
 	mix-blend-mode: multiply;
 }
+.content-does-not-exist {
+	margin: auto;
+	font-weight: 200;
+	color: gray;
+	max-width: 90%;
+	text-align: center;
+}
+h2.page-heading {
+	font-size: 1.5rem;
+	font-weight: 600;
+}

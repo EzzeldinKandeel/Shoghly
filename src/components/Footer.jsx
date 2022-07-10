@@ -5,7 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
 function Footer() {
 	return (
-		<div className="footer">
+		<footer className="footer">
 			<span>
 				"Shoghly" was developed by a group of computer engineering students at
 				Port Said University.
@@ -55,7 +55,7 @@ function Footer() {
 					</li>
 				</ul>
 			</span>
-		</div>
+		</footer>
 	)
 }
 

@@ -32,9 +32,7 @@ function Favorites() {
 			</div>
 		</div>
 	) : (
-		<h1 style={{ margin: "auto", fontWeight: "200", color: "gray" }}>
-			لم تقم بإضافة أى حرفي حتى الآن.
-		</h1>
+		<h1 className="content-does-not-exist">لم تقم بإضافة أى حرفي حتى الآن.</h1>
 	)
 }
 

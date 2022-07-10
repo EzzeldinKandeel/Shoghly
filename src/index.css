@@ -3,6 +3,9 @@
 *::after {
 	box-sizing: border-box;
 }
+html {
+	scroll-behavior: smooth;
+}
 body {
 	color: var(--gray);
 	margin: 0;

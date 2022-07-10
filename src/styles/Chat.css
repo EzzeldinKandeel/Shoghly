@@ -80,3 +80,7 @@
 .conversation-card-text > span {
 	font-size: 0.9rem;
 }
+.conversation-list {
+	width: min(500px, 90%);
+	margin-inline: auto;
+}

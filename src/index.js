@@ -11,7 +11,7 @@ import { AuthProvider } from "./context/AuthProvider"
 import SignUp from "./routes/SignUp"
 import Settings from "./routes/Settings"
 import ReviewsPage from "./routes/ReviewsPage"
-// import Conversations from "./routes/Conversations"
+import Conversations from "./routes/Conversations"
 import Favorites from "./routes/Favorites"
 import EditProfile from "./routes/EditProfile"
 import ChangePassword from "./routes/ChangePassword"
@@ -36,13 +36,15 @@ ReactDOM.render(
 						<Route path="sign-in" element={<SignIn />} />
 						<Route path="sign-up" element={<SignUp />} />
 						<Route path="email-verification" element={<EmailVerification />} />
-
 						<Route path="professions" element={<ProfessionsContainer />}>
 							<Route path="" element={<Professions />} />
 							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
 						<Route path="favorites" element={<Favorites />} />
-						{/* <Route path="conversations" element={<Conversations />} /> */}
+						<Route path="conversations">
+							<Route path="" element={<Conversations />} />
+							<Route path=":correspondentId" element={<Chat />} />
+						</Route>
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings">
 							<Route path="" element={<Settings />} />
@@ -52,7 +54,6 @@ ReactDOM.render(
 						</Route>
 						<Route path="reviews" element={<ReviewsPage />} />
 						<Route path="edit-profile" element={<EditProfile />} />
-
 						<Route path="reset-password" element={<ResetPassword />} />
 						<Route path="search" element={<SearchPage />} />
 						<Route path="projects">

@@ -15,9 +15,8 @@ import SmallWorkerCard from "../components/SmallWorkerCard"
 
 function HomeScreen() {
 	const { auth } = useContext(AuthContext)
-	const [firstName, setFirstName] = useState("")
+	const [firstName, setFirstName] = useState("بك")
 	const [favorites, setFavorites] = useState([])
-	const popularProfessions = getPopularProfessions()
 
 	useEffect(async () => {
 		if (auth) {
@@ -28,16 +27,6 @@ function HomeScreen() {
 					}
 				})
 				setFirstName(nameResponse.data.data.firstName)
-			} catch (err) {
-				console.error(err)
-			}
-		}
-		if (auth?.role === "client") {
-			try {
-				const favoritesResponse = await api.get("/favorites", {
-					headers: { Authorization: `Bearer ${auth.token}` }
-				})
-				setFavorites(favoritesResponse.data.data)
 			} catch (err) {
 				console.error(err)
 			}
