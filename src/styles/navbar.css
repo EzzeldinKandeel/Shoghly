@@ -9,9 +9,12 @@
 	flex-wrap: wrap;
 	background-color: var(--clr-accent-400);
 	color: var(--white);
-	gap: 1rem;
+	gap: 2rem;
 	box-shadow: 1px 1px 5px black;
 	min-height: 70px;
+	position: sticky;
+	top: 0px;
+	z-index: 999;
 }
 .app-name {
 	margin: 0px;
@@ -36,7 +39,7 @@
 .navbar--items {
 	margin: 0px;
 	padding: 0px;
-	gap: 1em;
+	gap: 2em;
 	flex-grow: 1;
 }
 .align-icon {

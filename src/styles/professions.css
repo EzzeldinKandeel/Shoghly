@@ -1,38 +1,26 @@
-.profession-card {
-	box-shadow: 1px 1px 5px black;
-	border-radius: 5px;
-	aspect-ratio: 4/3;
-	font-size: min(2.7vw, 1.2rem);
-}
-.profession-card-content:hover {
-	background-color: rgba(0, 0, 0, .3);
+.profession-card-picture {
+	max-width: 100%;
+	aspect-ratio: 3/2;
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.496);
 }
 .profession-card-content {
-	border-radius: 5px;
-	transition: 250ms;
-	transition-property: background-color;
-	mix-blend-mode: normal;
-	background-color: rgba(255, 255, 255, .2);
-	height: 100%;
+	min-height: 100%;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	gap: 1.5rem;
 	align-items: center;
 }
-.profession-card-content > h3 {
-	font-weight: 400;
-	margin: 0px;
+.profession-card-name {
 	text-align: center;
-
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-block-end: 2rem;
 }
-.profession-cards {
-	display: grid;
-	gap: 1rem;
-	grid-template-columns: repeat(6, 1fr);
-	margin-inline: auto;
+.profession-card {
+	transition: 300ms;
+	transition-property: transform;
 }
-
-@media screen and (max-width: 999px) {
-	.profession-cards {
-		grid-template-columns: repeat(3, 1fr);
-	}
+.profession-card:hover,
+.profession-card:focus-within {
+	transform: translateY(-6px);
 }

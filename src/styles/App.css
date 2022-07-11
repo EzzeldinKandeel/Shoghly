@@ -1,14 +1,18 @@
 :root {
-	--clr-accent-400: hsl(4, 90%, 58%);
+	--clr-accent-400: hsl(100, 4%, 16%);
 	--clr-accent-200: hsl(4, 72%, 65%);
 	--navy: #00003e;
-	--white: #fff8dc;
+	--white: white;
 	--gray: #323232;
+}
+.scroll-to {
+	position: relative;
+	top: -150px;
 }
 .container {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	min-height: 130vh;
 	width: 100%;
 	gap: 2rem;
 }
@@ -31,7 +35,7 @@ textarea {
 .main-button,
 .secondary-button {
 	width: 200px;
-	height: 2.5rem;
+	min-height: 2.5rem;
 	border: none;
 	font-family: "Readex Pro", sans-serif;
 	box-shadow: 1px 1px 5px black;

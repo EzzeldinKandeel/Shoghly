@@ -1,7 +1,7 @@
 .main-content {
 	display: flex;
 	flex-direction: column;
-	width: 90%;
+	width: 100%;
 	margin-inline: auto;
 	gap: 2rem;
 }
@@ -58,3 +58,129 @@
 	flex-wrap: nowrap;
 	overflow-x: auto;
 }
+.homescreen-background {
+	position: absolute;
+	top: 70px;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow-y: hidden;
+	object-fit: cover;
+	filter: brightness(50%);
+}
+.search-box-container {
+	align-self: center;
+	margin-block: auto;
+	height: 650px;
+	width: min(95%, 700px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+.search-box-content {
+	display: flex;
+	align-items: stretch;
+	height: 55px;
+	width: 100%;
+}
+.search-box {
+	font-size: 1.25rem;
+	padding-inline-end: 1rem;
+}
+.search-submit {
+	font-size: 1.2rem;
+	box-shadow: none;
+}
+.homescreen-caption {
+	color: var(--white);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	max-width: 100%;
+}
+.homescreen-caption-large {
+	font-size: 3.2rem;
+	text-align: center;
+	font-weight: 600;
+}
+.homescreen-caption-small {
+	font-size: 1.1rem;
+	text-align: center;
+}
+.homescreen-professions {
+	width: 90%;
+	align-self: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+	margin-block-end: 5rem;
+}
+.homescreen-features {
+	padding-block-end: 1rem;
+	padding-block-start: 7rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 1.5rem;
+}
+.homescreen-feature {
+	width: 100%;
+	padding-inline: 3rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	align-items: center;
+}
+.homescreen-feature-text {
+	margin-block: auto;
+}
+.homescreen-feature-text > h3 {
+	font-size: 1.2em;
+}
+.homescreen-feature-text > p {
+	font-weight: 200;
+}
+.homescreen-feature > img {
+	object-fit: scale-down;
+	width: 80%;
+	margin-inline: auto;
+}
+.homescreen-feature-reverse > .homescreen-feature-text {
+	grid-column: 2;
+	grid-row: 1;
+}
+.homescreen-feature-reverse > img {
+	grid-column: 1;
+	grid-row: 1;
+	margin-inline-start: 0px;
+	mix-blend-mode: multiply;
+}
+.homescreen-feature-reverse {
+	background-color: #f8f8f8;
+}
+.homescreen-professions-title {
+	align-self: center;
+	text-align: center;
+	font-size: 3rem;
+	display: flex;
+	align-items: center;
+}
+.homescreen-professions-title > span {
+	background-color: lightblue;
+	font-size: 0.7em;
+	margin-inline-end: 1rem;
+	padding: 8px;
+}
+/* .homescreen-professions-title::after {
+	content: "";
+	position: relative;
+	width: 200px;
+	height: 3px;
+	background-color: var(--gray);
+	margin-top: 10px;
+	display: block;
+} */

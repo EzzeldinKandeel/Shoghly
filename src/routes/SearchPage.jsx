@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
-import "../styles/SearchPage.css"
+// import "../styles/SearchPage.css"
 import MiniWorkerCard from "../components/MiniWorkerCard"
 import { getCities } from "./../data"
 

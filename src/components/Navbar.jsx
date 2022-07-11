@@ -11,6 +11,7 @@ import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
 import SearchIcon from "@mui/icons-material/Search"
 import BookmarksIcon from "@mui/icons-material/Bookmarks"
+import { HashLink } from "react-router-hash-link"
 
 function Navbar() {
 	const navigate = useNavigate()
@@ -20,52 +21,46 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<h1 className="app-name">
-				<Link to="/">
-					<span>شغلي</span>
-				</Link>
+				<HashLink to="/#">
+					<span>شــــغــــلــــي</span>
+				</HashLink>
 			</h1>
 
 			<ul className="navbar--items">
-				{location.pathname !== "/" && (
+				<li>
+					<HashLink to="/#professions" className="align-icon">
+						<WorkIcon className="navbar-icon" />
+						<span>الــخــدمــات</span>
+					</HashLink>
+				</li>
+				<li>
+					<HashLink to="/#" className="align-icon">
+						<SearchIcon className="navbar-icon" />
+						<span>بحث</span>
+					</HashLink>
+				</li>
+				{auth?.role === "client" && (
+					<li>
+						<Link to="/favorites" className="align-icon">
+							<BookmarksIcon className="navbar-icon" />
+							<span>المفضلون</span>
+						</Link>
+					</li>
+				)}
+				{auth?.role === "worker" && (
 					<>
 						<li>
-							<Link to="/professions" className="align-icon">
-								<WorkIcon className="navbar-icon" />
-								<span>الحرف</span>
+							<Link to="/reviews" className="align-icon">
+								<ReviewsIcon className="navbar-icon" />
+								<span>التعليقات</span>
 							</Link>
 						</li>
-						{auth?.role === "client" && (
-							<li>
-								<Link to="/favorites" className="align-icon">
-									<BookmarksIcon className="navbar-icon" />
-									<span>المفضلون</span>
-								</Link>
-							</li>
-						)}
-						{auth?.role === "worker" && (
-							<>
-								<li>
-									<Link to="/reviews" className="align-icon">
-										<ReviewsIcon className="navbar-icon" />
-										<span>التعليقات</span>
-									</Link>
-								</li>
-								<li>
-									<Link to="/projects" className="align-icon">
-										<CollectionsIcon className="navbar-icon" />
-										<span>المعرض</span>
-									</Link>
-								</li>
-							</>
-						)}
-						{auth && (
-							<li>
-								<Link to="/search" className="align-icon">
-									<SearchIcon className="navbar-icon" />
-									<span>بحث</span>
-								</Link>
-							</li>
-						)}
+						<li>
+							<Link to="/projects" className="align-icon">
+								<CollectionsIcon className="navbar-icon" />
+								<span>المعرض</span>
+							</Link>
+						</li>
 					</>
 				)}
 				{auth ? (

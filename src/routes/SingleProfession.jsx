@@ -4,6 +4,7 @@ import LargeWorkerCard from "../components/LargeWorkerCard"
 import "../styles/SingleProfession.css"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
+import noResultsFound from "../images/no-results.png"
 
 function SingleProfession() {
 	const { auth } = useContext(AuthContext)
@@ -27,7 +28,10 @@ function SingleProfession() {
 	}, [city])
 
 	return noWorkers ? (
-		<h1 className="content-does-not-exist">لا يوجد حرفيين.</h1>
+		<>
+			<h1 className="content-does-not-exist">لا يوجد حرفيين.</h1>
+			<img src={noResultsFound} className="no-results-picture" />
+		</>
 	) : (
 		<div className="workers">
 			{workers.map((worker) => (

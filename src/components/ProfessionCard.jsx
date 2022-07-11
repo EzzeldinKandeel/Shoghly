@@ -3,9 +3,16 @@ import { Link } from "react-router-dom"
 
 function ProfessionCard(props) {
 	return (
-		<div className="profession-card" style={{backgroundImage:`url(${props.profession.picture})`}}>
-			<Link className="profession-card-content" to={`/professions/${props.profession.name}`}>
-				<h3>{props.profession.name}</h3>
+		<div className="profession-card">
+			<Link
+				className="profession-card-content"
+				to={`/professions/${props.profession.name}`}
+			>
+				<img
+					className="image-cover profession-card-picture"
+					src={props.profession.picture}
+				/>
+				<span className="profession-card-name">{props.profession.name}</span>
 			</Link>
 		</div>
 	)
