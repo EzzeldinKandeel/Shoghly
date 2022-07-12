@@ -70,7 +70,7 @@ function SignIn() {
 						className="sign-in-input"
 						placeholder="أدخل عنوان البريد الإلكتروني"
 						onChange={handleChange}
-						name=""
+						name="email"
 						value={userInput.email}
 					/>
 					<input
@@ -78,7 +78,7 @@ function SignIn() {
 						className="sign-in-input"
 						placeholder="أدخل كلمة المرور"
 						onChange={handleChange}
-						name=""
+						name="password"
 						value={userInput.password}
 					/>
 					<button className="sign-in-button">تسجيل</button>
