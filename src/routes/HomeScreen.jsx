@@ -104,7 +104,7 @@ function HomeScreen() {
 			</h2>
 			<div className="homescreen-professions">
 				{professions.map((profession) => (
-					<ProfessionCard profession={profession} key={profession} />
+					<ProfessionCard profession={profession} key={profession.name} />
 				))}
 			</div>
 		</div>

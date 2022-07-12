@@ -8,7 +8,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	background-color: var(--clr-accent-400);
-	color: var(--white);
+	color: hsla(0, 0%, 100%, 0.95);
 	gap: 2rem;
 	box-shadow: 1px 1px 5px black;
 	min-height: 70px;
@@ -30,8 +30,11 @@
 	transition-property: color;
 }
 .navbar--items > li:hover {
-	color: var(--navy);
 	cursor: pointer;
+	color: hsla(0, 0%, 100%, 1);
+}
+.navbar--items > li:focus-within {
+	color: hsla(0, 0%, 100%, 1);
 }
 .navbar--items > li:nth-last-of-type(2) {
 	margin-inline-start: auto;

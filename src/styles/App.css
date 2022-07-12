@@ -1,5 +1,5 @@
 :root {
-	--clr-accent-400: hsl(100, 4%, 16%);
+	--clr-accent-400: hsl(214, 82%, 35%);
 	--clr-accent-200: hsl(4, 72%, 65%);
 	--navy: #00003e;
 	--white: white;
@@ -40,7 +40,7 @@ textarea {
 	font-family: "Readex Pro", sans-serif;
 	box-shadow: 1px 1px 5px black;
 	transition: 250ms;
-	transition-property: background-color;
+	transition-property: filter;
 }
 .main-button {
 	background-color: var(--clr-accent-400);
@@ -51,8 +51,9 @@ textarea {
 	color: var(--gray);
 }
 .main-button:hover {
-	background-color: #a72d25;
+	/* background-color: #a72d25; */
 	cursor: pointer;
+	filter: brightness(120%);
 }
 .secondary-button:hover {
 	background-color: lightgray;

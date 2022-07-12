@@ -7,7 +7,7 @@
 	display: flex;
 	gap: 1rem;
 	flex-wrap: wrap;
-	color: var(--white);
+	color: hsla(0, 0%, 100%, 0.8);
 }
 .footer > span {
 	flex: 1;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import "../styles/navbar.css"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import AuthContext from "../context/AuthProvider"
 import LogoutIcon from "@mui/icons-material/Logout"
 import LoginIcon from "@mui/icons-material/Login"
@@ -11,7 +11,7 @@ import ReviewsIcon from "@mui/icons-material/Reviews"
 import CollectionsIcon from "@mui/icons-material/Collections"
 import SearchIcon from "@mui/icons-material/Search"
 import BookmarksIcon from "@mui/icons-material/Bookmarks"
-import { HashLink } from "react-router-hash-link"
+import { HashLink as Link } from "react-router-hash-link"
 
 function Navbar() {
 	const navigate = useNavigate()
@@ -21,27 +21,27 @@ function Navbar() {
 	return (
 		<div className="navbar">
 			<h1 className="app-name">
-				<HashLink to="/#">
+				<Link to="/#">
 					<span>شــــغــــلــــي</span>
-				</HashLink>
+				</Link>
 			</h1>
 
 			<ul className="navbar--items">
 				<li>
-					<HashLink to="/#professions" className="align-icon">
+					<Link to="/#professions" className="align-icon">
 						<WorkIcon className="navbar-icon" />
 						<span>الــخــدمــات</span>
-					</HashLink>
+					</Link>
 				</li>
 				<li>
-					<HashLink to="/#" className="align-icon">
+					<Link to="/#" className="align-icon">
 						<SearchIcon className="navbar-icon" />
 						<span>بحث</span>
-					</HashLink>
+					</Link>
 				</li>
 				{auth?.role === "client" && (
 					<li>
-						<Link to="/favorites" className="align-icon">
+						<Link to="/favorites/#" className="align-icon">
 							<BookmarksIcon className="navbar-icon" />
 							<span>المفضلون</span>
 						</Link>
@@ -50,13 +50,13 @@ function Navbar() {
 				{auth?.role === "worker" && (
 					<>
 						<li>
-							<Link to="/reviews" className="align-icon">
+							<Link to="/reviews/#" className="align-icon">
 								<ReviewsIcon className="navbar-icon" />
 								<span>التعليقات</span>
 							</Link>
 						</li>
 						<li>
-							<Link to="/projects" className="align-icon">
+							<Link to="/projects/#" className="align-icon">
 								<CollectionsIcon className="navbar-icon" />
 								<span>المعرض</span>
 							</Link>
@@ -66,7 +66,7 @@ function Navbar() {
 				{auth ? (
 					<>
 						<li>
-							<Link to="/settings" className="align-icon">
+							<Link to="/settings/#" className="align-icon">
 								<SettingsIcon />
 								<span>الإعدادات</span>
 							</Link>
@@ -86,13 +86,13 @@ function Navbar() {
 				) : (
 					<>
 						<li>
-							<Link to="/sign-in" className="align-icon">
+							<Link to="/sign-in/#" className="align-icon">
 								<LoginIcon />
 								<span>تسجيل الدخول</span>
 							</Link>
 						</li>
 						<li>
-							<Link to="/sign-up" className="align-icon">
+							<Link to="/sign-up/#" className="align-icon">
 								<AccountBoxIcon />
 								<span>إنشاء حساب جديد</span>
 							</Link>

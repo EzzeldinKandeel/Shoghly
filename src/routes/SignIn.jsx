@@ -1,21 +1,22 @@
 import React, { useContext, useState, useEffect } from "react"
-import "../styles/login.css"
+import "../styles/SignIn.css"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
+import signInBackground from "../images/sign-in-background.jpg"
 
 function SignIn() {
 	let navigate = useNavigate()
 
 	const { auth, setAuth } = useContext(AuthContext)
-	const [loginData, setLoginData] = useState({ email: "", password: "" })
+	const [userInput, setUserInput] = useState({ email: "", password: "" })
 	const [isInvalid, setIsInvalid] = useState(false)
 
 	function handleChange(event) {
 		const { name, value } = event.target
-		setLoginData((prevLoginData) => {
+		setUserInput((prevUserInput) => {
 			return {
-				...prevLoginData,
+				...prevUserInput,
 				[name]: value
 			}
 		})
@@ -24,7 +25,7 @@ function SignIn() {
 	async function handleSubmit(event) {
 		event.preventDefault()
 		try {
-			const signInResponse = await api.post("/signin", loginData)
+			const signInResponse = await api.post("/signin", userInput)
 			const getUserDataResponse = await api.get("/users", {
 				headers: { Authorization: `Bearer ${signInResponse.data.accessToken}` }
 			})
@@ -46,8 +47,58 @@ function SignIn() {
 	return auth ? (
 		<Navigate to="/" replace={true} />
 	) : (
-		<div className="form">
-			<form onSubmit={handleSubmit}>
+		<div
+			className="sign-in-page"
+			// style={{ backgroundImage: `url(${signInBackground})` }}
+		>
+			<div className={`sign-in-content ${isInvalid ? "sign-in-invalid" : ""}`}>
+				<div className="sign-in-heading">
+					<h1 className="sign-in-brand-name">
+						<Link to="/">شــــغــــلــــي</Link>
+					</h1>
+					<h2 className="sign-in-title">تسجيل الدخول</h2>
+				</div>
+				<div
+					className="sign-in-invalid-message"
+					style={{ display: isInvalid ? "" : "none" }}
+				>
+					<span>البريد الإلكتروني أو كلمة المرور غير صحيحة</span>
+				</div>
+				<form onSubmit={handleSubmit} className="sign-in-form">
+					<input
+						type="text"
+						className="sign-in-input"
+						placeholder="أدخل عنوان البريد الإلكتروني"
+						onChange={handleChange}
+						name=""
+						value={userInput.email}
+					/>
+					<input
+						type="password"
+						className="sign-in-input"
+						placeholder="أدخل كلمة المرور"
+						onChange={handleChange}
+						name=""
+						value={userInput.password}
+					/>
+					<button className="sign-in-button">تسجيل</button>
+				</form>
+				<div className="sign-in-additional-links">
+					<span>
+						ليس لديك حساب؟{" "}
+						<Link to="/sign-up" className="sign-in-additional-link">
+							إنشاء حساب جديد
+						</Link>
+					</span>
+					<span>
+						<Link to="/reset-password" className="sign-in-additional-link">
+							إعادة ضبط كلمة المرور
+						</Link>
+					</span>
+				</div>
+			</div>
+			{/* <img src={signInBackground} /> */}
+			{/* <form onSubmit={handleSubmit}>
 				{isInvalid && (
 					<p
 						style={{
@@ -98,7 +149,7 @@ function SignIn() {
 				<Link to="/reset-password" style={{ color: "var(--clr-accent-400)" }}>
 					إعادة ضبط كلمة المرور
 				</Link>
-			</p>
+			</p> */}
 		</div>
 	)
 }

@@ -16,14 +16,22 @@ function Chat() {
 				`/users/${params.correspondentId}/messages`,
 				{ headers: { Authorization: `Bearer ${auth.token}` } }
 			)
-			console.dir(messagesResponse.data.data)
+			setMessages(messagesResponse.data.data)
 		} catch (err) {
 			console.error(err)
 		}
 	}, [])
 	return (
-		<div className="chat">
-			<ChatBubble position={"right"} />
+		<div className="chat chat-container">
+			<div className="messages-view">
+				{messages.map((message) => (
+					<ChatBubble
+						position={message.isOwner ? "right" : "left"}
+						messageContent={message.text}
+						key={message.messageId}
+					/>
+				))}
+			</div>
 			<SendMessage />
 		</div>
 	)
