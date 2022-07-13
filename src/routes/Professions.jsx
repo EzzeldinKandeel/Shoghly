@@ -4,6 +4,7 @@ import "../styles/professions.css"
 import { getProfessionPictures } from "../data"
 
 function Professions() {
+	document.title = "الخدمات - شغلي"
 	const professions = getProfessionPictures()
 
 	return (

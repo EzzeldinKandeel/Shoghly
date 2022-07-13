@@ -7,6 +7,7 @@ import "../styles/SingleProject.css"
 import avatar from "../images/avatar.png"
 
 function SignleProject() {
+	document.title = "المعرض - شغلي"
 	let params = useParams()
 	const { auth } = useContext(AuthContext)
 	const [project, setProject] = useState(null)

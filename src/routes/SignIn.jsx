@@ -6,6 +6,7 @@ import AuthContext from "../context/AuthProvider"
 import signInBackground from "../images/sign-in-background.jpg"
 
 function SignIn() {
+	document.title = "تسجيل الدخول - شغلي"
 	let navigate = useNavigate()
 
 	const { auth, setAuth } = useContext(AuthContext)

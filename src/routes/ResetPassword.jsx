@@ -4,6 +4,7 @@ import DoneIcon from "@mui/icons-material/Done"
 import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function ResetPassword() {
+	document.title = "شغلي"
 	const [email, setEmail] = useState("")
 	const [sent, setSent] = useState(false)
 	const [error, setError] = useState(false)

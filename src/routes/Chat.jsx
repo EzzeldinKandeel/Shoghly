@@ -7,6 +7,7 @@ import AuthContext from "../context/AuthProvider"
 import api from "../api/axios"
 
 function Chat() {
+	document.title = "شغلي"
 	let params = useParams()
 	const { auth } = useContext(AuthContext)
 	const [messages, setMessages] = useState([])

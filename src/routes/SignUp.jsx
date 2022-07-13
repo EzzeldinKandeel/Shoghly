@@ -7,6 +7,7 @@ import ErrorBackdrop from "../components/ErrorBackdrop"
 import AuthContext from "../context/AuthProvider"
 
 function SignUp() {
+	document.title = "إنشاء حساب جديد - شغلي"
 	let navigate = useNavigate()
 	const { auth, setAuth } = useContext(AuthContext)
 

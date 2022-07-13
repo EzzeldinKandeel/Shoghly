@@ -8,6 +8,7 @@ import ErrorBackdrop from "../components/ErrorBackdrop"
 import { useNavigate } from "react-router-dom"
 
 function EditProfile() {
+	document.title = "تعديل بيانات الحساب - شغلي"
 	const navigate = useNavigate()
 	const MOB_REGEX = /^01[0125][0-9]{8}$/
 	let imageData = new FormData()

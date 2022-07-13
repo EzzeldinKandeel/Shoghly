@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import api from "../api/axios"
 
 function EmailVerification() {
+	document.title = "تأكيد عنوان البريد الإلكتروني - شغلي"
 	let navigate = useNavigate()
 
 	const [verifyEmailData, setVerifyEmailData] = useState({

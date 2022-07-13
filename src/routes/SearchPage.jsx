@@ -6,6 +6,7 @@ import MiniWorkerCard from "../components/MiniWorkerCard"
 import { getCities } from "./../data"
 
 function SearchPage() {
+	document.title = "البحث - شغلي"
 	const { auth } = useContext(AuthContext)
 	const cities = getCities()
 	const [searchQuery, setSearchQuery] = useState("")

@@ -5,6 +5,7 @@ import api from "../api/axios"
 import "../styles/ReviewsPage.css"
 
 function ReviewsPage() {
+	document.title = "التعليقات - شغلي"
 	const { auth } = useContext(AuthContext)
 	const [reviews, setReviews] = useState([])
 	useEffect(async () => {

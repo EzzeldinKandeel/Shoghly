@@ -6,6 +6,7 @@ import "../styles/Favorites.css"
 import AuthContext from "../context/AuthProvider"
 
 function Favorites() {
+	document.title = "المفضلات - شغلي"
 	const { auth } = useContext(AuthContext)
 	const [favorites, setFavorites] = useState([])
 

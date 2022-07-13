@@ -5,6 +5,7 @@ import { getCities } from "./../data"
 import api from "../api/axios"
 
 function ProfessionsContainer() {
+	document.title = "الخدمات - شغلي"
 	const { auth } = useContext(AuthContext)
 	const cities = getCities()
 	const [city, setCity] = useState()

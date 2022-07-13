@@ -6,6 +6,7 @@ import WarningIcon from "@mui/icons-material/Warning"
 import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function DeleteAccount() {
+	document.title = "حذف الحساب - شغلي"
 	const { auth, setAuth } = useContext(AuthContext)
 	let navigate = useNavigate()
 	const [error, setError] = useState(false)

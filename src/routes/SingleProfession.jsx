@@ -11,6 +11,7 @@ function SingleProfession() {
 	const { city } = useOutletContext()
 	let params = useParams()
 	let profession = params.profession
+	document.title = `${profession} - شغلي`
 
 	const [workers, setWorkers] = useState([])
 	const [noWorkers, setNoWorkers] = useState(false)

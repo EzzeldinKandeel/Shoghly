@@ -5,6 +5,7 @@ import api from "../api/axios"
 import ConversationCard from "../components/ConversationCard"
 
 function Conversations() {
+	document.title = "المحادثات - شغلي"
 	const { auth } = useContext(AuthContext)
 	const [conversations, setConversations] = useState([])
 	useEffect(async () => {

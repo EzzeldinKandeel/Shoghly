@@ -6,6 +6,7 @@ import ProjectPreview from "./../components/ProjectPreview"
 import NewProject from "./../components/NewProject"
 
 function ProjectsPage() {
+	document.title = "المعرض - شغلي"
 	const { auth } = useContext(AuthContext)
 	const [projects, setProjects] = useState([])
 	const [newProject, setNewProject] = useState(false)

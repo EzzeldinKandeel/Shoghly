@@ -4,10 +4,11 @@ import { Link } from "react-router-dom"
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
 
 function Settings() {
+	document.title = "الإعدادات - شغلي"
 	return (
 		<div className="settings">
 			<Link to="/settings/edit-profile" className="settings-section">
-				تعديل الصفحة الشخصية
+				تعديل بيانات الحساب
 				<ArrowBackIosNewIcon fontSize="small" />
 			</Link>
 			<Link to="/settings/change-password" className="settings-section">

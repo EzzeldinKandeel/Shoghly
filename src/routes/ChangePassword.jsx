@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import ErrorBackdrop from "../components/ErrorBackdrop"
 
 function ChangePassword() {
+	document.title = "تغيير كلمة السر - شغلي"
 	let navigate = useNavigate()
 	const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 	const { auth } = useContext(AuthContext)

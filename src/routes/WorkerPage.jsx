@@ -21,6 +21,9 @@ function WorkerPage() {
 	const [projects, setProjects] = useState(null)
 	const [newReview, setNewReview] = useState(false)
 	const [currentUserHasReviewed, setCurrentUserHasReviewed] = useState(false)
+	document.title = Boolean(worker)
+		? `${worker.firstName} ${worker.lastName} - شغلي`
+		: "شغلي"
 	useEffect(async () => {
 		try {
 			const workerResponse = await api.get(`/workers/${params.workerId}`)

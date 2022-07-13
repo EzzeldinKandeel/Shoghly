@@ -22,6 +22,7 @@ import homescreenPicDemoThree from "../images/homescreen-demo-3.png"
 import homescreenPicDemoFour from "../images/homescreen-demo-4.png"
 
 function HomeScreen() {
+	document.title = "الصفحة الرئيسية - شغلي"
 	const professions = getProfessionPictures()
 	const { auth } = useContext(AuthContext)
 	const [searchQuery, setSearchQuery] = useState("")
