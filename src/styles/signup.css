@@ -35,7 +35,7 @@
 	background-color: hsla(0, 0%, 50%, 0.3);
 	border-radius: 10px;
 	padding: 2rem;
-	width: min(1400px, 90%);
+	width: min(920px, 90%);
 	margin-block: 2rem;
 	display: flex;
 	flex-direction: column;
