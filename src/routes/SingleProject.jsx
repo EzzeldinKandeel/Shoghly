@@ -22,9 +22,9 @@ function SignleProject() {
 				}
 			)
 			const workerResponse = await api.get(
-				`/workers/${projectResponse.data.project.workerId}`
+				`/workers/${projectResponse.data.project[0].workerId}`
 			)
-			setProject(projectResponse.data.project)
+			setProject(projectResponse.data.project[0])
 			setWorker(workerResponse.data.data)
 			setServerThrewError(false)
 		} catch (err) {
