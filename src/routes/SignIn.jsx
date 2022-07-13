@@ -81,6 +81,11 @@ function SignIn() {
 						name="password"
 						value={userInput.password}
 					/>
+					<span style={{ height: "fit-content", textIndent: "0.2rem" }}>
+						<Link to="/reset-password" className="sign-in-additional-link">
+							هل نسيت كلمة المرور؟
+						</Link>
+					</span>
 					<button className="sign-in-button">تسجيل</button>
 				</form>
 				<div className="sign-in-additional-links">
@@ -88,11 +93,6 @@ function SignIn() {
 						ليس لديك حساب؟{" "}
 						<Link to="/sign-up" className="sign-in-additional-link">
 							إنشاء حساب جديد
-						</Link>
-					</span>
-					<span>
-						<Link to="/reset-password" className="sign-in-additional-link">
-							إعادة ضبط كلمة المرور
 						</Link>
 					</span>
 				</div>

@@ -120,7 +120,7 @@
 }
 .homescreen-features {
 	padding-block-end: 1rem;
-	padding-block-start: 7rem;
+	padding-block-start: 2.5rem;
 	display: grid;
 	gap: 1.5rem;
 }
@@ -128,8 +128,6 @@
 	width: 100%;
 	padding-inline: 3rem;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr;
 	align-items: center;
 	margin-inline: auto;
 	max-width: 600px;
@@ -183,6 +181,10 @@
 	.homescreen-professions {
 		grid-template-columns: repeat(3, 1fr);
 	}
+	.homescreen-feature {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+	}
 }
 @media screen and (max-width: 899px) {
 	.homescreen-features {
@@ -190,6 +192,16 @@
 	}
 	.homescreen-professions {
 		grid-template-columns: repeat(2, 1fr);
+	}
+	.homescreen-feature {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+	}
+	.homescreen-feature-text > h3 {
+		text-align: center;
+	}
+	.homescreen-feature-text > p {
+		text-align: justify;
 	}
 }
 @media screen and (max-width: 599px) {

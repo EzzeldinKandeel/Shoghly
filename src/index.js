@@ -32,9 +32,9 @@ ReactDOM.render(
 			<BrowserRouter>
 				<Routes>
 					<Route path="sign-in" element={<SignIn />} />
+					<Route path="sign-up" element={<SignUp />} />
 					<Route path="/" element={<App />}>
 						<Route path="" element={<HomeScreen />} />
-						<Route path="sign-up" element={<SignUp />} />
 						<Route path="email-verification" element={<EmailVerification />} />
 						<Route path="professions" element={<ProfessionsContainer />}>
 							<Route path="" element={<Professions />} />

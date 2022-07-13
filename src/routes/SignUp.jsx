@@ -85,11 +85,11 @@ function SignUp() {
 	}
 
 	function handleChange(event) {
-		const { name, value } = event.target
+		const { name, value, type, checked } = event.target
 		setSignUpData((prevSignUpData) => {
 			return {
 				...prevSignUpData,
-				[name]: value
+				[name]: type === "checkbox" ? checked : value
 			}
 		})
 	}
@@ -140,178 +140,154 @@ function SignUp() {
 			}
 		}
 	}
+	console.log(signUpData)
 
 	return auth ? (
 		<Navigate to="/" replace={true} />
 	) : (
-		<div className="form">
-			<ErrorBackdrop open={error} close={() => setError(false)} />
-			<form onSubmit={handleSubmit}>
-				<div className="input-container">
-					<label>الاسم الأول</label>
+		<div className="sign-up-page">
+			<div className="sign-up-content">
+				<div className="sign-up-heading">
+					<h1 className="sign-up-brand-name">
+						<Link to="/">شــــغــــلــــي</Link>
+					</h1>
+					<p className="sign-up-title">إنشاء حساب جديد</p>
+				</div>
+				<form onSubmit={handleSubmit} className="sign-up-form">
 					<input
-						type="text"
 						name="firstName"
+						placeholder="الاسم الأول"
 						value={signUpData.firstName}
 						onChange={handleChange}
-						className="input-box"
+						type="text"
+						className="sign-up-input sign-up-firstName"
 						required
 					/>
-				</div>
-				<div className="input-container">
-					<label>الاسم الأخير</label>
 					<input
-						type="text"
 						name="lastName"
+						placeholder="الاسم الأخير"
 						value={signUpData.lastName}
 						onChange={handleChange}
-						className="input-box"
+						type="text"
+						className="sign-up-input sign-up-lastName"
 						required
 					/>
-				</div>
-				<div className="input-container">
-					<label>البريد الإلكتروني</label>
 					<input
-						type="email"
-						name="email"
-						value={signUpData.email}
-						onChange={handleChange}
-						ref={emailRef}
-						className="input-box"
-						required
-					/>
-				</div>
-				<p
-					className="input-error"
-					style={{ display: validSignUpData.emailUnique ? "none" : "" }}
-				>
-					لقد تم استخدام هذا البريد الإلكتروني من قبل.
-				</p>
-				<div className="input-container">
-					<label>كلمة المرور</label>
-					<input
-						type="password"
 						name="password"
+						placeholder="أدخل كلمة مرور آمنة"
 						value={signUpData.password}
 						onChange={handleChange}
-						ref={passwordRef}
-						className="input-box"
+						type="password"
+						className="sign-up-input sign-up-password"
 						required
 					/>
-				</div>
-				<p
-					className="input-error"
-					style={{ display: validSignUpData.password ? "none" : "" }}
-				>
-					يجب أن تتكون كلمة المرور من 8 إلى 24 حرف، منهم على الأقل حرف علوى
-					واحد، حرف سفلي واحد، رقم واحد، وعلامة من العلامات !@#$%.
-				</p>
-				<div className="input-container">
-					<label>أعد إدخال كلمة المرور</label>
 					<input
-						type="password"
 						name="passwordConfirm"
+						placeholder="أعد إدخال كلمة المرور"
 						value={signUpData.passwordConfirm}
 						onChange={handleChange}
-						ref={passwordConfirmRef}
-						className="input-box"
+						type="password"
+						className="sign-up-input sign-up-passwordConfirm"
 						required
 					/>
-				</div>
-				<p
-					className="input-error"
-					style={{
-						display: validSignUpData.passwordConfirm ? "none" : ""
-					}}
-				>
-					كلمة المرور غير مطابقة.
-				</p>
-				<div className="input-container">
-					<label>تاريخ الميلاد</label>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							width: "100%",
-							flexGrow: "1",
-							gap: "1rem"
-						}}
-					>
-						<select
-							name="day"
-							className="input-box"
-							value={signUpData.day}
-							onChange={handleChange}
-							required
-						>
-							{days.map((day) => (
-								<option key={day} value={day}>
-									{day}
-								</option>
-							))}
-						</select>
-						<select
-							name="month"
-							className="input-box"
-							value={signUpData.month}
-							onChange={handleChange}
-							required
-						>
-							{months.map((month) => (
-								<option key={month} value={month - 1}>
-									{month}
-								</option>
-							))}
-						</select>
-						<select
-							name="year"
-							className="input-box"
-							value={signUpData.year}
-							onChange={handleChange}
-							ref={dateRef}
-							required
-						>
-							{years.map((year) => (
-								<option key={year} value={year}>
-									{year}
-								</option>
-							))}
-						</select>
-					</div>
-				</div>
-				<p
-					className="input-error"
-					style={{ display: validSignUpData.age ? "none" : "" }}
-				>
-					لا يسمح بالتسجيل لمن هم دون 18 عام.
-				</p>
-				<div className="input-container">
-					<label>الجنس</label>
-					<select
-						name="gender"
-						value={signUpData.gender}
+					<input
+						name="email"
+						placeholder="عنوان البريد الإلكتروني"
+						value={signUpData.email}
 						onChange={handleChange}
-						className="input-box"
+						type="email"
+						className="sign-up-input sign-up-email"
 						required
-					>
-						<option disabled value="">
-							-- إختر --
-						</option>
-						<option value="ذكر">ذكر</option>
-						<option value="أنثى">أنثى</option>
-					</select>
-				</div>
-				<div className="input-container">
-					<label>المحافظة</label>
+					/>
+					<input
+						name="phone"
+						placeholder="رقم الهاتف المحمول"
+						value={signUpData.phone}
+						onChange={handleChange}
+						type="tel"
+						className="sign-up-input sign-up-phone sign-up-input-invalid"
+						required
+					/>
+					<div className="date-picker">
+						<span className="sign-up-input-label">تاريخ الميلاد</span>
+						<div className="date-picker-content">
+							<select
+								name="day"
+								className="sign-up-input"
+								value={signUpData.day}
+								onChange={handleChange}
+								required
+							>
+								{days.map((day) => (
+									<option key={day} value={day}>
+										{day}
+									</option>
+								))}
+							</select>
+							<select
+								name="month"
+								className="sign-up-input"
+								value={signUpData.month}
+								onChange={handleChange}
+								required
+							>
+								{months.map((month) => (
+									<option key={month} value={month - 1}>
+										{month}
+									</option>
+								))}
+							</select>
+							<select
+								name="year"
+								className="sign-up-input"
+								value={signUpData.year}
+								onChange={handleChange}
+								ref={dateRef}
+								required
+							>
+								{years.map((year) => (
+									<option key={year} value={year}>
+										{year}
+									</option>
+								))}
+							</select>
+						</div>
+					</div>
+					<div className="sign-up-radio-group">
+						<input
+							type="radio"
+							name="gender"
+							onChange={handleChange}
+							id="ذكر"
+							value="ذكر"
+							checked={signUpData.gender === "ذكر"}
+							className="display-none"
+						/>
+						<label htmlFor="ذكر" className="sign-up-radio-label">
+							ذكر
+						</label>
+						<input
+							type="radio"
+							name="gender"
+							onChange={handleChange}
+							id="أنثى"
+							value="أنثى"
+							checked={signUpData.gender === "أنثى"}
+							className="display-none"
+						/>
+						<label htmlFor="أنثى" className="sign-up-radio-label">
+							أنثى
+						</label>
+					</div>
 					<select
 						name="city"
 						value={signUpData.city}
 						onChange={handleChange}
-						className="input-box"
+						className="sign-up-input sign-up-city"
 						required
 					>
 						<option disabled value="">
-							-- إختر --
+							-- إختر محافظة --
 						</option>
 						{cities.map((city) => (
 							<option key={cities.indexOf(city)} value={city}>
@@ -319,69 +295,50 @@ function SignUp() {
 							</option>
 						))}
 					</select>
-				</div>
-				<div className="input-container">
-					<label>رقم المحمول</label>
 					<input
-						type="tel"
-						name="phone"
-						value={signUpData.phone}
-						onChange={handleChange}
-						ref={phoneRef}
-						className="input-box"
-						required
-					/>
-				</div>
-				<p
-					className="input-error"
-					style={{ display: validSignUpData.phone ? "none" : "" }}
-				>
-					برجاء إدخال رقم محمول صحيح (11 رقم).
-				</p>
-				<p
-					className="input-error"
-					style={{ display: validSignUpData.phoneUnique ? "none" : "" }}
-				>
-					لقد تم استخدام هذا الرقم من قبل.
-				</p>
-				<div className="input-container">
-					<label>العنوان</label>
-					<input
-						type="text"
 						name="line"
+						placeholder="العنوان"
 						value={signUpData.line}
 						onChange={handleChange}
-						className="input-box"
-					/>
-				</div>
-				<div className="input-container">
-					<label>نوع الحساب</label>
-					<select
-						name="role"
-						value={signUpData.role}
-						onChange={handleChange}
-						className="input-box"
+						className="sign-up-input sign-up-line"
 						required
-					>
-						<option disabled value="">
-							-- إختر --
-						</option>
-						<option value="client">عميل</option>
-						<option value="worker">حرفي</option>
-					</select>
-				</div>
-				{signUpData.role === "worker" && (
-					<div className="input-container">
-						<label>الحرفة</label>
+					/>
+					<div className="sign-up-radio-group">
+						<input
+							type="radio"
+							name="role"
+							onChange={handleChange}
+							id="client"
+							value="client"
+							checked={signUpData.role === "client"}
+							className="display-none"
+						/>
+						<label htmlFor="client" className="sign-up-radio-label">
+							عميل
+						</label>
+						<input
+							type="radio"
+							name="role"
+							onChange={handleChange}
+							id="worker"
+							value="worker"
+							checked={signUpData.role === "worker"}
+							className="display-none"
+						/>
+						<label htmlFor="worker" className="sign-up-radio-label">
+							حرفي
+						</label>
+					</div>
+					{signUpData.role === "worker" && (
 						<select
 							name="profession"
 							value={signUpData.profession}
 							onChange={handleChange}
-							className="input-box"
+							className="sign-up-input sign-up-profession"
 							required
 						>
 							<option disabled value="">
-								-- إختر --
+								-- إختر حرفة --
 							</option>
 							{professions.map((profession) => (
 								<option
@@ -392,28 +349,289 @@ function SignUp() {
 								</option>
 							))}
 						</select>
-					</div>
-				)}
-				<div className="multiple-horizontal-buttons">
-					<button type="submit" className="main-button">
-						تسجيل
-					</button>
-					<button
-						type="button"
-						className="secondary-button"
-						onClick={() => navigate("/")}
-					>
-						إلغاء
-					</button>
+					)}
+					<button className="sign-up-button">إنشاء حساب</button>
+				</form>
+				<div className="sign-up-additional-links">
+					<span>
+						لديك حساب بالفعل؟{" "}
+						<Link to="/sign-in" className="sign-in-additional-link">
+							تسجيل الدخول
+						</Link>
+					</span>
 				</div>
-			</form>
-			<p style={{ textAlign: "center" }}>
-				لديك حساب بالفعل؟{" "}
-				<Link to="/sign-in" style={{ color: "var(--clr-accent-400)" }}>
-					تسجيل الدخول
-				</Link>
-			</p>
+			</div>
 		</div>
+		// <div className="form">
+		// 	<ErrorBackdrop open={error} close={() => setError(false)} />
+		// 	<form onSubmit={handleSubmit}>
+		// 		<div className="input-container">
+		// 			<label>الاسم الأول</label>
+		// 			<input
+		// 				type="text"
+		// 				name="firstName"
+		// 				value={signUpData.firstName}
+		// 				onChange={handleChange}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<div className="input-container">
+		// 			<label>الاسم الأخير</label>
+		// 			<input
+		// 				type="text"
+		// 				name="lastName"
+		// 				value={signUpData.lastName}
+		// 				onChange={handleChange}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<div className="input-container">
+		// 			<label>البريد الإلكتروني</label>
+		// 			<input
+		// 				type="email"
+		// 				name="email"
+		// 				value={signUpData.email}
+		// 				onChange={handleChange}
+		// 				ref={emailRef}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{ display: validSignUpData.emailUnique ? "none" : "" }}
+		// 		>
+		// 			لقد تم استخدام هذا البريد الإلكتروني من قبل.
+		// 		</p>
+		// 		<div className="input-container">
+		// 			<label>كلمة المرور</label>
+		// 			<input
+		// 				type="password"
+		// 				name="password"
+		// 				value={signUpData.password}
+		// 				onChange={handleChange}
+		// 				ref={passwordRef}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{ display: validSignUpData.password ? "none" : "" }}
+		// 		>
+		// 			يجب أن تتكون كلمة المرور من 8 إلى 24 حرف، منهم على الأقل حرف علوى
+		// 			واحد، حرف سفلي واحد، رقم واحد، وعلامة من العلامات !@#$%.
+		// 		</p>
+		// 		<div className="input-container">
+		// 			<label>أعد إدخال كلمة المرور</label>
+		// 			<input
+		// 				type="password"
+		// 				name="passwordConfirm"
+		// 				value={signUpData.passwordConfirm}
+		// 				onChange={handleChange}
+		// 				ref={passwordConfirmRef}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{
+		// 				display: validSignUpData.passwordConfirm ? "none" : ""
+		// 			}}
+		// 		>
+		// 			كلمة المرور غير مطابقة.
+		// 		</p>
+		// 		<div className="input-container">
+		// 			<label>تاريخ الميلاد</label>
+		// 			<div
+		// 				style={{
+		// 					display: "flex",
+		// 					flexDirection: "row",
+		// 					width: "100%",
+		// 					flexGrow: "1",
+		// 					gap: "1rem"
+		// 				}}
+		// 			>
+		// <select
+		// 	name="day"
+		// 	className="input-box"
+		// 	value={signUpData.day}
+		// 	onChange={handleChange}
+		// 	required
+		// >
+		// 	{days.map((day) => (
+		// 		<option key={day} value={day}>
+		// 			{day}
+		// 		</option>
+		// 	))}
+		// </select>
+		// <select
+		// 	name="month"
+		// 	className="input-box"
+		// 	value={signUpData.month}
+		// 	onChange={handleChange}
+		// 	required
+		// >
+		// 	{months.map((month) => (
+		// 		<option key={month} value={month - 1}>
+		// 			{month}
+		// 		</option>
+		// 	))}
+		// </select>
+		// <select
+		// 	name="year"
+		// 	className="input-box"
+		// 	value={signUpData.year}
+		// 	onChange={handleChange}
+		// 	ref={dateRef}
+		// 	required
+		// >
+		// 	{years.map((year) => (
+		// 		<option key={year} value={year}>
+		// 			{year}
+		// 		</option>
+		// 	))}
+		// </select>
+		// 			</div>
+		// 		</div>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{ display: validSignUpData.age ? "none" : "" }}
+		// 		>
+		// 			لا يسمح بالتسجيل لمن هم دون 18 عام.
+		// 		</p>
+		// 		<div className="input-container">
+		// 			<label>الجنس</label>
+		// 			<select
+		// 				name="gender"
+		// 				value={signUpData.gender}
+		// 				onChange={handleChange}
+		// 				className="input-box"
+		// 				required
+		// 			>
+		// 				<option disabled value="">
+		// 					-- إختر --
+		// 				</option>
+		// 				<option value="ذكر">ذكر</option>
+		// 				<option value="أنثى">أنثى</option>
+		// 			</select>
+		// 		</div>
+		// 		<div className="input-container">
+		// 			<label>المحافظة</label>
+		// <select
+		// 	name="city"
+		// 	value={signUpData.city}
+		// 	onChange={handleChange}
+		// 	className="input-box"
+		// 	required
+		// >
+		// 	<option disabled value="">
+		// 		-- إختر --
+		// 	</option>
+		// 	{cities.map((city) => (
+		// 		<option key={cities.indexOf(city)} value={city}>
+		// 			{city}
+		// 		</option>
+		// 	))}
+		// </select>
+		// 		</div>
+		// 		<div className="input-container">
+		// 			<label>رقم المحمول</label>
+		// 			<input
+		// 				type="tel"
+		// 				name="phone"
+		// 				value={signUpData.phone}
+		// 				onChange={handleChange}
+		// 				ref={phoneRef}
+		// 				className="input-box"
+		// 				required
+		// 			/>
+		// 		</div>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{ display: validSignUpData.phone ? "none" : "" }}
+		// 		>
+		// 			برجاء إدخال رقم محمول صحيح (11 رقم).
+		// 		</p>
+		// 		<p
+		// 			className="input-error"
+		// 			style={{ display: validSignUpData.phoneUnique ? "none" : "" }}
+		// 		>
+		// 			لقد تم استخدام هذا الرقم من قبل.
+		// 		</p>
+		// 		<div className="input-container">
+		// 			<label>العنوان</label>
+		// 			<input
+		// 				type="text"
+		// 				name="line"
+		// 				value={signUpData.line}
+		// 				onChange={handleChange}
+		// 				className="input-box"
+		// 			/>
+		// 		</div>
+		// 		<div className="input-container">
+		// 			<label>نوع الحساب</label>
+		// 			<select
+		// 				name="role"
+		// 				value={signUpData.role}
+		// 				onChange={handleChange}
+		// 				className="input-box"
+		// 				required
+		// 			>
+		// 				<option disabled value="">
+		// 					-- إختر --
+		// 				</option>
+		// 				<option value="client">عميل</option>
+		// 				<option value="worker">حرفي</option>
+		// 			</select>
+		// 		</div>
+		// 		{signUpData.role === "worker" && (
+		// 			<div className="input-container">
+		// 				<label>الحرفة</label>
+		// 				<select
+		// 					name="profession"
+		// 					value={signUpData.profession}
+		// 					onChange={handleChange}
+		// 					className="input-box"
+		// 					required
+		// 				>
+		// <option disabled value="">
+		// 	-- إختر --
+		// </option>
+		// {professions.map((profession) => (
+		// 	<option
+		// 		key={professions.indexOf(profession)}
+		// 		value={profession}
+		// 	>
+		// 		{profession}
+		// 	</option>
+		// ))}
+		// 				</select>
+		// 			</div>
+		// 		)}
+		// 		<div className="multiple-horizontal-buttons">
+		// 			<button type="submit" className="main-button">
+		// 				تسجيل
+		// 			</button>
+		// 			<button
+		// 				type="button"
+		// 				className="secondary-button"
+		// 				onClick={() => navigate("/")}
+		// 			>
+		// 				إلغاء
+		// 			</button>
+		// 		</div>
+		// 	</form>
+		// 	<p style={{ textAlign: "center" }}>
+		// 		لديك حساب بالفعل؟{" "}
+		// 		<Link to="/sign-in" style={{ color: "var(--clr-accent-400)" }}>
+		// 			تسجيل الدخول
+		// 		</Link>
+		// 	</p>
+		// </div>
 	)
 }
 

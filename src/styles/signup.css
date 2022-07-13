@@ -1,3 +1,8 @@
+.sign-up-page :is(*) {
+	margin: 0px;
+	padding: 0px;
+	font: inherit;
+}
 .multiple-horizontal-buttons {
 	width: 100%;
 	display: flex;
@@ -17,4 +22,135 @@
 	display: flex;
 	flex-direction: column;
 	width: 175px;
+}
+.sign-up-page {
+	min-height: 100vh;
+	z-index: -1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sign-up-content {
+	z-index: 1;
+	background-color: hsla(0, 0%, 50%, 0.3);
+	border-radius: 10px;
+	padding: 2rem;
+	width: min(1400px, 90%);
+	margin-block: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	transition: 250ms;
+	transition-property: height;
+}
+.sign-up-heading {
+	color: var(--clr-accent-400);
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-block-end: 1rem;
+}
+.sign-up-brand-name {
+	font-size: 2rem;
+	font-weight: 600;
+}
+.sign-up-title {
+	font-weight: 600;
+}
+.sign-up-input {
+	border: none;
+	padding-inline: 1rem;
+	border-radius: 5px;
+	height: 50px;
+}
+.sign-up-input-invalid {
+	border: 2px solid firebrick;
+}
+.sign-up-button {
+	border-radius: 5px;
+	height: 50px;
+	background-color: var(--clr-accent-400);
+	color: hsla(0, 0%, 100%, 0.95);
+	border: none;
+	transition: 250ms;
+	transition-property: filter;
+	width: min(300px, 100%);
+	margin-inline: auto;
+}
+.sign-up-button:hover,
+.sign-up-button:focus {
+	filter: brightness(150%);
+	cursor: pointer;
+}
+.sign-up-form {
+	display: grid;
+	gap: 1rem;
+}
+.date-picker,
+.date-picker-content {
+	display: flex;
+	gap: 1rem;
+}
+.sign-up-input-label {
+	align-self: center;
+}
+.date-picker-content {
+	flex-grow: 1;
+}
+.date-picker-content > * {
+	flex-grow: 1;
+}
+.sign-up-radio-group {
+	display: flex;
+	gap: 1rem;
+	height: 50px;
+}
+.sign-up-radio-label {
+	flex-grow: 1;
+	background-color: white;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	transition: 250ms;
+	transition-property: filter;
+}
+.sign-up-radio-label:hover {
+	cursor: pointer;
+}
+.sign-up-radio-label:hover,
+.sign-up-radio-label:focus-within {
+	filter: brightness(90%);
+}
+.sign-up-radio-group > input[type="radio"]:checked + .sign-up-radio-label {
+	outline: 3px solid var(--clr-accent-400);
+}
+.sign-up-additional-links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.2rem;
+	font-weight: 200;
+}
+.sign-up-additional-link {
+	font-weight: 400;
+}
+
+@media screen and (min-width: 800px) {
+	.sign-up-form {
+		grid-template-columns: 1fr 1fr;
+	}
+	.sign-up-button {
+		grid-column: span 2;
+	}
+}
+@media screen and (max-width: 799px) {
+	.sign-up-form {
+		grid-template-columns: 1fr;
+	}
+	.date-picker {
+		flex-wrap: wrap;
+	}
 }

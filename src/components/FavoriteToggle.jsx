@@ -7,12 +7,13 @@ import "../styles/FavoriteToggle.css"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 import ErrorBackdrop from "./ErrorBackdrop"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
 
 function FavoriteToggle(props) {
 	const { workerId } = props
 	const { auth } = useContext(AuthContext)
 	const [isFavorite, setIsFavorite] = useState(false)
-	const [hover, setHover] = useState(false)
 	const [error, setError] = useState(false)
 
 	useEffect(async () => {
@@ -31,10 +32,8 @@ function FavoriteToggle(props) {
 	}, [])
 
 	function renderToggle() {
-		if (!isFavorite && !hover) return <BookmarkBorderIcon />
-		else if (!isFavorite && hover) return <BookmarkAddIcon />
-		else if (isFavorite && !hover) return <BookmarkIcon />
-		else if (isFavorite && hover) return <BookmarkRemoveIcon />
+		if (!isFavorite) return <FavoriteBorderIcon fontSize="large" />
+		else if (isFavorite) return <FavoriteIcon fontSize="large" />
 	}
 	async function toggle() {
 		if (isFavorite) {
@@ -61,13 +60,7 @@ function FavoriteToggle(props) {
 	return (
 		<>
 			<ErrorBackdrop open={error} close={() => setError(false)} />
-			<button
-				className="favorite-toggle"
-				onMouseEnter={() => setHover(true)}
-				onMouseLeave={() => setHover(false)}
-				onTouchEnd={() => setHover(false)}
-				onClick={toggle}
-			>
+			<button className="favorite-toggle" onClick={toggle}>
 				{renderToggle()}
 			</button>
 		</>
