@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import "../styles/navbar.css"
 import { useLocation, useNavigate } from "react-router-dom"
 import AuthContext from "../context/AuthProvider"
@@ -12,11 +12,36 @@ import CollectionsIcon from "@mui/icons-material/Collections"
 import SearchIcon from "@mui/icons-material/Search"
 import BookmarksIcon from "@mui/icons-material/Bookmarks"
 import { HashLink as Link } from "react-router-hash-link"
+import api from "../api/axios"
+import avatar from "../images/avatar.png"
 
 function Navbar() {
 	const navigate = useNavigate()
-	const location = useLocation()
 	const { auth, setAuth } = useContext(AuthContext)
+	const [user, setUser] = useState(null)
+	const [panelOpen, setPanelOpen] = useState(false)
+
+	useEffect(() => {
+		if (panelOpen) {
+			document.body.addEventListener("click", () => setPanelOpen(false), {
+				once: true
+			})
+		}
+	}, [panelOpen])
+	useEffect(async () => {
+		if (auth) {
+			try {
+				const userResponse = await api.get("/users", {
+					headers: {
+						Authorization: `Bearer ${auth.token}`
+					}
+				})
+				setUser(userResponse.data.data)
+			} catch (err) {
+				console.error(err)
+			}
+		}
+	}, [auth])
 
 	return (
 		<div className="navbar">
@@ -26,7 +51,11 @@ function Navbar() {
 				</Link>
 			</h1>
 
-			<ul className="navbar--items">
+			<ul
+				className={`navbar--items ${
+					auth ? "navbar--items-user" : "navbar--items-guest"
+				}`}
+			>
 				<li>
 					<Link to="/#professions" className="align-icon">
 						<WorkIcon className="navbar-icon" />
@@ -63,29 +92,67 @@ function Navbar() {
 						</li>
 					</>
 				)}
-				{auth ? (
+				{auth && user ? (
 					<>
-						<li>
-							<Link to="/settings/#" className="align-icon">
+						<button
+							className="navbar-user-button"
+							onClick={() => setPanelOpen((prev) => !prev)}
+						>
+							<img
+								src={user.picture || avatar}
+								className="image-cover navbar-user-pic"
+								width="35"
+								height="35"
+							/>
+						</button>
+						<div
+							onClick={() => setPanelOpen(false)}
+							className="navbar-user-panel"
+							style={{ display: panelOpen ? "flex" : "none" }}
+						>
+							<span>{`أهلا، ${user.firstName}!`}</span>
+							<Link
+								to="/settings/#"
+								className="align-icon navbar-user-panel-link"
+							>
 								<SettingsIcon />
 								<span>الإعدادات</span>
 							</Link>
-						</li>
-						<li
-							className="align-icon"
-							onClick={() => {
-								setAuth(null)
-								localStorage.removeItem("shoghlyAppAuth")
-								navigate("/")
-							}}
-						>
-							<LogoutIcon />
-							<span>تسجيل الخروج</span>
-						</li>
+							<button
+								className="align-icon sign-out-button"
+								onClick={() => {
+									setAuth(null)
+									localStorage.removeItem("shoghlyAppAuth")
+									navigate("/")
+								}}
+							>
+								<LogoutIcon />
+								<span>تسجيل الخروج</span>
+							</button>
+						</div>
 					</>
 				) : (
+					// <>
+					// 	<li>
+					// 		<Link to="/settings/#" className="align-icon">
+					// 			<SettingsIcon />
+					// 			<span>الإعدادات</span>
+					// 		</Link>
+					// 	</li>
+					// 	<li
+					// 		className="align-icon"
+					// 		onClick={() => {
+					// 			setAuth(null)
+					// 			localStorage.removeItem("shoghlyAppAuth")
+					// 			navigate("/")
+					// 		}}
+					// 	>
+					// 		<LogoutIcon />
+					// 		<span>تسجيل الخروج</span>
+					// 	</li>
+					// </>
 					<>
-						<li>
+						<li style={{ marginInlineStart: "auto" }}>
 							<Link to="/sign-in/#" className="align-icon">
 								<LoginIcon />
 								<span>تسجيل الدخول</span>
