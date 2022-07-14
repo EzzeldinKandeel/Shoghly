@@ -98,59 +98,6 @@ function SignIn() {
 					</span>
 				</div>
 			</div>
-			{/* <img src={signInBackground} /> */}
-			{/* <form onSubmit={handleSubmit}>
-				{isInvalid && (
-					<p
-						style={{
-							alignSelf: "center",
-							fontSize: "0.9rem",
-							color: "var(--clr-accent-400)"
-						}}
-					>
-						البريد الإلكتروني أو الرقم السرى غير صحيح
-					</p>
-				)}
-				<div className="input-container">
-					<label>البريد الإلكتروني</label>
-					<input
-						type="email"
-						name="email"
-						onChange={handleChange}
-						value={loginData.email}
-						className="input-box"
-						required
-					/>
-				</div>
-				<div className="input-container">
-					<label>كلمة المرور</label>
-					<input
-						type="password"
-						name="password"
-						onChange={handleChange}
-						value={loginData.password}
-						className="input-box"
-						required
-					/>
-				</div>
-				<input
-					type="submit"
-					value="دخول"
-					style={{ alignSelf: "center" }}
-					className="main-button"
-				/>
-			</form>
-			<p style={{ textAlign: "center" }}>
-				ليس لديك حساب؟{" "}
-				<Link to="/sign-up" style={{ color: "var(--clr-accent-400)" }}>
-					إنشاء حساب جديد
-				</Link>
-			</p>
-			<p style={{ textAlign: "center", marginTop: "0px" }}>
-				<Link to="/reset-password" style={{ color: "var(--clr-accent-400)" }}>
-					إعادة ضبط كلمة المرور
-				</Link>
-			</p> */}
 		</div>
 	)
 }
