@@ -104,12 +104,15 @@ function SignUp() {
 		setSignUpData((prevSignUpData) => {
 			return {
 				...prevSignUpData,
-				[name]: type === "checkbox" ? checked : value
+				[name]: value
 			}
 		})
 		if (signUpData.role !== "worker") {
 			setValidInput((prev) => ({ ...prev, profession: true }))
 			setSignUpData((prev) => ({ ...prev, profession: "" }))
+		}
+		if (type === "radio") {
+			setValidInput((prev) => ({ ...prev, [name]: true }))
 		}
 	}
 
@@ -130,9 +133,13 @@ function SignUp() {
 		} else if (name === "phone") {
 			setValidInput((prev) => ({
 				...prev,
-				phone: MOB_REGEX.test(signUpData.phone)
+				phone: MOB_REGEX.test(signUpData.phone),
+				phoneUnique: true
 			}))
-		} else {
+		} else if (name === "email") {
+			setValidInput((prev) => ({ ...prev, email: true, emailUnique: true }))
+		}
+		{
 			setValidInput((prev) => ({ ...prev, [name]: true }))
 		}
 	}
@@ -161,22 +168,36 @@ function SignUp() {
 			setValidInput((prev) => ({ ...prev, age: false }))
 			ageRef.current.focus()
 			return
-		} else if (signUpData.gender === "") {
+		} else {
+			setValidInput((prev) => ({ ...prev, age: true }))
+		}
+		if (signUpData.gender === "") {
 			setValidInput((prev) => ({ ...prev, gender: false }))
 			genderRef.current.focus()
 			return
-		} else if (signUpData.city === "") {
+		} else {
+			setValidInput((prev) => ({ ...prev, gender: true }))
+		}
+		if (signUpData.city === "") {
 			setValidInput((prev) => ({ ...prev, city: false }))
 			cityRef.current.focus()
 			return
-		} else if (signUpData.role === "") {
+		} else {
+			setValidInput((prev) => ({ ...prev, city: true }))
+		}
+		if (signUpData.role === "") {
 			setValidInput((prev) => ({ ...prev, role: false }))
 			roleRef.current.focus()
 			return
-		} else if (signUpData.role === "worker" && signUpData.profession === "") {
+		} else {
+			setValidInput((prev) => ({ ...prev, role: true }))
+		}
+		if (signUpData.role === "worker" && signUpData.profession === "") {
 			setValidInput((prev) => ({ ...prev, profession: false }))
 			professionRef.current.focus()
 			return
+		} else {
+			setValidInput((prev) => ({ ...prev, profession: true }))
 		}
 		let finalSignUpData = { ...signUpData }
 

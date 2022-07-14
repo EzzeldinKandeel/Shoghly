@@ -3,7 +3,6 @@ import "../styles/SignIn.css"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
-import signInBackground from "../images/sign-in-background.jpg"
 
 function SignIn() {
 	document.title = "تسجيل الدخول - شغلي"
