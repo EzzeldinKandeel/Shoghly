@@ -59,20 +59,20 @@ function Navbar() {
 				<li>
 					<Link to="/#professions" className="align-icon">
 						<WorkIcon className="navbar-icon" />
-						<span>الــخــدمــات</span>
+						<span className="hide-sm">الــخــدمــات</span>
 					</Link>
 				</li>
 				<li>
 					<Link to="/#" className="align-icon">
 						<SearchIcon className="navbar-icon" />
-						<span>بحث</span>
+						<span className="hide-sm">بحث</span>
 					</Link>
 				</li>
 				{auth?.role === "client" && (
 					<li>
 						<Link to="/favorites/#" className="align-icon">
 							<BookmarksIcon className="navbar-icon" />
-							<span>المفضلون</span>
+							<span className="hide-sm">المفضلون</span>
 						</Link>
 					</li>
 				)}
@@ -81,13 +81,13 @@ function Navbar() {
 						<li>
 							<Link to="/reviews/#" className="align-icon">
 								<ReviewsIcon className="navbar-icon" />
-								<span>التعليقات</span>
+								<span className="hide-sm">التعليقات</span>
 							</Link>
 						</li>
 						<li>
 							<Link to="/projects/#" className="align-icon">
 								<CollectionsIcon className="navbar-icon" />
-								<span>المعرض</span>
+								<span className="hide-sm">المعرض</span>
 							</Link>
 						</li>
 					</>
@@ -155,13 +155,13 @@ function Navbar() {
 						<li style={{ marginInlineStart: "auto" }}>
 							<Link to="/sign-in/#" className="align-icon">
 								<LoginIcon />
-								<span>تسجيل الدخول</span>
+								<span className="hide-sm">تسجيل الدخول</span>
 							</Link>
 						</li>
 						<li>
 							<Link to="/sign-up/#" className="align-icon">
 								<AccountBoxIcon />
-								<span>إنشاء حساب جديد</span>
+								<span className="hide-sm">إنشاء حساب جديد</span>
 							</Link>
 						</li>
 					</>

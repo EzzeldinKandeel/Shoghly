@@ -128,7 +128,7 @@
 	gap: 5px;
 }
 @media screen and (max-width: 800px) {
-	.navbar--items span {
+	span.hide-sm {
 		display: none;
 	}
 }
