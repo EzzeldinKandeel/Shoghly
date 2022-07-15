@@ -5,7 +5,11 @@ import avatar from "../images/avatar.png"
 function ConversationCard(props) {
 	let conversation = props.conversation
 	return (
-		<div className="conversation-card">
+		<div
+			className={`conversation-card ${
+				props.selected && "conversation-selected"
+			}`}
+		>
 			<Link
 				to={`/conversations/${conversation.user.id}`}
 				className="conversation-card-content"
@@ -14,7 +18,7 @@ function ConversationCard(props) {
 					src={conversation.user.picture || avatar}
 					height="50"
 					width="50"
-					className="image-cover background-multiply"
+					className="image-cover"
 				/>
 				<div className="conversation-card-text">
 					<h3>

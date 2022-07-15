@@ -34,7 +34,10 @@ function HomeScreen() {
 					params: { text: searchQuery },
 					headers: { Authorization: `Bearer ${auth.token}` }
 				})
-			} catch (err) {}
+				console.log(response.data)
+			} catch (err) {
+				console.error(err)
+			}
 		} else {
 		}
 	}, [searchQuery])
@@ -68,6 +71,7 @@ function HomeScreen() {
 					/>
 					<button className="search-submit main-button">بحث</button>
 				</div>
+				<div></div>
 			</div>
 			<div className="homescreen-features">
 				<HomescreenFeatures

@@ -33,6 +33,10 @@ ReactDOM.render(
 				<Routes>
 					<Route path="sign-in" element={<SignIn />} />
 					<Route path="sign-up" element={<SignUp />} />
+					<Route path="conversations">
+						<Route path="" element={<Conversations />} />
+						<Route path=":correspondentId" element={<Chat />} />
+					</Route>
 					<Route path="/" element={<App />}>
 						<Route path="" element={<HomeScreen />} />
 						<Route path="email-verification" element={<EmailVerification />} />
@@ -41,10 +45,6 @@ ReactDOM.render(
 							<Route path=":profession" element={<SingleProfession />} />
 						</Route>
 						<Route path="favorites" element={<Favorites />} />
-						<Route path="conversations">
-							<Route path="" element={<Conversations />} />
-							<Route path=":correspondentId" element={<Chat />} />
-						</Route>
 						<Route path="worker:workerId" element={<WorkerPage />} />
 						<Route path="settings">
 							<Route path="" element={<Settings />} />

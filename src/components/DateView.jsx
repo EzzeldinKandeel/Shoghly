@@ -2,7 +2,9 @@ import React from "react"
 
 function DateView(props) {
 	let uploadDate = new Date(props.dateCreated)
-	let editDate = new Date(props.dateUpdated)
+	let editDate = props.dateUpdated
+		? new Date(props.dateUpdated)
+		: new Date(props.dateCreated)
 
 	function addZeroOnTheLeft(inputNumber) {
 		let outputNumber = String(inputNumber)
@@ -25,7 +27,7 @@ function DateView(props) {
 					{String(uploadDate.getFullYear())}
 				</span>
 			</div>
-			{props.dateCreated !== props.dateUpdated && (
+			{props.dateUpdated && props.dateCreated !== props.dateUpdated && (
 				<div className="review-date" style={{ marginBlockStart: "-0.2rem" }}>
 					<span>
 						أخر تعديل&nbsp;-&nbsp; الوقت:&nbsp;
