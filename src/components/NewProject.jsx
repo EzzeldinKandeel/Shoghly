@@ -30,7 +30,7 @@ function NewProject(props) {
 			let imageURLs = uploadResponse.data.data.map((image) => image.url)
 			await api.post(
 				"/workers/projects",
-				{ url: imageURLs, description: projectDescription },
+				{ urls: imageURLs, description: projectDescription },
 				{ headers: { Authorization: `Bearer ${auth.token}` } }
 			)
 			props.setGetTrigger((prevGetTrigger) => !prevGetTrigger)
