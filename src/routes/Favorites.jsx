@@ -21,7 +21,7 @@ function Favorites() {
 
 	return favorites.length ? (
 		<div className="favorites-page">
-			<h2>المفضلون</h2>
+			<h2>المفضلات</h2>
 			<div className="favorite-workers">
 				{favorites.map((fav) => (
 					<LargeWorkerCard

@@ -14,6 +14,7 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks"
 import { HashLink as Link } from "react-router-hash-link"
 import api from "../api/axios"
 import avatar from "../images/avatar.png"
+import ChatIcon from "@mui/icons-material/Chat"
 
 function Navbar() {
 	const navigate = useNavigate()
@@ -72,7 +73,7 @@ function Navbar() {
 					<li>
 						<Link to="/favorites/#" className="align-icon">
 							<BookmarksIcon className="navbar-icon" />
-							<span className="hide-sm">المفضلون</span>
+							<span className="hide-sm">المفضلات</span>
 						</Link>
 					</li>
 				)}
@@ -91,6 +92,14 @@ function Navbar() {
 							</Link>
 						</li>
 					</>
+				)}
+				{auth && (
+					<li>
+						<Link to="/conversations/#" className="align-icon">
+							<ChatIcon className="navbar-icon" />
+							<span className="hide-sm">المحادثات</span>
+						</Link>
+					</li>
 				)}
 				{auth && user ? (
 					<>

@@ -10,6 +10,8 @@ import PhoneIcon from "@mui/icons-material/Phone"
 import AuthContext from "../context/AuthProvider"
 import ProjectPreview from "./../components/ProjectPreview"
 import FavoriteToggle from "./../components/FavoriteToggle"
+import ChatIcon from "@mui/icons-material/Chat"
+import { HashLink as Link } from "react-router-hash-link"
 
 function WorkerPage() {
 	const { auth } = useContext(AuthContext)
@@ -78,7 +80,15 @@ function WorkerPage() {
 						<h1 className="align-icon">
 							{worker.firstName} {worker.lastName}
 							{auth?.role === "client" && (
-								<FavoriteToggle workerId={worker.id} />
+								<>
+									<FavoriteToggle workerId={worker.id} />
+									<Link
+										className="jump-to-chat-btn"
+										to={`/conversations/${worker.id}/#`}
+									>
+										<ChatIcon color="inheret" />
+									</Link>
+								</>
 							)}
 						</h1>
 						<h4>{worker.profession}</h4>

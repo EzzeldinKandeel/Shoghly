@@ -26,3 +26,21 @@
 	gap: 1rem;
 	flex-wrap: wrap;
 }
+.jump-to-chat-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100vmax;
+	aspect-ratio: 1/1;
+	color: inherit;
+	border: none;
+	background-color: transparent;
+	transition: 250ms;
+	transition-property: background-color;
+	position: relative;
+	top: 5px;
+}
+.jump-to-chat-btn:hover {
+	cursor: pointer;
+	background-color: lightgray;
+}

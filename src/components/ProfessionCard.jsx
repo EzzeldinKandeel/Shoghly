@@ -1,12 +1,12 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { HashLink as Link } from "react-router-hash-link"
 
 function ProfessionCard(props) {
 	return (
 		<div className="profession-card">
 			<Link
 				className="profession-card-content"
-				to={`/professions/${props.profession.name}`}
+				to={`/professions/${props.profession.name}/#`}
 			>
 				<img
 					className="image-cover profession-card-picture"

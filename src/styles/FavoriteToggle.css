@@ -10,7 +10,7 @@
 	transition: 250ms;
 	transition-property: background-color;
 	position: relative;
-	top: 7px;
+	top: 5px;
 }
 .favorite-toggle:hover {
 	cursor: pointer;
