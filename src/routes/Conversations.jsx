@@ -3,6 +3,7 @@ import AuthContext from "../context/AuthProvider"
 import "../styles/Chat.css"
 import api from "../api/axios"
 import ConversationCard from "../components/ConversationCard"
+import Navbar from "../components/Navbar"
 
 function Conversations() {
 	document.title = "المحادثات - شغلي"
@@ -14,30 +15,30 @@ function Conversations() {
 				headers: { Authorization: `Bearer ${auth.token}` }
 			})
 			setConversations(conversationsResponse.data.data)
-			console.dir(conversationsResponse.data.data)
 		} catch (err) {
 			console.error(err)
 		}
 	}, [])
-	return Boolean(conversations.length) ? (
-		<div className="chat">
-			<h2
-				className="page-heading"
-				style={{ marginInlineStart: "2rem", marginBlock: "1rem" }}
-			>
-				المحادثات
-			</h2>
-			<div className="conversation-list">
-				{conversations.map((conversation) => (
-					<ConversationCard
-						conversation={conversation}
-						key={conversation.user.id}
-					/>
-				))}
-			</div>
-		</div>
-	) : (
-		<h1 className="content-does-not-exist">لا توجد محادثات</h1>
+	return (
+		<>
+			<Navbar />
+			{Boolean(conversations.length) ? (
+				<div className="chat conversations-page">
+					<div className="conversation-list-page">
+						{conversations.map((conversation) => (
+							<ConversationCard
+								conversation={conversation}
+								key={conversation.user.id}
+							/>
+						))}
+					</div>
+				</div>
+			) : (
+				<div style={{ height: "calc(100vh - 100px)", display: "flex" }}>
+					<h1 className="content-does-not-exist">لا توجد محادثات</h1>
+				</div>
+			)}
+		</>
 	)
 }
 

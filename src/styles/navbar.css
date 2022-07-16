@@ -127,9 +127,20 @@
 	align-items: center;
 	gap: 5px;
 }
-@media screen and (max-width: 800px) {
+.selected-color {
+	color: #81b29a !important;
+}
+@media screen and (max-width: 799px) {
 	span.hide-sm {
 		display: none;
+	}
+	.navbar--items {
+		gap: 1rem;
+	}
+}
+@media screen and (min-width: 800px) {
+	.navbar--items {
+		gap: 2rem;
 	}
 }
 

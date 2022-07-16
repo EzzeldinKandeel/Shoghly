@@ -69,6 +69,7 @@ textarea {
 .content-does-not-exist {
 	margin: auto;
 	font-weight: 200;
+	font-size: 2rem;
 	color: gray;
 	max-width: 90%;
 	text-align: center;

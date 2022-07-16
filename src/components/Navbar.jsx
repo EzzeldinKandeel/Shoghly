@@ -18,9 +18,17 @@ import ChatIcon from "@mui/icons-material/Chat"
 
 function Navbar() {
 	const navigate = useNavigate()
+	const location = useLocation()
 	const { auth, setAuth } = useContext(AuthContext)
 	const [user, setUser] = useState(null)
 	const [panelOpen, setPanelOpen] = useState(false)
+
+	const colorIfSelected = (path, hash = "") => {
+		if (location.pathname.includes(path) && location.hash === hash) {
+			return "selected-color"
+		}
+		return ""
+	}
 
 	useEffect(() => {
 		if (panelOpen) {
@@ -58,7 +66,10 @@ function Navbar() {
 				}`}
 			>
 				<li>
-					<Link to="/#professions" className="align-icon">
+					<Link
+						to="/#professions"
+						className={`align-icon ${colorIfSelected("/", "#professions")}`}
+					>
 						<WorkIcon className="navbar-icon" />
 						<span className="hide-sm">الــخــدمــات</span>
 					</Link>
@@ -71,7 +82,10 @@ function Navbar() {
 				</li>
 				{auth?.role === "client" && (
 					<li>
-						<Link to="/favorites/#" className="align-icon">
+						<Link
+							to="/favorites/#"
+							className={`align-icon ${colorIfSelected("/favorites/")}`}
+						>
 							<BookmarksIcon className="navbar-icon" />
 							<span className="hide-sm">المفضلات</span>
 						</Link>
@@ -80,13 +94,19 @@ function Navbar() {
 				{auth?.role === "worker" && (
 					<>
 						<li>
-							<Link to="/reviews/#" className="align-icon">
+							<Link
+								to="/reviews/#"
+								className={`align-icon ${colorIfSelected("/reviews/")}`}
+							>
 								<ReviewsIcon className="navbar-icon" />
 								<span className="hide-sm">التعليقات</span>
 							</Link>
 						</li>
 						<li>
-							<Link to="/projects/#" className="align-icon">
+							<Link
+								to="/projects/#"
+								className={`align-icon ${colorIfSelected("/projects/")}`}
+							>
 								<CollectionsIcon className="navbar-icon" />
 								<span className="hide-sm">المعرض</span>
 							</Link>
@@ -95,20 +115,23 @@ function Navbar() {
 				)}
 				{auth && (
 					<li>
-						<Link to="/conversations/#" className="align-icon">
+						<Link
+							to="/conversations/#"
+							className={`align-icon ${colorIfSelected("/conversations/")}`}
+						>
 							<ChatIcon className="navbar-icon" />
 							<span className="hide-sm">المحادثات</span>
 						</Link>
 					</li>
 				)}
-				{auth && user ? (
+				{auth ? (
 					<>
 						<button
 							className="navbar-user-button"
 							onClick={() => setPanelOpen((prev) => !prev)}
 						>
 							<img
-								src={user.picture || avatar}
+								src={user?.picture || avatar}
 								className="image-cover navbar-user-pic"
 								width="35"
 								height="35"
@@ -119,7 +142,7 @@ function Navbar() {
 							className="navbar-user-panel"
 							style={{ display: panelOpen ? "flex" : "none" }}
 						>
-							<span>{`أهلا، ${user.firstName}!`}</span>
+							<span>{`أهلا، ${user?.firstName}!`}</span>
 							<Link
 								to="/settings/#"
 								className="align-icon navbar-user-panel-link"
