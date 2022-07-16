@@ -240,6 +240,11 @@
 @media screen and (max-width: 999px) {
 	.chat-contents {
 		grid-template-columns: 1fr;
+		margin: 0px;
+		height: calc(100vh - 4rem);
+	}
+	.messages-view {
+		padding-inline: 5px;
 	}
 	.conversation-list {
 		display: none;

@@ -64,6 +64,8 @@ function WorkerPage() {
 			}
 		}
 	}, [])
+	console.log(worker)
+
 	return (
 		worker && (
 			<div className="worker-details">
