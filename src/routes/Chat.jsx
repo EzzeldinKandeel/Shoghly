@@ -8,6 +8,7 @@ import api from "../api/axios"
 import ConversationCard from "../components/ConversationCard"
 import { HashLink as Link } from "react-router-hash-link"
 import Navbar from "../components/Navbar"
+import avatar from "../images/avatar.png"
 import { io } from "socket.io-client"
 
 function Chat() {
@@ -16,6 +17,7 @@ function Chat() {
 	const { auth } = useContext(AuthContext)
 	const [messages, setMessages] = useState([])
 	const [conversations, setConversations] = useState([])
+	const [currentConversation, setCurrentConversation] = useState(null)
 	useEffect(async () => {
 		try {
 			const conversationsResponse = await api.get("/chats", {
@@ -26,7 +28,6 @@ function Chat() {
 			console.error(err)
 		}
 	}, [messages])
-
 	useEffect(async () => {
 		try {
 			const messagesResponse = await api.get(
@@ -42,6 +43,14 @@ function Chat() {
 		// )
 		// socket.io.reconnection(false)
 	}, [params.correspondentId])
+	useEffect(() => {
+		setCurrentConversation(
+			conversations.find(
+				(conversation) => conversation.user.id === params.correspondentId
+			)
+		)
+	}, [params.correspondentId, conversations])
+
 	return (
 		<>
 			<Navbar />
@@ -58,6 +67,25 @@ function Chat() {
 							))}
 						</div>
 						<div className="chat-container">
+							{currentConversation && (
+								<div className="current-correspondent">
+									<Link
+										to={`/worker${currentConversation.user.id}`}
+										className="current-correspondent-content"
+									>
+										<img
+											src={currentConversation.user.picture || avatar}
+											className="current-correspondent-pic image-cover"
+											height="50"
+											width="50"
+										/>
+										<h3 className="current-correspondent-name">
+											{currentConversation.user.firstName}{" "}
+											{currentConversation.user.lastName}
+										</h3>
+									</Link>
+								</div>
+							)}
 							<div className="messages-view">
 								{messages.map((message) => (
 									<ChatBubble

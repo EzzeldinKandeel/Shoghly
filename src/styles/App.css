@@ -81,3 +81,9 @@ h2.page-heading {
 .display-none {
 	display: none;
 }
+
+@media screen and (min-width: 800px) {
+	.main-page-title {
+		display: none;
+	}
+}

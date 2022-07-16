@@ -220,6 +220,23 @@
 	width: min(900px, 90%);
 	margin-inline: auto;
 }
+.current-correspondent {
+	height: 50px;
+}
+.current-correspondent-content {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	width: fit-content;
+}
+.current-correspondent-pic {
+	border-radius: 100%;
+}
+.current-correspondent-name {
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
 @media screen and (max-width: 999px) {
 	.chat-contents {
 		grid-template-columns: 1fr;
