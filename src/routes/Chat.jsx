@@ -69,21 +69,38 @@ function Chat() {
 						<div className="chat-container">
 							{currentConversation && (
 								<div className="current-correspondent">
-									<Link
-										to={`/worker${currentConversation.user.id}`}
-										className="current-correspondent-content"
-									>
-										<img
-											src={currentConversation.user.picture || avatar}
-											className="current-correspondent-pic image-cover"
-											height="50"
-											width="50"
-										/>
-										<h3 className="current-correspondent-name">
-											{currentConversation.user.firstName}{" "}
-											{currentConversation.user.lastName}
-										</h3>
-									</Link>
+									{auth.role === "client" ? (
+										<Link
+											to={`/worker${currentConversation.user.id}/#`}
+											className="current-correspondent-content"
+										>
+											<img
+												src={currentConversation.user.picture || avatar}
+												className="current-correspondent-pic image-cover"
+												height="50"
+												width="50"
+											/>
+											<h3 className="current-correspondent-name">
+												{currentConversation.user.firstName}{" "}
+												{currentConversation.user.lastName}
+											</h3>
+										</Link>
+									) : auth.role === "worker" ? (
+										<div className="current-correspondent-content">
+											<img
+												src={currentConversation.user.picture || avatar}
+												className="current-correspondent-pic image-cover"
+												height="50"
+												width="50"
+											/>
+											<h3 className="current-correspondent-name">
+												{currentConversation.user.firstName}{" "}
+												{currentConversation.user.lastName}
+											</h3>
+										</div>
+									) : (
+										""
+									)}
 								</div>
 							)}
 							<div className="messages-view">

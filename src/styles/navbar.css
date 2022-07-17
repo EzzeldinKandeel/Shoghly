@@ -57,11 +57,25 @@
 	margin-block: auto;
 	margin-inline-start: auto;
 	transition: 250ms;
-	transition-property: filter;
+	transition-property: background-color;
+	background-color: transparent;
+	background-blend-mode: multiply;
+	padding: 5px;
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	font: inherit;
+}
+.navbar-user-pic {
+	border-radius: 100%;
+}
+.navbar-user-button > span {
+	color: hsla(0, 0%, 100%, 0.85);
+	font: inherit;
 }
 .navbar-user-button:hover,
 .navbar-user-button:focus {
-	filter: brightness(70%);
+	background-color: hsla(0, 0%, 0%, 0.4);
 	cursor: pointer;
 }
 .navbar-user-panel {
@@ -70,7 +84,7 @@
 	position: absolute;
 	z-index: 10;
 	left: 8px;
-	top: 80px;
+	top: 82px;
 	box-shadow: 1px 1px 5px black;
 	padding: 0.5rem;
 	border-radius: 5px;
@@ -78,7 +92,6 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
-	height: 200px;
 }
 .navbar-user-panel > span {
 	display: flex;
@@ -137,10 +150,22 @@
 	.navbar--items {
 		gap: 1rem;
 	}
+	.navbar-user-button > span {
+		display: none;
+	}
+	.navbar-user-panel {
+		height: 200px;
+	}
 }
 @media screen and (min-width: 800px) {
 	.navbar--items {
 		gap: 2rem;
+	}
+	.navbar-user-panel > span {
+		display: none;
+	}
+	.navbar-user-panel {
+		height: 150px;
 	}
 }
 

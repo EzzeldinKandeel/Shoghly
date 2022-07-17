@@ -15,23 +15,33 @@ function Footer() {
 				</h4>
 				<ul className="footer-links">
 					<li>
-						<a href="https://www.linkedin.com/in/ahmednmourad/">Ahmed Nabil</a>
+						<a href="https://www.linkedin.com/in/ahmednmourad/" target="_blank">
+							Ahmed Nabil
+						</a>
 					</li>
 					<li>
-						<a href="https://www.linkedin.com/in/ezzeldin-kandeel-26248621a/">
+						<a
+							href="https://www.linkedin.com/in/ezzeldin-kandeel-26248621a/"
+							target="_blank"
+						>
 							Ezzeldin Kandeel
 						</a>
 					</li>
 					<li>
-						<a href="https://www.linkedin.com/in/ibrahimoraby/">
+						<a href="https://www.linkedin.com/in/ibrahimoraby/" target="_blank">
 							Ibrahim Oraby
 						</a>
 					</li>
 					<li>
-						<a href="https://www.linkedin.com/in/mernaketana/">Merna Ketana</a>
+						<a href="https://www.linkedin.com/in/mernaketana/" target="_blank">
+							Merna Ketana
+						</a>
 					</li>
 					<li>
-						<a href="https://www.linkedin.com/in/mohamed-elshamy-4b8236185/">
+						<a
+							href="https://www.linkedin.com/in/mohamed-elshamy-4b8236185/"
+							target="_blank"
+						>
 							Mohamed Elshamy
 						</a>
 					</li>
@@ -45,13 +55,25 @@ function Footer() {
 				</h4>
 				<ul className="footer-links">
 					<li>
-						<a href="https://github.com/ahmednmourad/shoghly">Backend</a>
+						<a href="https://github.com/ahmednmourad/shoghly" target="_blank">
+							Backend
+						</a>
 					</li>
 					<li>
-						<a href="https://github.com/EzzeldinKandeel/Shoghly">Frontend</a>
+						<a
+							href="https://github.com/EzzeldinKandeel/Shoghly"
+							target="_blank"
+						>
+							Frontend
+						</a>
 					</li>
 					<li>
-						<a href="https://github.com/mernaketana/Shoghly-App">Mobile App</a>
+						<a
+							href="https://github.com/mernaketana/Shoghly-App"
+							target="_blank"
+						>
+							Mobile App
+						</a>
 					</li>
 				</ul>
 			</span>

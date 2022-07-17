@@ -16,7 +16,7 @@
 	margin: 0px;
 	font-size: 0.6rem;
 	margin-top: -1rem;
-	color: var(--clr-accent-400);
+	color: firebrick;
 }
 .input-box-container {
 	display: flex;

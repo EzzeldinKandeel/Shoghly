@@ -9,7 +9,6 @@
 .search-box {
 	width: min(500px, 100%);
 	margin-inline: auto;
-
 }
 .live-search-results {
 	width: min(500px, 100%);
@@ -18,7 +17,6 @@
 	gap: 1rem;
 }
 .mini-card {
-	box-shadow: 1px 1px 5px black;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -28,7 +26,6 @@
 	gap: 1rem;
 	transition: 250ms;
 	transition-property: background-color;
-	border-radius: 5px;
 	overflow: hidden;
 }
 .mini-card:hover {

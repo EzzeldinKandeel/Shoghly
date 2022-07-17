@@ -20,12 +20,17 @@ function ChangePassword() {
 	})
 	const [error, setError] = useState(false)
 
-	useEffect(() => {
-		setValidData({
-			newPassword: PWD_REGEX.test(userData.newPassword),
-			passwordConfirm: userData.newPassword === userData.passwordConfirm
-		})
-	}, [userData])
+	function handleBlur(e) {
+		let { name, value } = e.target
+		if (name === "newPassword") {
+			setValidData((prev) => ({ ...prev, newPassword: PWD_REGEX.test(value) }))
+		} else if (name === "passwordConfirm") {
+			setValidData((prev) => ({
+				...prev,
+				passwordConfirm: userData.newPassword === value
+			}))
+		}
+	}
 
 	function handleChange(e) {
 		let { name, value } = e.target

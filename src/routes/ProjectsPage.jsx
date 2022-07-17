@@ -14,9 +14,7 @@ function ProjectsPage() {
 
 	useEffect(async () => {
 		try {
-			const response = await api.get(`/workers/${auth.id}/projects`, {
-				headers: { Authorization: `Bearer ${auth.token}` }
-			})
+			const response = await api.get(`/workers/${auth.id}/projects`)
 			setProjects(response.data.data)
 		} catch (err) {
 			console.error(err)

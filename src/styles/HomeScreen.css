@@ -82,10 +82,27 @@
 	gap: 2rem;
 }
 .search-box-content {
+	box-shadow: 1px 1px 5px black;
 	display: flex;
 	align-items: stretch;
 	height: 55px;
 	width: 100%;
+	position: relative;
+}
+.search-suggestions {
+	box-shadow: 1px 1px 5px black;
+	background-color: white;
+	position: absolute;
+	top: 3.6rem;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.search-suggestions-no-results {
+	margin-inline: auto;
+	margin-block: 2rem;
+	font-size: 1.5rem;
+	color: gray;
 }
 .search-box {
 	font-size: 1.25rem;

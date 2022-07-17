@@ -130,11 +130,12 @@ function Navbar() {
 							className="navbar-user-button"
 							onClick={() => setPanelOpen((prev) => !prev)}
 						>
+							<span>{`أهلا${user ? `، ${user.firstName}` : ""}`}</span>
 							<img
 								src={user?.picture || avatar}
 								className="image-cover navbar-user-pic"
-								width="35"
-								height="35"
+								width="25"
+								height="25"
 							/>
 						</button>
 						<div
@@ -142,7 +143,7 @@ function Navbar() {
 							className="navbar-user-panel"
 							style={{ display: panelOpen ? "flex" : "none" }}
 						>
-							<span>{`أهلا، ${user?.firstName}!`}</span>
+							<span>{`أهلا، ${user?.firstName}`}</span>
 							<Link
 								to="/settings/#"
 								className="align-icon navbar-user-panel-link"

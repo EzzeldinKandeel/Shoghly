@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams, useOutletContext } from "react-router-dom"
 import LargeWorkerCard from "../components/LargeWorkerCard"
 import "../styles/SingleProfession.css"
 import api from "../api/axios"
-import AuthContext from "../context/AuthProvider"
 import noResultsFound from "../images/no-results.png"
 
 function SingleProfession() {
-	const { auth } = useContext(AuthContext)
 	const { city } = useOutletContext()
 	let params = useParams()
 	let profession = params.profession

@@ -172,6 +172,9 @@
 	overflow-y: auto;
 	padding: 1rem;
 }
+.conversation-list-page {
+	max-height: calc(100vh - 8.5rem);
+}
 .chat-container {
 	display: flex;
 	flex-direction: column;

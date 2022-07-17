@@ -1,12 +1,13 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import avatar from "../images/avatar.png"
+import "../styles/SearchPage.css"
+import { HashLink as Link } from "react-router-hash-link"
 
 function MiniWorkerCard(props) {
 	let worker = props.worker
 	return (
 		<div>
-			<Link className="mini-card" to={`/worker${worker.userId}`}>
+			<Link className="mini-card" to={`/worker${worker.userId}/#`}>
 				<img
 					height="70"
 					width="70"

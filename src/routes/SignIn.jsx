@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import "../styles/SignIn.css"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import { HashLink as Link } from "react-router-hash-link"
+
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 
@@ -54,7 +56,7 @@ function SignIn() {
 			<div className={`sign-in-content ${isInvalid ? "sign-in-invalid" : ""}`}>
 				<div className="sign-in-heading">
 					<h1 className="sign-in-brand-name">
-						<Link to="/">شــــغــــلــــي</Link>
+						<Link to="/#">شــــغــــلــــي</Link>
 					</h1>
 					<h2 className="sign-in-title">تسجيل الدخول</h2>
 				</div>
@@ -82,7 +84,7 @@ function SignIn() {
 						value={userInput.password}
 					/>
 					<span style={{ height: "fit-content", textIndent: "0.2rem" }}>
-						<Link to="/reset-password" className="sign-in-additional-link">
+						<Link to="/reset-password/#" className="sign-in-additional-link">
 							هل نسيت كلمة المرور؟
 						</Link>
 					</span>
@@ -91,7 +93,7 @@ function SignIn() {
 				<div className="sign-in-additional-links">
 					<span>
 						ليس لديك حساب؟{" "}
-						<Link to="/sign-up" className="sign-in-additional-link">
+						<Link to="/sign-up/#" className="sign-in-additional-link">
 							إنشاء حساب جديد
 						</Link>
 					</span>

@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from "react"
 import { getCities, getProfessions } from "../data"
 import "../styles/signup.css"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import { HashLink as Link } from "react-router-hash-link"
+
 import api from "../api/axios"
 import ErrorBackdrop from "../components/ErrorBackdrop"
 import AuthContext from "../context/AuthProvider"
@@ -235,7 +237,7 @@ function SignUp() {
 			<div className="sign-up-content">
 				<div className="sign-up-heading">
 					<h1 className="sign-up-brand-name">
-						<Link to="/">شــــغــــلــــي</Link>
+						<Link to="/#">شــــغــــلــــي</Link>
 					</h1>
 					<p className="sign-up-title">إنشاء حساب جديد</p>
 				</div>
@@ -524,7 +526,7 @@ function SignUp() {
 				<div className="sign-up-additional-links">
 					<span>
 						لديك حساب بالفعل؟{" "}
-						<Link to="/sign-in" className="sign-in-additional-link">
+						<Link to="/sign-in/#" className="sign-in-additional-link">
 							تسجيل الدخول
 						</Link>
 					</span>

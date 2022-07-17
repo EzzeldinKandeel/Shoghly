@@ -2,7 +2,6 @@
 	display: flex;
 	gap: 2rem;
 	flex-wrap: wrap;
-	justify-content: center;
 }
 .no-results-picture {
 	height: 70vh;

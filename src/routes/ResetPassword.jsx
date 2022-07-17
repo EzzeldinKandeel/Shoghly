@@ -20,7 +20,7 @@ function ResetPassword() {
 	async function handleSubmit(e) {
 		e.preventDefault()
 		try {
-			const response = await api.post("/forgotPassword", { email })
+			await api.post("/forgotPassword", { email })
 			setSent(true)
 		} catch (err) {
 			setError(true)

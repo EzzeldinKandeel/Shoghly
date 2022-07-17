@@ -38,7 +38,7 @@ function DeleteAccount() {
 				style={{
 					fontWeight: "400",
 					margin: "0px",
-					color: "var(--clr-accent-400)"
+					color: "firebrick"
 				}}
 			>
 				<WarningIcon />

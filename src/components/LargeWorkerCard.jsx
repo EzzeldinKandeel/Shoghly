@@ -1,14 +1,14 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import avatar from "../images/avatar.png"
 import "../styles/LargeWorkerCard.css"
 import CustomRating from "./CustomRating"
 import FavoriteToggle from "./FavoriteToggle"
+import { HashLink as Link } from "react-router-hash-link"
 
 function LargeWorkerCard({ worker, showProfession }) {
 	return (
 		<div className="large-worker-card">
-			<Link to={`/worker${worker.id}`} className="large-worker-card-content">
+			<Link to={`/worker${worker.id}/#`} className="large-worker-card-content">
 				<img
 					src={worker.picture || avatar}
 					className="image-cover large-worker-card-pic background-multiply"

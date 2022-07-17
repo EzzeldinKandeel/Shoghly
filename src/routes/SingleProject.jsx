@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import { HashLink as Link } from "react-router-hash-link"
+
 import api from "../api/axios"
 import AuthContext from "../context/AuthProvider"
 import DateView from "./../components/DateView"
@@ -16,10 +18,7 @@ function SignleProject() {
 	useEffect(async () => {
 		try {
 			const projectResponse = await api.get(
-				`/workers/projects/${params.projectId}`,
-				{
-					headers: { Authorization: `Bearer ${auth.token}` }
-				}
+				`/workers/projects/${params.projectId}`
 			)
 			const workerResponse = await api.get(
 				`/workers/${projectResponse.data.project[0].workerId}`
@@ -36,7 +35,10 @@ function SignleProject() {
 		? worker && (
 				<div className="project-page">
 					<div>
-						<Link className="project-creator" to={`/worker${project.workerId}`}>
+						<Link
+							className="project-creator"
+							to={`/worker${project.workerId}/#`}
+						>
 							<img
 								src={worker.picture || avatar}
 								height="50"

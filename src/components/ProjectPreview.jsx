@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
-import { Link } from "react-router-dom"
 import "../styles/ProjectPreview.css"
+import { HashLink as Link } from "react-router-hash-link"
+
 import DateView from "./DateView"
 
 function ProjectPreview(props) {
@@ -15,7 +16,10 @@ function ProjectPreview(props) {
 	}, [imgRef, dateRef])
 	return (
 		<div className="project-preview">
-			<Link className="project-preview-content" to={`/projects/${project.id}`}>
+			<Link
+				className="project-preview-content"
+				to={`/projects/${project.id}/#`}
+			>
 				<img
 					ref={imgRef}
 					className="project-preview-pic background-multiply"

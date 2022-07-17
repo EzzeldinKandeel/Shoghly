@@ -1,6 +1,6 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import avatar from "../images/avatar.png"
+import { HashLink as Link } from "react-router-hash-link"
 
 function ConversationCard(props) {
 	let conversation = props.conversation
@@ -11,7 +11,7 @@ function ConversationCard(props) {
 			}`}
 		>
 			<Link
-				to={`/conversations/${conversation.user.id}`}
+				to={`/conversations/${conversation.user.id}/#`}
 				className="conversation-card-content"
 			>
 				<img

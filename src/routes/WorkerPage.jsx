@@ -55,8 +55,7 @@ function WorkerPage() {
 		if (auth) {
 			try {
 				const projectsResponse = await api.get(
-					`/workers/${params.workerId}/projects`,
-					{ headers: { Authorization: `Bearer ${auth.token}` } }
+					`/workers/${params.workerId}/projects`
 				)
 				setProjects(projectsResponse.data.data)
 			} catch (err) {
