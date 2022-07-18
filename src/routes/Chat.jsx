@@ -28,20 +28,26 @@ function Chat() {
 			console.error(err)
 		}
 	}, [messages])
-	useEffect(async () => {
-		try {
-			const messagesResponse = await api.get(
-				`/users/${params.correspondentId}/messages`,
-				{ headers: { Authorization: `Bearer ${auth.token}` } }
-			)
-			setMessages(messagesResponse.data.data)
-		} catch (err) {
-			console.error(err)
-		}
+	useEffect(() => {
+		const chatInerval = setInterval(async () => {
+			try {
+				const messagesResponse = await api.get(
+					`/users/${params.correspondentId}/messages`,
+					{ headers: { Authorization: `Bearer ${auth.token}` } }
+				)
+				setMessages(messagesResponse.data.data)
+				console.log("chuchu")
+			} catch (err) {
+				console.error(err)
+			}
+		}, 2000)
 		// const socket = io(
 		// 	`http://ec2-52-59-217-155.eu-central-1.compute.amazonaws.com:8080?token=${auth.token}`
 		// )
 		// socket.io.reconnection(false)
+		return () => {
+			clearInterval(chatInerval)
+		}
 	}, [params.correspondentId])
 	useEffect(() => {
 		setCurrentConversation(

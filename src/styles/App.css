@@ -52,7 +52,6 @@ textarea {
 	color: var(--gray);
 }
 .main-button:hover {
-	/* background-color: #a72d25; */
 	cursor: pointer;
 	filter: brightness(120%);
 }
