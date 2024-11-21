@@ -1,6 +1,17 @@
 # Shoghly
-The website I and four of my colleagues are developing as our graduation project. Its purpose is to help connect skilled individuals with potential clients.
-Website content is Arabic, since the site is targeted at Egypt and Arabic-speaking Egyptians.
 
-You ~~can~~ **could** check out a continuously updated build of the website at:
-https://shoghly.netlify.app/
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
