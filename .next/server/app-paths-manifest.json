@@ -1,3 +1,4 @@
 {
-  "/page": "app/page.js"
+  "/(with sidebar)/settings/page": "app/(with sidebar)/settings/page.js",
+  "/(without sidebar)/sign-in/page": "app/(without sidebar)/sign-in/page.js"
 }
